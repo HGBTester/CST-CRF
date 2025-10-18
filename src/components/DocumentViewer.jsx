@@ -2,8 +2,11 @@ import React from 'react';
 import { Check, Clock, AlertCircle, X } from 'lucide-react';
 import { placeholderSignature, placeholderStamp } from '../data/users';
 
-function DocumentViewer({ document, docInstance, onSign, onRevokeSignature, currentUser, baseContent }) {
+function DocumentViewer({ document, docInstance, onSign, onRevokeSignature, currentUser, baseContent, darkMode }) {
   if (!document) return null;
+  
+  const textColor = darkMode ? '#e5e7eb' : '#1e293b';
+  const bgColor = darkMode ? '#1a1a1a' : '#ffffff';
 
   const canSign = (role) => {
     if (!currentUser || !docInstance) return false;
@@ -136,13 +139,13 @@ function DocumentViewer({ document, docInstance, onSign, onRevokeSignature, curr
   );
 
   return (
-    <div className="max-w-5xl mx-auto p-8">
+    <div className="max-w-5xl mx-auto p-8" style={{color: textColor}}>
       {docInstance && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mb-6 p-4 rounded-lg" style={{backgroundColor: (darkMode ? '#1e40af' : '#eff6ff'), borderColor: (darkMode ? '#3b82f6' : '#bfdbfe'), border: '1px solid'}}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold text-blue-900">Document ID: {docInstance.id}</p>
-              <p className="text-sm text-blue-700">Created: {new Date(docInstance.createdAt).toLocaleString()}</p>
+              <p className="font-semibold" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>Document ID: {docInstance.id}</p>
+              <p className="text-sm" style={{color: (darkMode ? '#dbeafe' : '#1d4ed8')}}>Created: {new Date(docInstance.createdAt).toLocaleString()}</p>
             </div>
             <div className="flex items-center gap-2">
               {docInstance.status === 'completed' && (
@@ -172,7 +175,7 @@ function DocumentViewer({ document, docInstance, onSign, onRevokeSignature, curr
       
       {docInstance && (
         <div className="mt-12">
-          <h2 className="text-2xl font-semibold text-blue-800 mb-6">Document Approval</h2>
+          <h2 className="text-2xl font-semibold mb-6" style={{color: (darkMode ? '#60a5fa' : '#1e40af')}}>Document Approval</h2>
           
           <div className="grid grid-cols-2 gap-6">
             {renderSignatureSection('prepared', 'Prepared By')}

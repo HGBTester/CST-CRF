@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, ChevronRight, ChevronDown, Menu, X, Printer, Download, Plus, LogOut, User, CheckCircle, Clock, AlertCircle, Trash2, Sparkles } from 'lucide-react';
+import { FileText, ChevronRight, ChevronDown, Menu, X, Printer, Download, Plus, LogOut, User, CheckCircle, Clock, AlertCircle, Trash2, Sparkles, Moon, Sun } from 'lucide-react';
 import { auditStructure } from './data/auditStructure';
 import { generateDocument } from './utils/documentTemplates';
 import { authenticateUser } from './data/users';
@@ -9,7 +9,7 @@ import { editDocumentWithAI } from './utils/aiService';
 import Login from './components/Login';
 import DocumentViewer from './components/DocumentViewer';
 import AIEditor from './components/AIEditor';
-import TemplateEditor from './components/TemplateEditor';
+import TemplateEditor from './components/TemplateEditorNew';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,6 +25,7 @@ function App() {
   const [currentDocumentContent, setCurrentDocumentContent] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -299,9 +300,9 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen" style={{backgroundColor: '#f8fafc', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+    <div className={`flex h-screen ${darkMode ? 'dark' : ''}`} style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f8fafc'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-96' : 'w-0'} transition-all duration-300 bg-white overflow-hidden`} style={{borderRight: '1px solid #e2e8f0', fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+      <div className={`${sidebarOpen ? 'w-96' : 'w-0'} transition-all duration-300 overflow-hidden`} style={{backgroundColor: (darkMode ? '#262626' : '#ffffff'), borderRight: (darkMode ? '1px solid #404040' : '1px solid #e2e8f0'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="text-white p-5" style={{backgroundColor: '#2563eb'}}>
@@ -318,6 +319,14 @@ function App() {
                 <h1 className="font-bold" style={{fontSize: '16px'}}>CST Audit System</h1>
                 <p style={{fontSize: '12px', color: '#dbeafe'}}>Documentation Manager</p>
               </div>
+              <button 
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-1.5 rounded transition-colors hover:bg-blue-600"
+                style={{color: '#ffffff'}}
+                title="Toggle Dark Mode"
+              >
+                {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
               <button 
                 onClick={() => setSidebarOpen(false)}
                 className="lg:hidden p-1.5 rounded transition-colors"
@@ -349,33 +358,35 @@ function App() {
           <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
             <div className="space-y-2">
               {Object.entries(filteredStructure).map(([category, subcategories]) => (
-                <div key={category} className="border border-gray-200 rounded-lg overflow-hidden">
+                <div key={category} className="border rounded-lg overflow-hidden" style={{borderColor: (darkMode ? '#404040' : '#e5e7eb')}}>
                   <button
                     onClick={() => toggleCategory(category)}
-                    className="w-full flex items-center gap-2 p-3 bg-blue-50 hover:bg-blue-100 transition-colors"
+                    className="w-full flex items-center gap-2 p-3 transition-colors"
+                    style={{backgroundColor: (darkMode ? '#1e40af' : '#eff6ff'), color: (darkMode ? '#ffffff' : '#1e3a8a')}}
                   >
                     <span className="text-blue-600 font-bold" style={{fontSize: '16px'}}>
                       {expandedCategories[category] ? '−' : '+'}
                     </span>
-                    <span className="font-semibold text-blue-900 text-sm flex-1 text-left">{category}</span>
+                    <span className="font-semibold text-sm flex-1 text-left" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>{category}</span>
                   </button>
 
                   {expandedCategories[category] && (
-                    <div className="bg-white">
+                    <div style={{backgroundColor: (darkMode ? '#262626' : '#ffffff')}}>
                       {Object.entries(subcategories).map(([subcategory, items]) => (
-                        <div key={subcategory} className="border-t border-gray-200">
+                        <div key={subcategory} style={{borderTop: (darkMode ? '1px solid #404040' : '1px solid #e5e7eb')}}>
                           <button
                             onClick={() => toggleSubcategory(`${category}-${subcategory}`)}
-                            className="w-full flex items-center gap-2 p-2.5 pl-8 hover:bg-gray-50 transition-colors"
+                            className="w-full flex items-center gap-2 p-2.5 pl-8 transition-colors"
+                            style={{backgroundColor: (darkMode ? '#1f1f1f' : '#f9fafb'), color: (darkMode ? '#d1d5db' : '#374151')}}
                           >
-                            <span className="text-gray-600 font-bold" style={{fontSize: '14px'}}>
+                            <span style={{color: (darkMode ? '#9ca3af' : '#4b5563'), fontSize: '14px', fontWeight: 'bold'}}>
                               {expandedSubcategories[`${category}-${subcategory}`] ? '−' : '+'}
                             </span>
-                            <span className="font-medium text-gray-700 text-sm flex-1 text-left">{subcategory}</span>
+                            <span className="font-medium text-sm flex-1 text-left">{subcategory}</span>
                           </button>
 
                           {expandedSubcategories[`${category}-${subcategory}`] && (
-                            <div className="bg-gray-50">
+                            <div style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f9fafb')}}>
                               {items.map((item) => {
                                 const instances = getDocumentInstances(item.id);
                                 const isExpanded = expandedControls[item.id];
@@ -388,10 +399,13 @@ function App() {
                                 if (hasCompleted) titleColor = 'text-green-700';
                                 else if (hasPending) titleColor = 'text-orange-600';
                                 
+                                const itemBorderColor = darkMode ? '#333333' : '#f3f4f6';
+                                const itemBgColor = darkMode ? '#1f1f1f' : '#ffffff';
+                                
                                 return (
-                                  <div key={item.id} className="border-b border-gray-100 last:border-b-0">
+                                  <div key={item.id} style={{borderBottom: '1px solid ' + itemBorderColor}}>
                                     {/* Control Header */}
-                                    <div className="flex items-center pl-12 pr-3 py-2 bg-white hover:bg-blue-50 transition-colors group">
+                                    <div className="flex items-center pl-12 pr-3 py-2 transition-colors group hover:opacity-90" style={{backgroundColor: itemBgColor}}>
                                       <button
                                         onClick={() => toggleControl(item.id)}
                                         className="flex items-center gap-1 min-w-0 mr-2"
@@ -403,20 +417,21 @@ function App() {
                                       
                                       <button
                                         onClick={() => handleSelectControl(category, subcategory, item)}
-                                        className="flex-1 min-w-0 text-left flex items-center gap-2 p-1.5 rounded hover:bg-blue-100 transition-colors"
+                                        className="flex-1 min-w-0 text-left flex items-center gap-2 p-1.5 rounded transition-colors"
+                                        style={{backgroundColor: 'transparent'}}
                                         title="Click to edit template"
                                       >
                                         <FileText size={13} className={`flex-shrink-0 ${hasDocuments ? 'text-green-600' : 'text-blue-500'}`} />
                                         <div className="flex-1 min-w-0 flex items-center gap-1.5">
-                                          <span className="font-semibold text-gray-900" style={{fontSize: '11px'}}>{item.id}</span>
+                                          <span className="font-semibold" style={{fontSize: '11px', color: (darkMode ? '#e5e7eb' : '#111827')}}>{item.id}</span>
                                           {customTemplate && (
                                             <Sparkles size={9} className="text-purple-600" title="Custom AI-modified template" />
                                           )}
-                                          <span className="text-gray-400" style={{fontSize: '10px'}}>•</span>
+                                          <span style={{fontSize: '10px', color: (darkMode ? '#6b7280' : '#9ca3af')}}>•</span>
                                           <span className={`font-normal break-words text-left ${titleColor}`} style={{fontSize: '11px'}}>{item.name}</span>
                                         </div>
                                         {instances.length > 0 && (
-                                          <span className="text-gray-500 font-medium ml-auto flex-shrink-0" style={{fontSize: '10px'}}>
+                                          <span className="font-medium ml-auto flex-shrink-0" style={{fontSize: '10px', color: (darkMode ? '#9ca3af' : '#6b7280')}}>
                                             {instances.length}
                                           </span>
                                         )}
@@ -425,7 +440,7 @@ function App() {
 
                                     {/* Document Instances */}
                                     {isExpanded && instances.length > 0 && (
-                                      <div className="pl-16 pr-2 py-1 bg-gray-100">
+                                      <div className="pl-16 pr-2 py-1" style={{backgroundColor: (darkMode ? '#0f0f0f' : '#f3f4f6')}}>
                                         {instances.map((docInstance) => (
                                           <div
                                             key={docInstance.id}
@@ -596,7 +611,7 @@ function App() {
         )}
 
         {/* Main Content Area */}
-        <div className="flex-1 overflow-hidden bg-gray-50">
+        <div className="flex-1 overflow-hidden" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f9fafb')}}>
           {selectedControl && editMode ? (
             <TemplateEditor
               control={selectedControl}
@@ -605,9 +620,10 @@ function App() {
               currentTemplate={currentDocumentContent}
               onAIEdit={handleOpenAIEditor}
               onNewRequest={currentUser?.permissions.includes('generate_documents') ? () => handleGenerateDocument(selectedControl.category, selectedControl.subcategory, selectedControl.item) : null}
+              darkMode={darkMode}
             />
           ) : selectedControl && selectedDocInstance ? (
-            <div className="flex-1 overflow-y-auto bg-white h-full">
+            <div className="flex-1 overflow-y-auto h-full" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#ffffff')}}>
               <DocumentViewer
                 document={selectedControl}
                 docInstance={selectedDocInstance}
@@ -615,18 +631,19 @@ function App() {
                 onRevokeSignature={handleRevokeSignature}
                 currentUser={currentUser}
                 baseContent={generateDocument(selectedControl.category, selectedControl.subcategory, selectedControl.item)}
+                darkMode={darkMode}
               />
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full bg-white">
+            <div className="flex items-center justify-center h-full" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#ffffff')}}>
               <div className="text-center">
-                <FileText size={64} className="mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-600 mb-2">No Document Selected</h3>
-                <p className="text-gray-500 mb-6">Select a control to edit its template, or select a document instance to view</p>
+                <FileText size={64} className="mx-auto mb-4" style={{color: (darkMode ? '#4b5563' : '#d1d5db')}} />
+                <h3 className="text-xl font-semibold mb-2" style={{color: (darkMode ? '#e5e7eb' : '#4b5563')}}>No Document Selected</h3>
+                <p className="mb-6" style={{color: (darkMode ? '#9ca3af' : '#6b7280')}}>Select a control to edit its template, or select a document instance to view</p>
                 
-                <div className="mt-8 p-6 bg-blue-50 rounded-lg max-w-md mx-auto">
-                  <h4 className="font-semibold text-blue-900 mb-3">How to use:</h4>
-                  <ol className="text-left text-sm text-gray-700 space-y-2">
+                <div className="mt-8 p-6 rounded-lg max-w-md mx-auto" style={{backgroundColor: (darkMode ? '#1e40af' : '#eff6ff')}}>
+                  <h4 className="font-semibold mb-3" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>How to use:</h4>
+                  <ol className="text-left text-sm space-y-2" style={{color: (darkMode ? '#dbeafe' : '#374151')}}>
                     <li>1. <strong>Click control title</strong> to edit template with AI and direct editing</li>
                     <li>2. <strong>Click "New Request" button</strong> in template editor to generate a new document instance</li>
                     <li>3. <strong>Click document instance</strong> to view and sign</li>
