@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* L3 CST Professional Documentation Theme - Custom CSS */
+:root {
+  /* Primary Colors */
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #3b82f6;
+  --primary-lightest: #dbeafe;
+  --primary-background: #eff6ff;
+  
+  /* Secondary Colors */
+  --secondary-green: #10b981;
+  --secondary-green-light: #d1fae5;
+  
+  /* Neutral Colors */
+  --neutral-darkest: #1e293b;
+  --neutral-dark: #475569;
+  --neutral-medium: #64748b;
+  --neutral-light: #94a3b8;
+  --neutral-lighter: #cbd5e1;
+  --neutral-lightest: #e2e8f0;
+  --neutral-background: #f8fafc;
+  --neutral-background-alt: #f1f5f9;
+  
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-h1: 24px;
+  --font-size-h2: 28px;
+  --font-size-h3: 18px;
+  --font-size-body: 14px;
+  --font-size-body-large: 15px;
+  --font-size-small: 13px;
+  --font-size-tiny: 12px;
+  --font-size-micro: 11px;
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 25px;
+  --spacing-xxl: 30px;
+  --spacing-xxxl: 40px;
+  --spacing-huge: 50px;
+  
+  /* Borders */
+  --border-radius-small: 5px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 10px;
+  --border-radius-pill: 20px;
+}
+
+* {
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: var(--neutral-background);
+  color: var(--neutral-darkest);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .document-content {
+    @apply max-w-none text-gray-800 leading-relaxed;
+  }
+  
+  .document-content p {
+    @apply mb-4 text-base;
+  }
+  
+  .document-content ul, .document-content ol {
+    @apply mb-4 ml-6 space-y-2;
+  }
+  
+  .document-content ul {
+    @apply list-disc;
+  }
+  
+  .document-content ol {
+    @apply list-decimal;
+  }
+  
+  .document-content li {
+    @apply text-base;
+  }
+  
+  .document-content h1 {
+    @apply text-3xl font-bold text-blue-900 mb-6;
+  }
+  
+  .document-content h2 {
+    @apply text-2xl font-semibold text-blue-800 mt-8 mb-4;
+  }
+  
+  .document-content h3 {
+    @apply text-xl font-semibold text-blue-700 mt-6 mb-3;
+  }
+  
+  .document-content table {
+    @apply w-full border-collapse border border-gray-300 my-4;
+  }
+  
+  .document-content th {
+    @apply bg-blue-100 border border-gray-300 px-4 py-2 text-left font-semibold;
+  }
+  
+  .document-content td {
+    @apply border border-gray-300 px-4 py-2;
+  }
+  
+  .signature-box {
+    @apply border-2 border-gray-300 rounded-lg p-6 bg-gray-50 my-4;
+  }
+  
+  .stamp-box {
+    @apply border-2 border-dashed border-blue-300 rounded-lg p-8 text-center bg-blue-50 my-4;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .document-content {
+    max-width: 100%;
+  }
+}
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #2563eb);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #1e40af);
+  width: 8px;
+}
+
+/* Firefox scrollbar styling */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #f1f5f9;
+}
