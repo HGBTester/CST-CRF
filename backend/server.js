@@ -7,6 +7,8 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import documentRoutes from './routes/documents.js';
 import templateRoutes from './routes/templates.js';
+import evidenceRoutes from './routes/evidence.js';
+import evidenceFormsRoutes from './routes/evidenceForms.js';
 
 dotenv.config();
 
@@ -40,10 +42,15 @@ mongoose.connection.on('error', (err) => {
   console.error('❌ MongoDB error:', err);
 });
 
+// Serve uploaded files
+app.use('/uploads', express.static('uploads'));
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/templates', templateRoutes);
+app.use('/api/evidence', evidenceRoutes);
+app.use('/api/evidence-forms', evidenceFormsRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

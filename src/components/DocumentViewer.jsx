@@ -144,8 +144,16 @@ function DocumentViewer({ document, docInstance, onSign, onRevokeSignature, curr
         <div className="mb-6 p-4 rounded-lg" style={{backgroundColor: (darkMode ? '#1e40af' : '#eff6ff'), borderColor: (darkMode ? '#3b82f6' : '#bfdbfe'), border: '1px solid'}}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>Document ID: {docInstance.id}</p>
-              <p className="text-sm" style={{color: (darkMode ? '#dbeafe' : '#1d4ed8')}}>Created: {new Date(docInstance.createdAt).toLocaleString()}</p>
+              <div className="flex items-center gap-3">
+                <p className="font-semibold" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>Document ID: {docInstance.id}</p>
+                <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-bold">
+                  Version {docInstance.version}
+                </span>
+              </div>
+              <p className="text-sm mt-1" style={{color: (darkMode ? '#dbeafe' : '#1d4ed8')}}>
+                Created: {new Date(docInstance.createdAt).toLocaleString()}
+                {docInstance.revisionNote && ` • ${docInstance.revisionNote}`}
+              </p>
             </div>
             <div className="flex items-center gap-2">
               {docInstance.status === 'completed' && (

@@ -10,6 +10,9 @@ import Login from './components/Login';
 import DocumentViewer from './components/DocumentViewer';
 import AIEditor from './components/AIEditor';
 import TemplateEditor from './components/TemplateEditorNew';
+import EvidenceForms from './components/EvidenceForms';
+import ControlEvidenceView from './components/ControlEvidenceView';
+import { useEvidenceCounts } from './hooks/useEvidenceCounts';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -26,6 +29,9 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [darkMode, setDarkMode] = useState(false);
+  const [showEvidenceForms, setShowEvidenceForms] = useState(false);
+  const [viewMode, setViewMode] = useState('template'); // 'template' or 'evidence'
+  const { evidenceCounts, refetch: refetchEvidenceCounts } = useEvidenceCounts();
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -83,6 +89,8 @@ function App() {
     setSelectedControl({ category, subcategory, item });
     setSelectedDocInstance(null);
     setEditMode(true); // Open in edit mode
+    setShowEvidenceForms(false); // Close evidence forms view
+    setViewMode('template'); // Reset to template view
     // Generate document content for editing
     const content = generateDocument(category, subcategory, item);
     setCurrentDocumentContent(content);
@@ -92,6 +100,8 @@ function App() {
     setSelectedControl({ category, subcategory, item });
     setSelectedDocInstance(docInstance);
     setEditMode(false); // View mode for instances
+    setShowEvidenceForms(false); // Close evidence forms view
+    setViewMode('template'); // Reset to template view
     // Generate document content for viewing
     const content = generateDocument(category, subcategory, item);
     setCurrentDocumentContent(content);
@@ -394,6 +404,7 @@ function App() {
                                 const customTemplate = hasCustomTemplate(item.id);
                                 const hasPending = instances.some(doc => doc.status !== 'completed');
                                 const hasCompleted = instances.some(doc => doc.status === 'completed');
+                                const evidenceCount = evidenceCounts[item.id] || 0;
                                 
                                 let titleColor = 'text-gray-700';
                                 if (hasCompleted) titleColor = 'text-green-700';
@@ -430,11 +441,26 @@ function App() {
                                           <span style={{fontSize: '10px', color: (darkMode ? '#6b7280' : '#9ca3af')}}>•</span>
                                           <span className={`font-normal break-words text-left ${titleColor}`} style={{fontSize: '11px'}}>{item.name}</span>
                                         </div>
-                                        {instances.length > 0 && (
-                                          <span className="font-medium ml-auto flex-shrink-0" style={{fontSize: '10px', color: (darkMode ? '#9ca3af' : '#6b7280')}}>
-                                            {instances.length}
-                                          </span>
-                                        )}
+                                        <div className="ml-auto flex items-center gap-2 flex-shrink-0">
+                                          {instances.length > 0 && (
+                                            <span className="font-medium" style={{fontSize: '10px', color: (darkMode ? '#9ca3af' : '#6b7280')}} title="Document instances">
+                                              📄 {instances.length}
+                                            </span>
+                                          )}
+                                          {evidenceCount > 0 && (
+                                            <span 
+                                              className="font-medium px-2 py-0.5 rounded-full" 
+                                              style={{
+                                                fontSize: '10px', 
+                                                backgroundColor: '#10b981',
+                                                color: '#ffffff'
+                                              }}
+                                              title={`${evidenceCount} evidence form${evidenceCount > 1 ? 's' : ''}`}
+                                            >
+                                              📎 {evidenceCount}
+                                            </span>
+                                          )}
+                                        </div>
                                       </button>
                                     </div>
 
@@ -462,9 +488,13 @@ function App() {
                                                 <div className="flex items-center gap-1.5">
                                                   {getStatusIcon(docInstance.status)}
                                                   <span className="text-xs font-medium text-gray-900">{docInstance.id}</span>
+                                                  <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full font-medium">
+                                                    v{docInstance.version}
+                                                  </span>
                                                 </div>
                                                 <div className="text-xs text-gray-500 mt-0.5">
                                                   {new Date(docInstance.createdAt).toLocaleDateString()}
+                                                  {docInstance.revisionNote && ` • ${docInstance.revisionNote}`}
                                                 </div>
                                               </div>
                                               <div className="text-xs">
@@ -600,6 +630,22 @@ function App() {
                 </>
               )}
               <button
+                onClick={() => {
+                  setShowEvidenceForms(!showEvidenceForms);
+                  setSelectedControl(null);
+                  setSelectedDocInstance(null);
+                  setEditMode(false);
+                }}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
+                style={{
+                  backgroundColor: showEvidenceForms ? '#3b82f6' : '#f3f4f6',
+                  color: showEvidenceForms ? '#ffffff' : '#374151'
+                }}
+              >
+                <FileText size={18} />
+                <span className="hidden sm:inline">Evidence Forms</span>
+              </button>
+              <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
               >
@@ -612,7 +658,20 @@ function App() {
 
         {/* Main Content Area */}
         <div className="flex-1 overflow-hidden" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f9fafb')}}>
-          {selectedControl && editMode ? (
+          {showEvidenceForms ? (
+            <EvidenceForms 
+              currentUser={currentUser} 
+              darkMode={darkMode}
+              onClose={() => setShowEvidenceForms(false)}
+            />
+          ) : selectedControl && viewMode === 'evidence' ? (
+            <ControlEvidenceView 
+              control={selectedControl} 
+              currentUser={currentUser} 
+              darkMode={darkMode}
+              onBackToTemplate={() => setViewMode('template')}
+            />
+          ) : selectedControl && editMode ? (
             <TemplateEditor
               control={selectedControl}
               onSave={handleSaveTemplate}
@@ -621,6 +680,8 @@ function App() {
               onAIEdit={handleOpenAIEditor}
               onNewRequest={currentUser?.permissions.includes('generate_documents') ? () => handleGenerateDocument(selectedControl.category, selectedControl.subcategory, selectedControl.item) : null}
               darkMode={darkMode}
+              onViewEvidence={() => setViewMode('evidence')}
+              evidenceCount={evidenceCounts[selectedControl.item.id] || 0}
             />
           ) : selectedControl && selectedDocInstance ? (
             <div className="flex-1 overflow-y-auto h-full" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#ffffff')}}>

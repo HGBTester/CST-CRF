@@ -1,0 +1,720 @@
+,,,,,,,,,
+,,CRF Audit Report (Sep - 2025),,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,Governance,,,,,,,,Compliant
+,1.1,Cybersecurity Strategy,,,,,Drop down list for each control:,,Partially Compliant
+,Controls,,,Audit Result,,,Implemented,,Non-Compliant
+Governance_1.1,1.1.1,CL 1,"Define and document requirements for the [Cybersecurity Strategy] which consider the following:
+
+·   Overall mission, objectives and activities of the organization in relation to Cybersecurity
+·   Relevant legislative and regulatory compliance requirements
+·    Establishment of the Cybersecurity program
+·   Top management commitment towards Cybersecurity",Implemented,,,Not Implemented,,
+Governance_1.1,1.1.2,CL 1,Ensure that the [Cybersecurity Strategy] is approved by the top management.,Implemented,,,N/A,,
+Governance_1.1,1.1.3,CL 1,"Ensure that the  [Action Plan] for the implementation of the cybersecurity strategy considers the following:
+
+·   Activities
+·   Budget
+·   Timeline
+·   Resources (e.g. capabilities, personnel)",Not Implemented,"The Cybersecurity Strategy Implementation Action Plan is not approved by top management with the company stamp and their signature, name, and date of approval ",,,,
+Governance_1.1,1.1.4,CL 3,"Continuously measure, review and as per requirements update the [Cybersecurity Strategy] and the corresponding [Action Plan] especially in case of changes in relevant legislative and regulatory requirements, major organizational changes or lessons learned from the implementation of the previous action plans.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Governance_1.2,1.2,Cybersecurity Management,,,,,,,
+Governance_1.2,Controls,,,Audit Result,,,,,
+Governance_1.2,1.2.1,CL 1,Define and document requirements for the [Cybersecurity Organization] which consider the following:,Not Implemented,"1- Cybersecurity organizational structure is missing, the following:
+  1.1- Identification of required functions or departments to implement the Action Plan.
+  1.2- Direct reporting line to top management.
+  1.3- Assignment of roles and responsibilities with clear segregation of conflicting duties.",,,,
+Governance_1.2,,,·      A cybersecurity committee and allocating members who represent different areas within the organization,,,,,,
+Governance_1.2,,,·      The needed cybersecurity functions/departments required to implement the [Action Plan],,,,,,
+Governance_1.2,,,,,,,,,
+Governance_1.2,,,·      Direct reporting to top management to avoid conflict of interest,,,,,,
+Governance_1.2,,,·      Allocating roles and responsibilities ensuring that the conflicting duties and areas of responsibilities are clearly segregated,,,,,,
+Governance_1.2,1.2.2,CL 1,Implement the defined [Cybersecurity Organization].,Not Implemented,1- Implementation evidence is missing.,,,,
+Governance_1.2,1.2.3,CL 1,Implement the [Action Plan] through the defined [Cybersecurity Organization].,Not Implemented,1- Implementation evidence is missing.,,,,
+Governance_1.2,1.2.4,CL 1,"Oversee the implementation of the [Action Plan] by the cybersecurity committee by monitoring, dealing with conflicts, and enforcing necessary measures for improvement. ",Not Implemented,"1- Committee meeting minutes are missing including:
+ 1.1- Follow-up actions, if taken
+ 1.2- Escalation records, if any",,,,
+Governance_1.2,1.2.5,CL 3,"Continuously measure, review and optimize requirements for the [Cybersecurity Organization] to ensure an efficient Cybersecurity Organization. ",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Governance_1.3,1.3,Cybersecurity Compliance,,,,,,,
+Governance_1.3,Controls,,,Audit Result,,,,,
+Governance_1.3,1.3.1,CL 1,Define and document [Requirements for Cybersecurity Compliance] which consider the following: ,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Governance_1.3,,,·      Relevant national legislative and regulatory requirements related to cybersecurity,,,,,,
+Governance_1.3,,,·      Locally accredited international/cross-border requirements (e.g. included in internationally agreements or commitments),,,,,,
+Governance_1.3,,,·      Organization's internal requirements,,,,,,
+Governance_1.3,1.3.2,CL 1,"Define and implement the {Compliance Process} to ensure compliance requirements are identified periodically, documented and communicated (e.g. when new regulatory requirements become effective, necessity to update the organization's cybersecurity requirements).",Not Implemented,1- Evidence of Implementation is missing,,,,
+Governance_1.3,1.3.3,CL 1,Ensure the compliance requirements are incorporated within the organization.,Not Implemented,1- Evidence showing that compliance requirements are embedded in internal documentation is missing,,,,
+Governance_1.3,1.3.4,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity Compliance] as well as the effectiveness of the process to ensure compliance.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Governance_1.3,1.4,Cybersecurity Audit,,,,,,,
+Governance_1.3,Controls,,,Audit Result,,,,,
+Governance_1.3,1.4.1,CL 2,Define and document [Requirements for Cybersecurity Audit] which consider the following: ,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Governance_1.3,,,·      Conducting independent and periodical audits (e.g. conduct audits at least once a year for critical systems),,,,,,
+Governance_1.3,,,·      Protection and retention of [Audit Records],,,,,,
+Governance_1.3,,,·      Reporting to top management,,,,,,
+Governance_1.3,1.4.2,CL 2,Define and implement {Internal Audit} process to verify the compliance with the identified      [Requirements for Cybersecurity Compliance].,Not Implemented,1- Implementation evidence is missing.,,,,
+Governance_1.3,1.4.3,CL 2,Conduct independent audits at planned intervals (or when significant changes occur) to review the implementation of the [Requirements for Cybersecurity Compliance] in the organization.,Not Implemented,"1- Approved audit plan is missing.
+2- Evidence of auditor independence is not available.
+3- Audit reports were not provided.",,,,
+Governance_1.3,1.4.4,CL 2,Document the findings and recommendations and present them to the top management.,Not Implemented,"1- Audit reports are missing.
+2- Evidence that audit results were presented to the board, executives, or steering committees is not available.
+3- Corrective action plans were not provided.",,,,
+Governance_1.3,1.4.5,CL 2,"Protect the [Audit Records] from unauthorized access, modification, and destruction. ",Not Implemented,"1- Evidence showing that audit records are stored in a secure system with restricted access is missing.
+2- System permission evidence (e.g., screenshots showing role-based access) was not provided.
+3- Evidence that audit records cannot be tampered with is not available.",,,,
+Governance_1.3,1.4.6,CL 2,Ensure that the audit records are retained as proof for e.g. compliance to legislative and regulatory requirements.,Not Implemented,1- Evidence that the audit reports are retained securely,,,,
+Governance_1.3,1.4.7,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity Audit] as well as the effectiveness of the process and review activities.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Governance_1.5,1.5,Cybersecurity Awareness & Training,,,,,,,
+Governance_1.5,Controls,,,Audit Result,,,,,
+Governance_1.5,1.5.1,CL 1,Define and document [Requirements for Cybersecurity Awareness & Training] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Governance_1.5,,,·      Goals and scope,,,,,,
+Governance_1.5,,,·      Number and frequency of trainings/year,,,,,,
+Governance_1.5,,,·      Allocated resources,,,,,,
+Governance_1.5,1.5.2,CL 1,"Define and implement a [Cybersecurity Awareness & Training Program] (e.g. defining goals, scope, targeted audience, validation criteria) that includes various cybersecurity topics considering the following:",Not Implemented,"1- Training materials, including presentation slides and LMS content (roles and responsibilities, trending threats, secure use of devices, and clear desk/screen practices), are not available.
+2- No training schedule or records of planned sessions were provided.
+3- Evidence of execution, such as attendance sheets and LMS logs, is missing.",,,,
+Governance_1.5,,,·       Cybersecurity roles and responsibilities of the targeted audience ,,,,,,
+Governance_1.5,,,·       Trending cybersecurity events and threats (e.g. social engineering attacks such as phone scams and impersonation calls),,,,,,
+Governance_1.5,,,"·       Advice to personnel not to attempt unauthorized activities (e.g. introduce or use unauthorized equipment or software on a system, relocate equipment without proper authorization).",,,,,,
+Governance_1.5,,,"·       Secure handling of portable devices and storage media, email services (especially spam and phishing emails), internet surfing services and social media",,,,,,
+Governance_1.5,,,"·       Clear desk and clear screen policy (e.g. lock sensitive information stored on papers in a safe place, lock screens of computers and/or terminals when not in use or unattended)",,,,,,
+Governance_1.5,1.5.3,CL 2,Enhance and implement the [Requirements for Cybersecurity Awareness & Training] to include periodic validation tests to evaluate the effectiveness of the conducted [Cybersecurity Awareness and Training Program] and record the results of evaluation (e.g. check whether the personnel will click on a suspicious link in an email).,Not Implemented,"1- Evidence of how effectiveness is tested (e.g., phishing simulations, quizzes, knowledge tests) is missing.
+2- Reports from phishing campaigns, test scores, quiz results, or awareness survey analysis are not available.
+3- Evidence showing improvement (e.g., percentage of employees clicking phishing links reduced over time) was not provided.",,,,
+Governance_1.5,1.5.4,CL 2,"Enhance and implement the [Requirements for Cybersecurity Awareness & Training] to define the circumstances under which the [Cybersecurity Awareness & Training Program] have to be provided (e.g. initial cybersecurity trainings to new users, training upon changes to information systems or job roles).",Not Implemented,"1- Evidence showing cybersecurity awareness provided to the following is missing:
+  1.1- All new hires (e.g., checklist, emails).
+  1.2- When new information systems are introduced.
+  1.3- When there is a role change.",,,,
+Governance_1.5,1.5.5,CL 2,Tailor the [Cybersecurity Awareness & Training Program] to provide specialized or security-related skills and trainings to targeted group of people considering the following personnel:,Not Implemented,"1- Specialized training program/plan is missing, including:
+  1.1- Training material and certificates, such as:
+    1.1.1- Cybersecurity staff: advanced threat hunting and incident response courses
+    1.1.2- IT staff: patching and secure configuration training
+    1.1.3- Developers: secure coding, OWASP, and SDLC training
+2- Evidence that targeted groups completed the training (e.g., attendance records, certificates of completion) is not available.",,,,
+Governance_1.5,,,·       Cybersecurity department ,,,,,,
+Governance_1.5,,,·       IT personnel,,,,,,
+Governance_1.5,,,·       Personnel working in the software development,,,,,,
+Governance_1.5,,,·       Personnel involved in cybersecurity risk management,,,,,,
+Governance_1.5,,,·       Personnel with privileged access to critical information assets,,,,,,
+Governance_1.5,,,·       Executive personnel,,,,,,
+Governance_1.5,1.5.6,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity Awareness & Training].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency are not available.
+3- Version history or updated documents (e.g., policies, procedures, requirements) showing continuous improvement were not provided.",,,,
+Governance_1.6,1.6,Customer Cybersecurity Awareness,,,,,,,
+Governance_1.6,Controls,,,Audit Result,,,,,
+Governance_1.6,1.6.1,CL 1,Define and document [Requirements for Customer Cybersecurity Awareness] which consider the following:,Not Implemented,"1- Customer Cybersecurity Awareness Policy was developed, but the following is missing:
+  1.1- Defined frequency.
+  1.2- Allocated resources (budget, staff, communication channels).
+  1.3- Approval",,,,
+Governance_1.6,,,·      Goals and scope,,,,,,
+Governance_1.6,,,·      Number and frequency of trainings/year,,,,,,
+Governance_1.6,,,·      Allocated resources,,,,,,
+Governance_1.6,1.6.2,CL 1,"Define and implement a [Customer Cybersecurity Awareness Program] by e.g. defining goals, scope, targeted customer group, delivery channel which should consider the following:",Not Implemented,"1- Training materials are not available, including:
+  1.1- Posters, newsletters, awareness videos, infographics, or campaigns covering:
+    1.1.1- Emerging threats (phishing, phone scams, impersonation).
+    1.1.2- Service-specific recommendations (safe mobile use, avoiding SMiShing, secure online behavior).
+2- Execution records are missing (e.g., screenshots of awareness messages, customer communications).",,,,
+Governance_1.6,,,·       Information on relevant emerging cybersecurity events and threats (e.g. social engineering attacks such as phone scams and impersonation calls),,,,,,
+Governance_1.6,,,"·       Specific recommendations related to the provisioned service (e.g. how to be secure online, SMishing, and secure your mobile device)",,,,,,
+Governance_1.6,1.6.3,CL 2,Enhance and implement the [Requirements for Customer Cybersecurity Awareness] to periodically conduct the [Customer Cybersecurity Awareness Program] for the organization's customers.,Not Implemented,"1- Reports of periodic execution of the customer awareness program are not available.
+2- Evidence showing improvement (e.g., number of emails sent, SMS delivery reports) was not provided.",,,,
+Governance_1.6,1.6.4,CL 3,"Continuously measure, review and optimize the [Requirements for Customer Cybersecurity Awareness].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency are not available.
+3- Version history or updated documents (e.g., policies, procedures, requirements) showing continuous improvement were not provided.",,,,
+Governance_1.7,1.7,Cybersecurity in Project Management,,,,,,,
+Governance_1.7,Controls,,,Audit Result,,,,,
+Governance_1.7,1.7.1,CL 1,Define and document [Requirements for Cybersecurity in Project Management] which consider the following:,Not Implemented,"1- Project Management Cybersecurity Policy is missing:
+  1.1- Defined cybersecurity objectives to be incorporated in all project phases (initiation, design, implementation, testing, and closure).
+  1.2- Approval",,,,
+Governance_1.7,,,·      Defining integration of cybersecurity in project management (e.g. cybersecurity personnel as part of the project team),,,,,,
+Governance_1.7,,,·      Defining project objectives to ensure that the cybersecurity is included in all phases of the project,,,,,,
+Governance_1.7,1.7.2,CL 1,Perform a risk assessment at the beginning and during the course of each project in accordance with the [Cybersecurity Risk Assessment] to identify the cybersecurity risks if any and define the mitigation plans.,Not Implemented,"1- Risk assessment reports performed at initiation and at major milestones are missing, including:
+  1.1- Evidence that assessments follow Layer 3’s Cybersecurity Risk Assessment procedure.
+  1.2- Defined risk treatment actions for identified risks.
+2- Evidence that risk assessments were discussed during project reviews (e.g., meeting minutes, records) was not provided.",,,,
+Governance_1.7,1.7.3,CL 2,Track the identified cybersecurity risks and monitor the implementation of the mitigation plans during the course of the project. [Cybersecurity Risk Treatment and Monitoring].,Not Implemented,"1- Risk register is missing, including identified risks, assigned owners, mitigation actions, and status updates.
+  1.1- Periodic updates on risk treatment implementation were not provided.
+2- Evidence of closure or re-assessment of risks is missing.",,,,
+Governance_1.7,1.7.4,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity in Project Management].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency are not available.
+3- Version history or updated documents (e.g., policies, procedures, requirements) showing continuous improvement were not provided.",,,,
+Governance_1.8,1.8,Cybersecurity in Human Resources,,,,,,,
+Governance_1.8,Controls,,,Audit Result,,,,,
+Governance_1.8,1.8.1,CL 1,Define and document [Requirements for Cybersecurity in Human Resources] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Governance_1.8,,,"·      Defining cybersecurity requirements related to personnel in the organization including contractors before they are employed, during their work, and upon completion/termination of their work",,,,,,
+Governance_1.8,,,·      Conduct background verification checks on all candidates for employment,,,,,,
+Governance_1.8,,,·      Hiring highly professional personnel on the jobs related to critical systems,,,,,,
+Governance_1.8,,,"·      Ensuring that the terms and agreements related to the employment also cover the code of conduct (e.g. non-disclosure agreements, cybersecurity responsibilities) and has been included during and after termination of employment with the organization",,,,,,
+Governance_1.8,,,·      Ensuring that the code of conduct is signed by all the personnel,,,,,,
+Governance_1.8,,,·      Enforcing the [Acceptable Use of Information Assets],,,,,,
+Governance_1.8,1.8.2,CL 1,Ensure that necessary actions (e.g. modify access authorizations in accordance with the new operational role) are performed when individuals are reassigned or transferred to other positions within the organization. ,Not Implemented,"1- Evidence of updating access rights after reassignment or transfer (e.g., IAM system logs) is missing.
+2- Evidence that old access was removed and only new-role access was granted following the Access Change Process was not provided.",,,,
+Governance_1.8,1.8.3,CL 1,Ensure that all suspected breaches of relevant cybersecurity requirements by personnel are subject to a proper investigation and appropriate disciplinary action is taken,Not Implemented,"1- Evidence of a Disciplinary Action Process (e.g., warnings, suspensions, terminations, or corrective measures taken) is missing.",,,,
+Governance_1.8,1.8.4,CL 1,"Ensure necessary actions (e.g. revoking personnel access rights and privileges, retrieving assigned information assets, retaining access to information assets formerly controlled by terminated individual) have been carried out upon completion of professional services or termination of personnel.",Not Implemented,"1- Evidence confirming access revocation, asset return, and data reassignment (e.g., Termination Checklist / Exit Clearance Form) is missing.
+2- Evidence of user account deactivation upon termination (e.g., IAM logs) is not available.
+3- Asset recovery records are missing.
+4- Evidence of data retention was not provided.",,,,
+Governance_1.8,1.8.5,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity in Human Resources].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency are not available.
+3- Version history or updated documents (e.g., policies, procedures, requirements) showing continuous improvement were not provided.",,,,
+Asset Management_1.8,Asset Management,,,,,,,,
+Asset Management_2.1,2.1,Asset Discovery,,,,,,,
+Asset Management_2.1,Controls,,,Audit Result,,,,,
+Asset Management_2.1,2.1.1,CL 1,Define and document [Requirements for Asset Discovery] which consider the following:,Not Implemented,"1. The asset management policy is not approved by top management is not approved by top management with the company stamp and their signature, name, and date of approval.
+2. Asset management requirements are not identified in the policy:
+ 1.1- Defining what assets must be inventoried (hardware, software, information, databases, critical assets).
+ 1.2- Specifying how often the inventory must be updated",,,,
+Asset Management_2.1,,,"·      Defining an inventory of information assets [Asset Inventory] (e.g. software, hardware, information, critical information assets, equipment, databases) ",,,,,,
+Asset Management_2.1,,,·      Defining the frequency for the update of the [Asset Inventory],,,,,,
+Asset Management_2.1,,,·      Ownership of the information assets,,,,,,
+Asset Management_2.1,2.1.2,CL 1,Define and implement an {Asset Discovery} process to identify (e.g. using an asset discovery tool) all information assets which belong to the organization and update the [Asset Inventory]. Assign an asset owner to each information asset. ,Not Implemented,"1. The asset discovery process is not approved by top management with the company stamp and their signature, name, and date of approval. and is not customized to Layer 3 template document.
+2. Updated register of all information assets (including asset ID, type, location, owner).
+3. Missing screenshots or logs from discovery tools (e.g., SCCM, Qualys, ServiceNow, CMDB) showing discovered assets.",,,,
+Asset Management_2.1,2.1.3,CL 1,Review and update the [Asset Inventory] based on the frequency defined in the requirements or whenever there are modifications to the information assets (i.e. addition and removal of assets).,Not Implemented,"1- Evidence that the inventory was reviewed and updated (e.g., change tickets, CMDB logs, asset addition/removal records) is missing.
+2- Updated Inventory Versions is missing.",,,,
+Asset Management_2.1,2.1.4,CL 2,Use dedicated and automated tools to discover the information assets. Integrate the information assets and track them from a central system.,Not Implemented,"1- Evidence of tool deployment is missing.
+2- Tool Logs, Screenshots, or reports showing assets tracked and categorized is missing.",,,,
+Asset Management_2.1,2.1.5,CL 3,"Continuously measure, review and optimize the   [Requirements for Asset Discovery] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Asset Management_2.2,2.2,Asset Classification,,,,,,,
+Asset Management_2.2,Controls,,,Audit Result,,,,,
+Asset Management_2.2,2.2.1,CL 1,Define and document [Requirements for Asset Classification] which consider the following:,Not Implemented,"1. The asset classification process is not approved by top management with the company stamp and their signature, name, and date of approval, and is not customized to Layer 3 template document.
+2. There is no evidence of implementation classification levels (e.g., Public, Internal, Confidential, Restricted) and handling rules.",,,,
+Asset Management_2.2,,,"·      Classification and labelling of information assets as well as the respective protective measures for identification, handling, transfer, storage, return, deletion and disposal",,,,,,
+Asset Management_2.2,2.2.2,CL 1,"Define and implement an {Asset Classification} process to classify and label information assets within your [Asset Inventory] according to specific criteria (e.g. criticality, business value, legal requirements, confidentiality, integrity and availability) and the [Requirements for Information Protection]. ",Not Implemented,"1. The asset classification 1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing. Process is not approved by top management with the company stamp and their signature, name, and date of approval. and is not customized to Layer 3 template document.
+2. Implementation of Classification and Labeling on Information Assets is missing.
+3. Implementing protection measures as per the defined classification ",,,,
+Asset Management_2.2,2.2.3,CL 3,"Continuously measure, review and optimize the [Requirements for Asset Classification] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Asset Management_2.3,2.3,Bring Your Own Device (BYOD),,,,,,,
+Asset Management_2.3,Controls,,,Audit Result,,,,,
+Asset Management_2.3,2.3.1,CL 1,Define and document [Cybersecurity Requirements for BYOD] within the organization which consider the following: ,Not Implemented,"1. The BYOD policy is duplicated and not approved by top management with the company stamp and their signature, name, and date of approval. Also it is not customized to Layer 3 template document a
+2. BYOD Requirements are not identified for the following:
+·      Restrictions on the use of devices depending on the organization's business interest
+",,,,
+Asset Management_2.3,,,·      Isolation of personal information from the business information,,,,,,
+Asset Management_2.3,,,·      Restrictions on the use of devices depending on the organization's business interest,,,,,,
+Asset Management_2.3,,,·      Restrictions on the access of critical systems,,,,,,
+Asset Management_2.3,,,·      Secure deletion of the organization’s information,,,,,,
+Asset Management_2.3,2.3.2,CL 1,Enforce the defined [Cybersecurity Requirements for BYOD] within the organization.,Not Implemented,"1- Evidence of applied policies (e.g., restricted apps) is missing.
+2- Screenshots of settings showing isolation of data and restrictions is missing.
+3- Evidence of informing the employees of BYOD policy and rules is missing.",,,,
+Asset Management_2.3,2.3.3,CL 1,Securely delete the organization’s information after the completion of the associated job function and when the information is no longer necessary.,Not Implemented,1- Evidence of remote wipe or secure deletion of corporate data from devices is missing.,,,,
+Asset Management_2.3,2.3.4,CL 2,Ensure that the organization’s information stored on the devices are encrypted.,Not Implemented,1- Screenshots showing enforcing encryption on all enrolled BYOD devices is missing.,,,,
+Asset Management_2.3,2.3.5,CL 3,"Continuously measure, review and optimize the [Cybersecurity Requirements for BYOD] within the organization.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Asset Management_2.4,2.4,Acceptable Use of Information Assets,,,,,,,
+Asset Management_2.4,Controls,,,Audit Result,,,,,
+Asset Management_2.4,2.4.1,CL 1,Define and document the [Requirements for Acceptable Use of Information Assets] which consider the following:,Not Implemented,"1- The Acceptable Use Procedure (AUP) is not approved by top management with the company stamp and their signature, name, and date of approval.
+2- Signed user agreements or digital acknowledgments proving employees accepted the AUP is missing.
+3-  Evidence the AUP was distributed (emails, SharePoint postings, onboarding materials) is missing.",,,,
+Asset Management_2.4,,,·      The acceptable use of information assets,Not Implemented,,,,,
+Asset Management_2.4,2.4.2,CL 1,"Ensure the implementation of the [Requirements for Acceptable Use of Information Assets] (e.g. prohibiting installation of unwanted software, control access to web pages, allow the use of removable media based on business-needs only).",Not Implemented,"1- Technical Control Configurations is missing as the following:
+ 1.1- Group Policy Objects (GPOs) or endpoint protection restricting software installation.
+ 1.2- Firewall configurations restricting access to prohibited websites.
+ 1.3- Device control policies restricting removable media usage.
+ 1.4- Reports from endpoint protection, DLP, or MDM tools confirming enforcement.",,,,
+Asset Management_2.4,2.4.3,CL 3,"Continuously measure, review and optimize the requirements for the [Requirements for Acceptable Use of Information Assets].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Asset Management_2.5,2.5,Asset Maintenance,,,,,,,
+Asset Management_2.5,Controls,,,Audit Result,,,,,
+Asset Management_2.5,2.5.1,CL 2,Define and document [Requirements for Asset Maintenance] which consider the following:,Not Implemented,"1. The asset management policy is not approved by top management with the company stamp and their signature, name, and date of approval.
+2. The asset classification process is not approved by top management with the company stamp and their signature, name, and date of approval. Also it is not customized to Layer 3 template document.
+3.The Asset recovery plan is not approved by top management with the company stamp and their signature, name, and date of approval.",,,,
+Asset Management_2.5,,,·      Asset maintenance,Not Implemented,,,,,
+Asset Management_2.5,,,·      Tracking and monitoring,Not Implemented,,,,,
+Asset Management_2.5,,,·      Recovery plan,Not Implemented,,,,,
+Asset Management_2.5,2.5.2,CL 2,Define and implement an {Asset Maintenance} process to maintain and repair the organization's information assets (including offsite assets) and keeping a log of these activities.,Not Implemented,"1- The Asset Maintenance Process is not approved by top management with the company stamp and their signature, name, and date of approval. Also it is not customized to Layer 3 template document.
+2- Records of patching, repairs, upgrades, or preventive maintenance activities is missing.
+3- ITSM tool records showing maintenance tasks and closures is missing.
+3- Reports/contracts showing maintenance performed(If asset maintenance is outsourced) is missing.
+4- Logs confirming remote site assets are included in maintenance activities is missing.",,,,
+Asset Management_2.5,2.5.3,CL 2,"As per the organization defined recovery plan, execute the asset recovery during or after a security incident. ",Not Implemented,"1- The Asset Recovery Plan is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2- Logs or reports showing asset recovery steps executed after an incident is missing.
+3- Evidence of systems/assets restored (e.g., re-imaged servers, reinstalled software, restored backups) is missing.",,,,
+Asset Management_2.5,2.5.4,CL 2,"Monitor information assets appropriately, based on the [Asset Classification].",Not Implemented,"1- Evidence from SIEM, monitoring tool, or dashboard showing assets categorized and monitored by classification is missing
+2- Evidence that classified assets generate alerts/events (e.g., logs from Splunk) is missing.
+3- Periodic monitoring reports for information assets is missing.
+4- Evidence of security incidents/events flagged for critical assets is missing.",,,,
+Asset Management_2.5,2.5.5,CL 3,"Continuously measure, review and optimize the [Requirements for Asset Maintenance] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Asset Management_2.6,2.6,Secure Disposal of Assets,,,,,,,
+Asset Management_2.6,Controls,,,Audit Result,,,,,
+Asset Management_2.6,2.6.1,CL 1,Define and document [Requirements for Secure Disposal of Assets] which consider the following:,Not Implemented,"1. The asset management policy is not approved by top management with the company stamp and their signature, name, and date of approval.
+1-The Secure Disposal Process of Information Assets is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Asset Management_2.6,,,·      Setting rules for information asset disposal based on the classification and labelling of the information asset defined in the [Asset Inventory],Not Implemented,,,,,
+Asset Management_2.6,2.6.2,CL 1,"Define and implement a {Secure Asset Disposal} process to handle the disposal of the information assets based on the [Requirements for Secure Disposal of Assets] that uses appropriate techniques (e.g. secure erase, drilling, shredding) in order to prevent unauthorized disclosure or modification of information stored on the assets.",Not Implemented,"1-The Secure Disposal Process of Information Assets is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2- Evidence of Disposal Records or Certificates of Destruction showing assets were securely disposed of, is missing.
+3- Evidence that staff are trained on secure disposal requirements is missing.",,,,
+Asset Management_2.6,2.6.3,CL 3,"Continuously measure, review and optimize the [Requirements for Secure Disposal of Assets] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) evaluating effectiveness is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Cybersecurity Risk Management_2.6,Cybersecurity Risk Management,,,,,,,,
+Cybersecurity Risk Management_3.1,3.1,Cybersecurity Risk Assessment,,,,,,,
+Cybersecurity Risk Management_3.1,Controls,,,Audit Result,,,,,
+Cybersecurity Risk Management_3.1,3.1.1,CL 1,Define and document [Requirements for Cybersecurity Risk Assessment] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Cybersecurity Risk Management_3.1,,,·      Purpose and scope of the risk assessment in the organization,,,,,,
+Cybersecurity Risk Management_3.1,,,·      The frequency and circumstance when risk assessment should be conducted in the organization,,,,,,
+Cybersecurity Risk Management_3.1,,,"·      Ensuring that the [Requirements for Cybersecurity Risk Assessment] cover the risks to the information assets of the organization, individuals, and other organizations",,,,,,
+Cybersecurity Risk Management_3.1,3.1.2,CL 1,Define and implement a {Risk Assessment} process consisting of:,Not Implemented,"1- Evidence of conducting Cybersecurity Risk Assessment is missing
+ 1.1- Risk register is incomplete",,,,
+Cybersecurity Risk Management_3.1,,,·      Risk identification: Identify and document internal and external risks based on the information assets of the organization [Asset Discovery] and maintain the identified risks in a [Risk Register],,,,,,
+Cybersecurity Risk Management_3.1,,,·      Risk analysis: Analyze and document the identified risks in terms of probability and impact,,,,,,
+Cybersecurity Risk Management_3.1,,,"·     Risk evaluation: Identify, prioritize, and document which risk should be treated or accepted based on the organization’s risk appetite. Risk evaluation outcomes must be officially approved by the top management",,,,,,
+Cybersecurity Risk Management_3.1,,,·     Report the top cybersecurity risks within the [Risk Register] along with the remediation plans to the CST,,,,,,
+Cybersecurity Risk Management_3.1,3.1.3,CL 2,Integrate the {Risk Assessment} process into the organization’s risk management framework and apply it at least for the following events:,Not Implemented,1- Evidence that the Risk Assessment process is integrated into organizational processes is missing.,,,,
+Cybersecurity Risk Management_3.1,,,·      In the early stages of major technical projects or major changes to the organization or technical architecture,,,,,,
+Cybersecurity Risk Management_3.1,,,·      Before launching new products and services ,,,,,,
+Cybersecurity Risk Management_3.1,3.1.4,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity Risk Assessment] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Cybersecurity Risk Management_3.2,3.2,Cybersecurity Risk Treatment & Monitoring,,,,,,,
+Cybersecurity Risk Management_3.2,Controls,,,Audit Result,,,,,
+Cybersecurity Risk Management_3.2,3.2.1,CL 1,Define and document [Requirements for Cybersecurity Risk Treatment and Monitoring] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Cybersecurity Risk Management_3.2,,,·      The risk treatment plan,,,,,,
+Cybersecurity Risk Management_3.2,,,·      The risk monitoring plan,,,,,,
+Cybersecurity Risk Management_3.2,3.2.2,CL 1,Define and implement a  {Risk Treatment} process describing how assessed risks are treated resulting in a [Risk Treatment Plan]. ,Not Implemented,1- Approved Risk Treatment Plan showing the implementation of the Process is missing,,,,
+Cybersecurity Risk Management_3.2,3.2.3,CL 1,"Define and implement a {Risk Monitoring} process that monitors and reviews the identified risks, the implementation of the risk treatment plan, the residual risk, and the status of the accepted risks.",Not Implemented,"1- Evidence of implementing the risk management process is missing, including:
+  1.1- Risk register with status tracking.
+  1.2- Risk treatment plan tracking.
+  1.3- Residual and accepted risk review evidence.",,,,
+Cybersecurity Risk Management_3.2,3.2.4,CL 3,"Continuously measure, review and optimize the [Requirements for Cybersecurity Risk Treatment and Monitoring] as well as the effectiveness of the processes.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_3.2,Logical Security,,,,,,,,
+Logical Security_4.1,4.1,Cryptography,,,,,,,
+Logical Security_4.1,Controls,,,Audit Result,,,,,
+Logical Security_4.1,4.1.1,CL 1,Define and document [Requirements for Cryptography] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.1,,,"·      Defining basic cryptographic protocols and techniques (e.g. AES 256, RSA 2048, and PKI) together with relevant restrictions (e.g. self-signed certificates, MD5)",,,,,,
+Logical Security_4.1,,,"·      Conditions under which approved cryptographic protocols should be applied (data in transit, at rest, in use) taking into account the [Requirements for Information Protection]",,,,,,
+Logical Security_4.1,4.1.2,CL 1,"Create a list of [Cryptographic Solutions] (e.g. products, algorithms and protocols) in accordance to relevant restrictions (e.g. legal, technical, national) and make sure it is approved by the responsible roles.",Implemented,,,,,
+Logical Security_4.1,4.1.3,CL 1,"Use the [Cryptographic Solutions] based on the identified circumstances, in order to protect information throughout its complete life cycle (in transit, at rest, in use) according to its classification [Requirements for Information Protection].",Not Implemented,"1- Evidence of Implementing Cryptographic Solutions for data (in transit, at rest, in use) is missing.",,,,
+Logical Security_4.1,4.1.4,CL 2,"Define and implement a {Life Cycle Management of Cryptographic Keys} process for handling the generation, protection, archiving, recovery, and destruction of cryptographic keys.",Not Implemented,1- Evidence of implementation is missing,,,,
+Logical Security_4.1,4.1.5,CL 3,"Continuously measure, review and optimize the [Requirements for Cryptography].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.2,4.2,Change Management,,,,,,,
+Logical Security_4.2,Controls,,,Audit Result,,,,,
+Logical Security_4.2,4.2.1,CL 1,"Define and document [Requirements for Change Management] which consider the following:
+·    Identifying, classifying, and prioritizing changes to the information assets that effect cybersecurity",Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.2,4.2.2,CL 1,"Define and implement the {Change Management} process to authorize cybersecurity relevant changes (e.g. applied patches, configuration changes as part of remediation, upgrading or introduction of new equipment). ",Not Implemented,1- Evidence of implementation is missing,,,,
+Logical Security_4.2,4.2.3,CL 1,"Plan and test the identified changes. Assess the potential impact [Cybersecurity Risk Assessment] of the changes on cybersecurity, communicate the changes, and obtain approval from the defined authorized roles (personnel/committee).",Not Implemented,"1.Samples of cybersecurity tests performed as part of Change Management process is missing.
+2.Samples of Cybersecurity Risk Assessment performed as part of Change Management process is missing.",,,,
+Logical Security_4.2,4.2.4,CL 2,Enhance and implement the [Requirements for Change Management] to consider the procedure for emergency changes. ,Not Implemented,1- Evidence of implementation is missing,,,,
+Logical Security_4.2,4.2.5,CL 3,"Continuously measure, review and optimize the [Requirements for Change Management] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.3,4.3,Vulnerability Management,,,,,,,
+Logical Security_4.3,Controls,,,Audit Result,,,,,
+Logical Security_4.3,4.3.1,CL 1,Define and document [Requirements for Vulnerability Management] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.3,,,"·      Scope, tools and technology, reporting",,,,,,
+Logical Security_4.3,,,·      The frequency of scans,,,,,,
+Logical Security_4.3,,,·      Timeframes for remediating the vulnerabilities (based on the criticality),,,,,,
+Logical Security_4.3,4.3.2,CL 1,Define and implement a {Vulnerability Management} process consisting of:,Not Implemented,1- Evidence of implementation is missing.,,,,
+Logical Security_4.3,,,·      Scanning: Conduct vulnerability scans on information assets [Asset Inventory] using relevant tools according to the frequency defined in the requirements (e.g. monthly for critical systems),,,,,,
+Logical Security_4.3,,,·      Analyzing: Analyze the impact that the vulnerability has on the critical information assets and assign a criticality to it and define and assign timeframes (depending on the criticality) within which the vulnerabilities have to be remediated,,,,,,
+Logical Security_4.3,,,·      Reporting: Report vulnerabilities [Vulnerabilities Report] along with criticality of the assets to the respective departments and define the recommended action. [Patch Management],,,,,,
+Logical Security_4.3,4.3.3,CL 2,"Perform vulnerability scans triggered by distinct events (e.g. product release, major technical change, new equipment added to networks). ",Not Implemented,"1- Event-Triggered Scan Reports
+2- Remediation Evidence is missing",,,,
+Logical Security_4.3,4.3.4,CL 2,"Use specialized and automated vulnerability scanning tools (e.g. dedicated tools for webservers, mobile apps).",Not Implemented,"1- List of vulnerability scanning tools used is missing
+2- Tool Configuration sample is missing
+3- Screenshot or report showing that scans are scheduled automatically is missing
+4- Scan Reports from the used tools is missing",,,,
+Logical Security_4.3,4.3.5,CL 3,"Enhance vulnerability classification and reporting based on inputs from other sources (e.g. penetration testing, threat intelligence).",Not Implemented,"1- Documented vulnerability management process is missing:
+  1.1- A section showing that vulnerabilities are reclassified based on:
+    1.1.1- Threat intelligence.
+    1.1.2- Penetration testing results.
+2- A vulnerability report demonstrating reprioritization of issues based on threat intelligence or penetration test findings is not available.
+3- Screenshot, email, or ticket showing that threat intelligence or pen test results were reviewed and applied is missing.",,,,
+Logical Security_4.3,4.3.6,CL 3,"Continuously measure, review and optimize the [Requirements for Vulnerability Management] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.4,4.4,Patch Management,,,,,,,
+Logical Security_4.4,Controls,,,Audit Result,,,,,
+Logical Security_4.4,4.4.1,CL 1,Define and document [Requirements for Patch Management] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.4,,,·      Scope of the patch management,,,,,,
+Logical Security_4.4,,,·      Tools and techniques and patch management triggers,,,,,,
+Logical Security_4.4,,,·      Patch testing environment,,,,,,
+Logical Security_4.4,,,·      The frequency (incorporating regular patching),,,,,,
+Logical Security_4.4,4.4.2,CL 1,Define and implement a {Patch Management} process that develops a [Remediation Plan] considering the following aspects:,Not Implemented,"1- Sample of implemented patches is missing, including:
+  1.1- Cybersecurity risk assessment or vulnerability assessment report.
+  1.2- Evidence of testing patches before production deployment and creating necessary backups based on risk assessment results.
+  1.3- Evidence of triggering the Change Management process to implement patches.
+2- Change request for the patch was not provided.
+3- Updated remediation plan is missing.",,,,
+Logical Security_4.4,,,·  [Vulnerabilities Report],,,,,,
+Logical Security_4.4,,,·   [Cybersecurity Risk Assessment],,,,,,
+Logical Security_4.4,,,·      Testing the patches before deploying in production and creating necessary backups based on the risk assessment results,,,,,,
+Logical Security_4.4,,,·   [Change Management],,,,,,
+Logical Security_4.4,,,·   Regular patch releases,,,,,,
+Logical Security_4.4,4.4.3,CL 2,Ensure that the installed patches are successful and that the detected vulnerabilities have been remediated.,Not Implemented,"1- Logs or reports confirming that patches were successfully installed are missing.
+2- Vulnerability rescan reports showing that vulnerabilities are closed or risks reduced were not provided.",,,,
+Logical Security_4.4,4.4.4,CL 2,Enhance and implement the [Requirements for Patch Management] to include emergency patch activities for highly critical vulnerabilities.,Not Implemented,1- Evidence of implementation is missing.,,,,
+Logical Security_4.4,4.4.5,CL 2,Apply patch packages (or software updates) on a regular basis for all the information assets.,Not Implemented,"1- Approved Patch schedule was not provided
+2- Evidence of applying patched as per the schedule is missing ",,,,
+Logical Security_4.4,4.4.6,CL 2,Automate and enforce patch management wherever possible (e.g. end user devices).,Not Implemented,"1- Screenshots or configuration evidence from patch management tools is missing.
+2- Reports showing automated patch enforcement on all applicable systems and devices were not provided.
+3- Evidence of a patch cycle with automation logs showing successful deployment to devices is not available.",,,,
+Logical Security_4.4,4.4.7,CL 2,"Enhance the [Remediation Plan] and execute it based on threat intelligence, [Penetration Testing], and other sources.",Not Implemented,1- Evidence of implementation is missing.,,,,
+Logical Security_4.4,4.4.8,CL 3,"Continuously measure, review and optimize the [Requirements for Patch Management] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.5,4.5,Network Security,,,,,,,
+Logical Security_4.5,Controls,,,Audit Result,,,,,
+Logical Security_4.5,4.5.1,CL 1,Define and document [Requirements for Network Security] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.5,,,·      Managing and controlling the security of the networks operated by the organization and the information assets connected to it,,,,,,
+Logical Security_4.5,,,·      Segregation of networks,,,,,,
+Logical Security_4.5,,,·      Security requirements to protect the network services and the information transferred through it,,,,,,
+Logical Security_4.5,4.5.2,CL 1,"Document the [Network Plan] which clearly reflects the actual state of the network (e.g. all connections into the networks, network devices, critical servers).",Not Implemented,"1. Network Diagram (HLDs, LLDs) is missing 
+2. Network Plan is missing ",,,,
+Logical Security_4.5,4.5.3,CL 1,"Ensure that the incoming and outgoing traffic is controlled (e.g. preventing malicious traffic, monitoring the traffic loads of switching facilities, controlling unwanted communication such as email, SMS) based on the [Requirements for Network Security].",Not Implemented,"1- Evidence of implementation is missing (i.e., firewall implemented policies, including allow Listing and DenyListing rules)",,,,
+Logical Security_4.5,4.5.4,CL 1,"Ensure that only trusted and authorized protocols and IP address ranges are allowed to cross the boundary (e.g. using firewalls). Disable unused protocols, (e.g. disabling IPv6 if not used) on the equipment to reduce the attack surface on the network.",Not Implemented,"1- Evidence of implementation is missing (i.e., screenshots showing used protocols, disabled protocols, network interfaces, and open ports)",,,,
+Logical Security_4.5,4.5.5,CL 1,"Protect the information transferred (e.g. from interception, copying, modification) through the organization's network and ensure that the confidentiality and integrity of the information are maintained (e.g. encryption).",Not Implemented,1.Evidence of allowing only Secure Encrypted Protocols is missing. ,,,,
+Logical Security_4.5,4.5.6,CL 1,"Segregate the network into zones (e.g. domains, subnets) depending on the criticality of the information assets or services present in those zones (e.g. isolating production network from development and testing networks, separating network containing user workstations from authentication servers).",Not Implemented,1. Network diagram and configurations showing segregation are missing.,,,,
+Logical Security_4.5,4.5.7,CL 1,Restrict the access to the organization's network (both wired and wireless networks) based on the access control list [Identity and Access Management].,Not Implemented,1.Evidence of implementing restrictions on the access to the organization's network (both wired and wireless networks) based on the access control list is missing. ,,,,
+Logical Security_4.5,4.5.8,CL 1,"Secure the end user data, voice and signaling information transferred through the organization's telecommunications network (e.g. VoIP/SIP traffic, SS7).",N/A,,,,,
+Logical Security_4.5,4.5.9,CL 1,Segregate the hosted customer network from the organization's telecommunication operational network.,N/A,,,,,
+Logical Security_4.5,4.5.10,CL 2,"Cooperate with other organizations that own or operate interconnected networks with the organization’s network to detect and protect the connected users and the networks from malicious acts (e.g. to block email spams, DDoS, abnormal traffic patterns, implement Caller ID authentication to block illegal caller ID spoofing). ",N/A,,,,,
+Logical Security_4.5,4.5.11,CL 2,"Ensure that the interfaces (e.g. Internet Exchange Points) to other networks are appropriately secured (e.g. securing BGP infrastructure, implementing high availability through redundancy, using strong cryptography).",N/A,,,,,
+Logical Security_4.5,4.5.12,CL 2,Enhance and implement the [Requirements for Network Security] to handle internal and external attacks (e.g. DoS/DDoS) against the organization's network.,Not Implemented,"1- Evidence of implementation is missing (i.e., sample alert logs and traffic filtering report and SIEM integration showing blocked attacks.)",,,,
+Logical Security_4.5,4.5.13,CL 2,Ensure that mechanisms are in place at the ICT facilities to detect and avoid network congestion which results in disruptions of services (e.g. implementation of additional facilities to balance the traffic load).,Not Implemented,1- Evidence of bandwidth management or rate-limiting configurations is missing. ,,,,
+Logical Security_4.5,4.5.14,CL 2,"Use specific tools to analyze and filter all traffic (e.g. port filtering, host-based filtering) to detect any unauthorized traffic in the network.",Not Implemented,"1- Evidence of implementation is missing (i.e., firewall rules for port filtering, endpoint protection solution with host-based filtering, and sample logs showing blocked unauthorized traffic.) ",,,,
+Logical Security_4.5,4.5.15,CL 3,"Continuously measure, review and optimize the [Requirements for Network Security].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.6,4.6,Logging and Monitoring,,,,,,,
+Logical Security_4.6,Controls,,,Audit Result,,,,,
+Logical Security_4.6,4.6.1,CL 1,Define and document [Requirements for Logging and Monitoring] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.6,,,"·      Logging the events (e.g. login attempts, configuration changes, firewall logs) related to the information assets which belong to the organization",,,,,,
+Logical Security_4.6,,,·      Monitoring of the event logs and analysis of the detected events,,,,,,
+Logical Security_4.6,,,·      Required retention period and protection of the event logs,,,,,,
+Logical Security_4.6,4.6.2,CL 1,"Activate event logging and record the event logs (e.g. user activities, exceptions, information security events, privileged operations) related to the information assets.",Not Implemented,1- Sample of the captured logs for the Information Assets is missing ,,,,
+Logical Security_4.6,4.6.3,CL 1,Protect log information and logging facilities from unauthorized access and tampering.,Not Implemented,"1- Evidence of the placed controls for logs protection (e.g., Encryption and backup to another logging facility or SIEM) is missing ",,,,
+Logical Security_4.6,4.6.4,CL 1,Periodically review the event logs and report suspicious events and detected anomalies to the responsible personnel [Incident Management].,Not Implemented,1.Evidence/Reports of logs reviews is missing ,,,,
+Logical Security_4.6,4.6.5,CL 1,Retain the logs for a defined time duration as specified in the requirements (e.g. 12 months).,Not Implemented,1.Evidence of retaining the logs for the defined time duration is missing. ,,,,
+Logical Security_4.6,4.6.6,CL 2,"Collect, monitor and, analyze events using a log management tool (e.g. SIEM) that includes advanced detection and integration capabilities.",Not Implemented,"1.Evidence of implementation is missing (i.e., SIEM reports, and screenshots of active monitoring).",,,,
+Logical Security_4.6,4.6.7,CL 2,Real-time monitoring and review of the event logs of critical information assets.,Not Implemented,1.Evidence of real-time monitoring and alerts from critical systems logs is missing.,,,,
+Logical Security_4.6,4.6.8,CL 2,Improve the event detection methods by the use of dedicated tools (e.g. Threat Intelligence Platforms) to update the rules of the log management tools.,Not Implemented,"1.Evidence of implementation is missing (i.e., reports from threat intelligence platforms, and screenshots of updated SIEM rules). 
+",,,,
+Logical Security_4.6,4.6.9,CL 3,"Continuously measure, review and optimize the [Requirements for Logging and Monitoring].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.7,4.7,Identity and Access Management (IAM),,,,,,,
+Logical Security_4.7,Controls,,,Audit Result,,,,,
+Logical Security_4.7,4.7.1,CL 1,Define and document [Requirements for Identity and Access Management] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.7,,,"·      User accounts, privilege accounts, granting, and revoking access rights",,,,,,
+Logical Security_4.7,,,"·      Authentication and authorization requirements (e.g. in case of remote access, two-factor authentication)",,,,,,
+Logical Security_4.7,,,·      Password management requirements,,,,,,
+Logical Security_4.7,4.7.2,CL 1,Define and implement a process to {Allocate/Revoke User Rights} considering:,Not Implemented,1- Evidence of implementing the process is missing. ,,,,
+Logical Security_4.7,,,·      Assign access rights to the users based on what they are authorized to use (e.g. Role Based Access Control) ,,,,,,
+Logical Security_4.7,,,·      Reallocate the user access rights upon change of job functions (e.g. changing departments) ,,,,,,
+Logical Security_4.7,,,"·      Manage user authentication and authorization based on the access control principle (e.g. need-to-know, need-to-use, principle of least privilege, and segregation of duties) and maintain an up-to-date [Access Control List]",,,,,,
+Logical Security_4.7,,,·      Revoke access rights to the information systems upon change of contractual agreements (e.g. termination of employment) ,,,,,,
+Logical Security_4.7,4.7.3,CL 1,Control and restrict the allocation and use of privilege access rights. ,Not Implemented,1.Evidence of the cybersecurity measures implemented on privileged accounts is missing.,,,,
+Logical Security_4.7,4.7.4,CL 1,Provide multi-factor authentication for access to sensitive and critical information systems as well as for remote access.,Not Implemented,1.Evidence of implementing multi-factor authentication for access to sensitive and critical information systems as well as for Remote access is missing. ,,,,
+Logical Security_4.7,4.7.5,CL 1,"Enforce the password management requirements (e.g. use of strong passwords for authentication, regular password changes, account suspension and lockouts after multiple failed login attempts) and that the user authentication information is secured against disclosure (e.g. using encryption mechanisms during the transfer of authentication information).",Not Implemented,"1- Evidence of the implemented Password Policy is missing
+2- Evidence of securing user authentication information is missing. ",,,,
+Logical Security_4.7,4.7.6,CL 2,"Regularly review user identity and access rights (review frequency taking into consideration for e.g. different account types, criticality of the information assets) and ensure conformance to the access control principles (e.g. asset owner should regularly review user access rights).",Not Implemented,1. Evidence of review of user access is missing. ,,,,
+Logical Security_4.7,4.7.7,CL 2,Enhance and implement the [Requirements for Identity and Access Management] to use tools to automate and centralize the identity and access management.,Not Implemented,"1.Evidence of implementation is missing (i.e., screenshots or procedures showing centralized IAM system) ",,,,
+Logical Security_4.7,4.7.8,CL 2,Use dedicated systems for tasks that require administrative access (e.g. configuration of critical systems).,Not Implemented,"1.Evidence of implementation is missing (i.e., screenshots showing administrative access system configuration).",,,,
+Logical Security_4.7,4.7.9,CL 3,"Continuously measure, review and optimize the [Requirements for Identity and Access Management] as well as the effectiveness of the process.",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.8,4.8,Application Whitelisting,,,,,,,
+Logical Security_4.8,Controls,,,Audit Result,,,,,
+Logical Security_4.8,4.8.1,CL 1,Define and document [Requirements for Application Whitelisting] which consider the following:,Not Implemented,1- The Document is Missing the approval (Name-Signature-Date),,,,
+Logical Security_4.8,,,·      A list of authorized software,,,,,,
+Logical Security_4.8,,,·      Approved application whitelisting tools,,,,,,
+Logical Security_4.8,4.8.2,CL 1,"Establish and disseminate an [Index of Authorized Software] including software applications, software libraries (e.g. *.dll, *.ocx, *.so) and digitally signed scripts (e.g. *.ps1, *.py, macros).",Not Implemented,"1.List of approved application whitelisting tools is missing 
+2.Index of Authorized Software (e.g., approved applications, .dll, .ps1, .py, macros, etc.) is missing",,,,
+Logical Security_4.8,4.8.3,CL 1,Review and update the [Index of Authorized Software] on a regular basis.,Not Implemented,"1.Evidence of periodic reviews/updates to the authorized software list (logs, change requests, etc.) is missing",,,,
+Logical Security_4.8,4.8.4,CL 2,Use application whitelisting tools to ensure that only authorized software executes on all information assets and ensure that the application whitelisting technology cannot be disabled or bypassed.,Not Implemented,"1.Evidence of implementation is missing (i.e., configuration screenshots and logs showing enforcement). ",,,,
+Logical Security_4.8,4.8.5,CL 3,"Continuously measure, review and optimize the [Requirements for Application Whitelisting].",Not Implemented,"1- Evidence of scheduled reviews (quarterly/annual) is missing.
+2- KPIs or metrics tracked to measure efficiency is missing
+3- Version History / Updated Documents: Policies, procedures, or requirements updated to reflect continuous improvement is missing.",,,,
+Logical Security_4.9,4.9,Incident Management,,,,,,,
+Logical Security_4.9,Controls,,,Audit Result,,,,,
+Logical Security_4.9,4.9.1,CL 1,Define and document [Requirements for Incident Management] which consider the following:,Not Implemented,"1.The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.9,,,"·      Incident definition, identification and classification, prioritization, and response",,,,,,
+Logical Security_4.9,,,·      Incident reporting structure,,,,,,
+Logical Security_4.9,,,·      Testing the incident response process,,,,,,
+Logical Security_4.9,,,·      Evidence collection,,,,,,
+Logical Security_4.9,,,·      Learning from information security incidents,,,,,,
+Logical Security_4.9,4.9.2,CL 1,Define and implement {Incident Response} process considering:,Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Incident monitoring tool showing screenshots of dashboard and highlighting detected incidents, incidents classification, respond techniques are missing.
+3. Previous Cybersecurity Incidents Reports",,,,
+Logical Security_4.9,,,·      Incident detection by analyzing reported events [Logging and Monitoring] ,,,,,,
+Logical Security_4.9,,,·      Incident classification based on predefined criteria as specified in the requirements,,,,,,
+Logical Security_4.9,,,"·      Respond to the cybersecurity incidents (contain, eradicate, and recover) within the organization defined timeframes [Change Management]",,,,,,
+Logical Security_4.9,,,·      Prepare the [Incident Report] and lessons learned,,,,,,
+Logical Security_4.9,,,·      Report cybersecurity incidents with appropriate details to CST,,,,,,
+Logical Security_4.9,4.9.3,CL 1,"Conduct regular trainings to test the {Incident Response} process for its effectiveness (e.g. testing communication channels, response times).",Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.IR Training Material is missing.
+3. Training Attendance Sheet/ attendees record is missing.",,,,
+Logical Security_4.9,4.9.4,CL 2,Enhance and implement the [Requirements for Incident Management] to use incident management tools to automate the process and integrate with other relevant systems for increasing efficiency.,Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of the implemented IR tool is missing.
+3.Evidence of received or analyzed threat intel (e.g., IOC feeds, alerts used in incident analysis) is missing.",,,,
+Logical Security_4.9,4.9.5,CL 2,Gather threat intelligence and use it during the analysis of the information security events.,Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.Threat intelligence reports are missing.
+3. Evidence of integrating threat intelligence into incident analysis is missing.",,,,
+Logical Security_4.9,4.9.6,CL 2,Establish a forensic team to investigate the information security incidents.,Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence forensic team qualifications.
+3.Evidence of forensic analysis conducted on incidents (e.g., logs, memory dumps, timeline analysis).",,,,
+Logical Security_4.9,4.9.7,CL 2,"Identify, collect, and preserve the Evidence of the information security incidents. Use the knowledge gained from the information security incidents to reduce the probability and impact of future incidents.",Not Implemented,"1. The Incident Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.Evidence showing repository for cybersecurity incidents, and the applied cybersecurity controls to the repository.",,,,
+Logical Security_4.9,4.9.8,CL 3,"Continuously measure, review and optimize the [Requirements for Incident Management] as well as the effectiveness of the process.",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.9,4.10,Malware Handling,,,,,,,
+Logical Security_4.9,Controls,,,Audit Result,,,,,
+Logical Security_4.10,4.10.1,CL 1,Define and document [Requirements for Malware Handling] which consider the following:,Not Implemented,"1.The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Malware Handling Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.9,,,·      Detection and prevention controls to protect against malware,,,,,,
+Logical Security_4.9,,,·      Implementation of technical controls to safeguard the organization's information assets,,,,,,
+Logical Security_4.10,4.10.2,CL 1,"Use end-point protection software, ensure that this software regularly updates its signature database, and implement measures to prevent this software from being deactivated or altered by users.",Not Implemented,"1.The Malware Handling Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.Missing evidences of implementing protection software on all end-points and servers such as anti malware.
+3 Missing evidence of regularly updating the signature database of the protection software based on scheduled update settings",,,,
+Logical Security_4.10,4.10.3,CL 1,"Implement appropriate security measures to block different sources of malicious traffic (e.g. using internet filters, emails filters to block phishing emails, restricting download of dangerous content) [Email & Web Browser Protection].",Not Implemented,"1.The Malware Handling Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2 Evidence of preventing users from deactivating endpoint protection software is missing.
+3.Cybersecurity measures implemented to block different sources of malicious traffic on Email & Web Browser, DNS are missing.",,,,
+Logical Security_4.10,4.10.4,CL 1,Implement protective measures to safeguard removable media against malware (e.g. conduct an anti-malware scan of removable media when inserted or connected).,Not Implemented,"1. The Malware Handling Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of implement protective measures to safeguard removable media against malware is missing.",,,,
+Logical Security_4.9,4.10.5,CL 2,Implement advanced malware detection techniques (e.g. enable Domain Name System (DNS) query logging to detect hostname lookups for known malicious domains).,Not Implemented,"1. The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval
+2. Evidence of enabled DNS query logging is missing.",,,,
+Logical Security_4.9,4.10.6,CL 2,Use advanced logging and monitoring tools for analyzing and alerting of detected malware events [Logging and Monitoring].,Not Implemented,"1. The Malware Handling Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. SOC/SIEM alert rules, malware incident logs from SIEM, correlation rules, or detected events dashboard are missing.",,,,
+Logical Security_4.9,4.10.7,CL 3,"Continuously measure, review and optimize the [Requirements for Malware Handling].",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.11,4.11,Information Protection,,,,,,,
+Logical Security_4.11,Controls,,,Audit Result,,,,,
+Logical Security_4.11,4.11.1,CL 1,Define and document [Requirements for Information Protection] which consider the following:,Not Implemented,"1.The Information Protection Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Information Protection Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.11,,,"·      Classification level and criteria (e.g. restricted, confidential, public) {Asset Classification}",,,,,,
+Logical Security_4.11,,,"·      Privacy, ownership, protection, transmission, and retention of information",,,,,,
+Logical Security_4.11,,,·      Ensuring the privacy of personally identifiable information or other sensitive information in the organization [Cybersecurity Compliance],,,,,,
+Logical Security_4.11,4.11.2,CL 1,Define and implement an {Information Classification} process considering:,Not Implemented,"1 The approach of handling critical information for each classification is not defined.
+2.The Information Protection Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+3.Missing evidence showing that assets are classified and handled as per the defined criteria.",,,,
+Logical Security_4.11,,,·      Categorize information based on the classification criteria specified in the requirements,,,,,,
+Logical Security_4.11,,,"·      Handle critical information according to the defined criteria (e.g. business value, legal, technical, national and cross-border requirements)",,,,,,
+Logical Security_4.11,4.11.3,CL 1,"Implement security mechanisms to protect information (in transit, at rest, in use) taking into account the [Requirements for Cryptography] and data loss prevention techniques.",Not Implemented,"1.The Information Protection Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing technical evidence of the implemented security measures to protect information such as DLP and cryptography settings.",,,,
+Logical Security_4.11,4.11.4,CL 1,Prevent the transmission of information from production environment to another environment and the usage of critical systems data in test and development environments.,N/A,,,,,
+Logical Security_4.11,4.11.5,CL 2,Determine a retention period for information in accordance with organizational requirements and relevant legislations. Restrict the retention of critical information to the necessary requirements.  [Cybersecurity Compliance],Not Implemented,"1. The retention period is not defined.
+2. Missing evidence of retention period enforcement on data as per their classification",,,,
+Logical Security_4.11,4.11.6,CL 3,"Continuously measure, review and optimize the [Requirements for Information Protection] as well as the effectiveness of the process.",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.12,4.12,Backup and Recovery Management,,,,,,,
+Logical Security_4.12,Controls,,,Audit Result,,,,,
+Logical Security_4.12,4.12.1,CL 1,Define and document [Requirements for Backup and Recovery Management] which consider the following:,Not Implemented,"1.The Cybersecurity Infrastructure Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.12,,,·      Scope of online and offline backups including the retention period,,,,,,
+Logical Security_4.12,,,·      Rapid recovery of information after cybersecurity incidents,,,,,,
+Logical Security_4.12,,,·      Periodically backup of information assets,,,,,,
+Logical Security_4.12,,,·      Protection of backups,,,,,,
+Logical Security_4.12,,,·      Availability of backups,,,,,,
+Logical Security_4.12,4.12.2,CL 1,Define and implement a {Backup} process considering the following:,Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document. 
+2. Evidence of implemented business requirement such as defined RPO for specific systems is missing.
+3. Screenshots of Online & Offline backups are missing.
+",,,,
+Logical Security_4.12,,,·      Business requirements (e.g. Recovery Point Objective),,,,,,
+Logical Security_4.12,,,"·      Scope of online and offline backups and their coverage of information assets (e.g. backup of complete system, through processes such as imaging)",,,,,,
+Logical Security_4.12,4.12.3,CL 1,Define and implement a {Recovery} process to ensure that information assets are recovered within an acceptable timeframe based on their criticality [Asset Classification].,Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Sample of  Recovery process showing technical recovery steps is missing.",,,,
+Logical Security_4.12,4.12.4,CL 1,"Ensure the confidentiality, integrity, and availability of backups in adverse situations (e.g. using encryption, protection of backups via physical security  [Protection of Physical Information Assets]). ",Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.Missing technical evidence of applying security controls on backups.",,,,
+Logical Security_4.12,4.12.5,CL 2,Establish an alternate storage/backup site that provides security measures equivalent to the primary site. ,Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of Backup test
+3. Documentation of alternate site plan.",,,,
+Logical Security_4.12,4.12.6,CL 2,Continuously test and review the {Backup} and the {Recovery} processes to check their effectiveness.,Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Backup and recovery test result reports.",,,,
+Logical Security_4.12,4.12.7,CL 2,Enhance and implement the [Requirements for Backup and Recovery Management] to use tools to automate the {Backup} and the {Recovery} processes.,Not Implemented,"1. The Backup & Recovery Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.12,4.12.8,CL 3,"Continuously measure, review and optimize the [Requirements for Backup and Recovery Management] as well as the effectiveness of the processes.",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.13,4.13,Configuration Management and Hardening,,,,,,,
+Logical Security_4.13,Controls,,,Audit Result,,,,,
+Logical Security_4.13,4.13.1,CL 1,Define and document [Requirements for Configuration Management and Hardening] which consider the following:,Not Implemented,"1.The Cybersecurity Infrastructure Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.13,,,·      Secure images and baseline configurations for the information assets and used software/hardware,,,,,,
+Logical Security_4.13,4.13.2,CL 1,Implement the defined baseline configuration settings for the information assets.,Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of baseline configuration settings for the information assets are missing.",,,,
+Logical Security_4.13,4.13.3,CL 1,Employ system and device hardening according to industry-recognized best practices (e.g. disable the default configurations which have been installed on the network devices). ,Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing Evidence of implementing the approved baseline configuration settings on PC, Servers and Network equipment.",,,,
+Logical Security_4.13,4.13.4,CL 1,"Restrict the use of unnecessary functions (e.g. use of unauthorized ports, services) and configure the information assets to provide only essential capabilities.",Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing evidence of restricting the use of unnecessary system functions.",,,,
+Logical Security_4.13,4.13.5,CL 1,Monitor and verify configuration settings against the baseline settings. ,Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of configuration reviews.",,,,
+Logical Security_4.13,4.13.6,CL 2,Utilize a dedicated tool to monitor and verify configuration settings and alert upon unauthorized deviation from baseline configuration settings.,Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing technical evidence for monitoring and reviewing configuration settings against the baseline settings.",,,,
+Logical Security_4.13,4.13.7,CL 2,Use dedicated tools that can automatically configure/reconfigure configuration settings [Change Management] on all the information assets. ,Not Implemented,"1. The Configuration Management & Hardening Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence for automatic configuration settings applied by dedicated tools on all information assets is missing.",,,,
+Logical Security_4.13,4.13.8,CL 3,"Continuously measure, review and optimize the [Requirements for Configuration Management and Hardening]. ",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.14,4.14,Secure Software Development,,,,,,,
+Logical Security_4.14,Controls,,,Audit Result,,,,,
+Logical Security_4.14,4.14.1,CL 1,Define and document [Requirements for Secure Software Development] which consider the following:,N/A,,,,,
+Logical Security_4.14,,,"·      Utilization of secure coding standards and practices (e.g. approved libraries, APIs)",,,,,,
+Logical Security_4.14,,,·      Segregation and allocation of access rights to different environments,,,,,,
+Logical Security_4.14,,,·      Conducting tests to verify the compliance of the developed software with the organization's cybersecurity requirements,,,,,,
+Logical Security_4.14,4.14.2,CL 1,Ensure that only authorized personnel have access to the appropriate environment [Identity and Access Management].,N/A,,,,,
+Logical Security_4.14,4.14.3,CL 1,Utilize secure coding standards and practices (e.g. security-by-design principles supported via static or dynamic analysis tools) and ensure the security of integration between the applications.,N/A,,,,,
+Logical Security_4.14,4.14.4,CL 1,Ensure a secure and reliable transmission of the software between the environments.,N/A,,,,,
+Logical Security_4.14,4.14.5,CL 1,Use only trusted and up-to-date third-party components for internally developed software.,N/A,,,,,
+Logical Security_4.14,4.14.6,CL 2,Conduct and document a security review for developed software and source code (e.g. performing error checking for all input). ,N/A,,,,,
+Logical Security_4.14,4.14.7,CL 2,Conduct security tests to verify the extent to which the developed software meets the organization's cybersecurity requirements.,N/A,,,,,
+Logical Security_4.14,4.14.8,CL 3,"Continuously measure, review and optimize the [Requirements for Secure Software Development].",N/A,,,,,
+Logical Security_4.15,4.15,Email & Web Browser Protection,,,,,,,
+Logical Security_4.15,Controls,,,Audit Result,,,,,
+Logical Security_4.15,4.15.1,CL 1,Define and document [Requirements for Emails and Web Browser Protection] which consider the following:,Not Implemented,"1.The Cybersecurity Infrastructure Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Email & Web Browser Protection Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.15,,,·      Utilization of standardized security mechanisms for email and web browser protection,,,,,,
+Logical Security_4.15,4.15.2,CL 1,"Implement the [Requirements for Emails and Web Browser Protection] (e.g. email filtering for spam and phishing protection, multi-factor authentication, backup and archive for emails, protection against Advanced Persistent Threats, untrusted websites).",Not Implemented,"1 The backup and archive for emails requirement is not defined in the Email & Web Browser Protection Procedure.
+2. Missing evidences of the implemented security controls on Email & Web Browser.
+
+",,,,
+Logical Security_4.15,4.15.3,CL 1,"Restrict the access to unauthorized web-based email services (e.g. firewall rules, network based URL filters).",Not Implemented,"1. The Email & Web Browser Protection Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing evidence of restricting the access to unauthorized web-based email services.",,,,
+Logical Security_4.15,4.15.4,CL 3,"Continuously measure, review and optimize the [Requirements for Emails and Web Browser Protection].",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Logical Security_4.16,4.16,Penetration Testing,,,,,,,
+Logical Security_4.16,Controls,,,Audit Result,,,,,
+Logical Security_4.16,4.16.1,CL 2,Define and document [Requirements for Penetration Testing] which consider the following:,Not Implemented,"1.The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Penetration Testing Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Logical Security_4.16,,,·      Purpose of the penetration tests and overall objectives,,,,,,
+Logical Security_4.16,,,·      Defining the frequency of the penetration tests,,,,,,
+Logical Security_4.16,4.16.2,CL 2,"Define a {Penetration Testing} process consisting of the scope and frequency (e.g. at least once quarterly on the critical information assets) of the penetration tests using standard methodologies to identify unknown vulnerabilities (e.g. grey box testing, white box testing).",Not Implemented,"1.The Penetration Testing Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Evidence of the PT reports existence for last quarters are missing.",,,,
+Logical Security_4.16,4.16.3,CL 2,"Depending on the penetration test methodology used, use the [Vulnerabilities Report] as an input to guide the penetration tests.",Not Implemented,"1. The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.  Evidence of applying patches based on VA reports is missing.",,,,
+Logical Security_4.16,4.16.4,CL 2,Report the [Penetration Test Report] to the respective departments to trigger remediation actions when applicable [Patch Management].,Not Implemented,"1. The Cybersecurity Defense Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2. missing evidence of communication emails showing that PT reports are shared with the respective departments to trigger remediation actions.",,,,
+Logical Security_4.16,4.16.5,CL 3,"Continuously measure, review and optimize the [Requirements for Penetration Testing] as well as the effectiveness of the process.",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Physical Security_4.16,Physical Security,,,,,,,,
+Physical Security_5.1,5.1,Protection of Physical Information Assets,,,,,,,
+Physical Security_5.1,Controls,,,Audit Result,,,,,
+Physical Security_5.1,5.1.1,CL 1,Define and document [Requirements for the Protection of Physical Information Assets] which consider the following:,Not Implemented,"1.The Protection of Physical Information Assets Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Protection of Physical Information Assets Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Physical Security_5.1,,,·      Protecting physical facilities that host information assets,,,,,,
+Physical Security_5.1,,,·      Protecting physical information assets and physical facilities installed on offsite premises,,,,,,
+Physical Security_5.1,,,·      Delivery and loading areas,,,,,,
+Physical Security_5.1,,,·      Transportation of physical information assets,,,,,,
+Physical Security_5.1,,,·      Defining physical protection measures against environmental threats,,,,,,
+Physical Security_5.1,5.1.2,CL 1,"Define security perimeters in order to protect physical facilities (e.g. offices, rooms, data centers, ground stations, and telecommunication processing equipment) that contain information assets.",Implemented,,,,,
+Physical Security_5.1,5.1.3,CL 1,Ensure that the physical information assets reside within appropriate security zones and are stored in secure physical facilities during non-operational hours.,Not Implemented,"1.The Protection of Physical Information Assets Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Screenshots or photos showing secure storage areas is missing.",,,,
+Physical Security_5.1,5.1.4,CL 1,"Secure the delivery/loading areas that could be used by unauthorized personnel to enter the organization's premises (e.g. segregate physically where possible, incoming and outgoing shipments).",Not Implemented,"1.The Protection of Physical Information Assets Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Photos or CCTV screenshots of secured delivery/loading zones is missing.
+",,,,
+Physical Security_5.1,5.1.5,CL 1,"Protect physical information assets against damage from environmental threats, hazards, and unauthorized physical access by taking into consideration the following factors:",Not Implemented,"1. The Protection of Physical Information Assets Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Missing photos of implemented controls (e.g. fires, accidents, power failures, failures in supporting utilities, natural disasters, Securing cables).
+3. Missing photos of securing cables against interception, interference or damage as well as a proper cable management (e.g. cable labelling, color code)
+4. Missing photos of operating physical information assets according to the manufacturer specified requirements and controlling the working atmosphere (e.g. temperature, humidity, air quality, water, and light)
+",,,,
+Physical Security_5.1,,,"·      Protection measures against physical threats (e.g. fires, accidents, power failures, failures in supporting utilities, natural disasters)",,,,,,
+Physical Security_5.1,,,"·      Securing cables against interception, interference or damage as well as a proper cable management (e.g. cable labelling, color code)",,,,,,
+Physical Security_5.1,,,"·      Operating physical information assets according to the manufacturer specified requirements and controlling the working atmosphere (e.g. temperature, humidity, air quality, water, and light)",,,,,,
+Physical Security_5.1,,,"·      Protection against unauthorized access (e.g. surveillance through CCTV, alarm systems, motion sensors)",,,,,,
+Physical Security_5.1,5.1.6,CL 1,"Protect physical information assets during their transportation taking into consideration e.g. the assessed risks, security during movement.",Not Implemented,"1. The Protection of Physical Information Assets Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Transportation logs or chain-of-custody records is missing",,,,
+Physical Security_5.1,5.1.7,CL 3,"Continuously measure, review and optimize the [ Requirements for the Protection of Physical Information Assets].",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Physical Security_5.2,5.2,Physical Access Management,,,,,,,
+Physical Security_5.2,Controls,,,Audit Result,,,,,
+Physical Security_5.2,5.2.1,CL 1,Define and document [Requirements for Physical Access Management] which consider the following:,Not Implemented,"1.The Physical Access Management Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Physical Access Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Physical Security_5.2,,,·      Physical access authorizations and control,,,,,,
+Physical Security_5.2,,,·      Monitoring physical access,,,,,,
+Physical Security_5.2,5.2.2,CL 1,Create a [Physical Access Control List] of individuals with authorized access to the organization's facilities and issue appropriate authorization credentials.,Not Implemented,"1. Physical Access Control List document is missing. The submitted is a Physical Access Control Form.
+2. Authorization records or access badges issuance records.",,,,
+Physical Security_5.2,5.2.3,CL 1,Define and implement {Physical Access Management} process to grant and manage access (e.g. secure keys) to the physical facilities.,Not Implemented,"1.The Physical Access Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Physical Security_5.2,5.2.4,CL 1,Establish physical entry controls for visitors (e.g. provide security badges to the visitors and monitor unusual activity).,Not Implemented,"1.The Physical Access Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Visitor registration logs are missing.
+3. Records of visitor access badges are missing.
+4. CCTV screenshots or monitoring logs are missing.",,,,
+Physical Security_5.2,5.2.5,CL 2,Continuously review the [Physical Access Control List] of individuals with authorized access to facilities and remove them from the list when access is no longer required.,Not Implemented,"1.The Physical Access Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document
+2. Updated Physical Access Control List.
+3. Access revocation records.",,,,
+Physical Security_5.2,5.2.6,CL 2,Regularly review physical access logs for suspicious activity [Logging and Monitoring].,Not Implemented,"1.The Physical Access Management Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document
+2. Physical access logs.
+3. Security monitoring reports.",,,,
+Physical Security_5.2,5.2.7,CL 3,"Continuously measure, review and optimize the [Requirements for Physical Access Management] as well as the effectiveness of the process.",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+,Third Party Security,,,,,,,,
+Third Party Security_6.1,6.1,Cloud Services,,,,,,,
+Third Party Security_6.1,Controls,,,Audit Result,,,,,
+Third Party Security_6.1,6.1.1,CL 1,Define and document [Requirements for Cloud Services] which consider the following:,Not Implemented,"1.The Cybersecurity Third-party and Cloud Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Cloud Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Third Party Security_6.1,,,·      Cybersecurity requirements expected from the cloud provider,,,,,,
+Third Party Security_6.1,,,·      Service level agreements,,,,,,
+Third Party Security_6.1,6.1.2,CL 1,Conduct a risk assessment in accordance with the [ Cybersecurity Risk Assessment] and [Information Protection] prior to adopt cloud services (or in the event of changes in relevant legislative and regulatory requirements) to ensure that risks related to the use of cloud services are appropriately identified and addressed.,Not Implemented,"1.The Cloud Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Cloud risk assessment reports.
+3. Documentation of applied information protection measures.",,,,
+Third Party Security_6.1,6.1.3,CL 1,"Based on the cloud risk assessment and the [Requirements for Asset classification] identify the [Cloud Cybersecurity Requirements] needed to protect the confidentiality, integrity and availability of the information assets in the cloud.",Not Implemented,"1.The Cloud Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Asset inventory highlighting classification of cloud assets.",,,,
+Third Party Security_6.1,6.1.4,CL 1,Establish service level agreements (SLAs) with the cloud service provider which consider at least the following:,Not Implemented,"1.The Cloud Services Level Agreements Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+1. Signed SLA documents.
+2. Missing exit procedures in the Cloud Services Procedure document.",,,,
+Third Party Security_6.1,,,·       [Cloud Cybersecurity Requirements],,,,,,
+Third Party Security_6.1,,,·       Incident notification and recovery obligations,,,,,,
+Third Party Security_6.1,,,·       Making sure that the cloud service can be terminated in case of non-compliance with the contractual agreements,,,,,,
+Third Party Security_6.1,,,"·       Defining the exit procedures covering the secure deletion of data (e.g. irreversibly delete the organization’s data, media destruction, returning organization data in a usable format, data retention).",,,,,,
+Third Party Security_6.1,6.1.5,CL 1,Ensure that the hosting and storage site of the organization's data is in the Kingdom of Saudi Arabia.,Not Implemented,"1.The Cloud Services Level Agreements Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Cloud hosting agreement specifying data location in KSA.
+3. Confirmation document from cloud provider.",,,,
+Third Party Security_6.1,6.1.6,CL 2,"Audit, review, and monitor the cloud service provider for compliance with contractual obligations.",Not Implemented,"1.The Cloud Services Level Agreements Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Cloud audit reports.
+3. Monitoring and compliance records.",,,,
+Third Party Security_6.1,6.1.7,CL 3,"Continuously measure, review and optimize the [Requirements for Cloud Services].",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,
+Third Party Security_6.2,6.2,Outsourcing Services,,,,,,,
+Third Party Security_6.2,Controls,,,Audit Result,,,,,
+Third Party Security_6.2,6.2.1,CL 1,Define and document [Requirements for Outsourcing Services] which consider the following:,Not Implemented,"1.The Cybersecurity Third-party and Cloud Policy is not approved by top management with the company stamp and their signature, name, and date of approval. 
+2.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.",,,,
+Third Party Security_6.2,,,·      Risk assessment for outsourcing information assets to a third party,,,,,,
+Third Party Security_6.2,,,·      Addressing cybersecurity requirements expected from the third party provider,,,,,,
+Third Party Security_6.2,,,·      Service level agreements,,,,,,
+Third Party Security_6.2,6.2.2,CL 1,Conduct a risk assessment in accordance with the [ Cybersecurity Risk Assessment] and [Information Protection] prior to outsourcing any information assets to a third party provider (or in the event of changes in relevant legislative and regulatory requirements) to ensure that risks related to the use of outsourcing are appropriately addressed.,Not Implemented,"1.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Risk assessment that were conducted prior to outsourcing any information assets is not defined in the Outsourcing Services Procedure.
+3. Missing risk assessment reports that were conducted prior to outsourcing any information assets to a third party provider.",,,,
+Third Party Security_6.2,6.2.3,CL 1,"Based on the risk assessment identify the [Third-party Cybersecurity Requirements] which the third party provider must comply with to protect the confidentiality, integrity and availability of the outsourced information assets (e.g. non-disclosure clauses).",Not Implemented,"1.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+1. Sample document of Cybersecurity Requirements enforced on a Third-party .
+2. Risk assessment reports.",,,,
+Third Party Security_6.2,6.2.4,CL 1,Establish service level agreements with the third party service provider which consider at least the following:,Not Implemented,"1.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2.SLAs with current third party service providers.",,,,
+Third Party Security_6.2,,,·       [Third-party Cybersecurity Requirements],,,,,,
+Third Party Security_6.2,,,·       Communication procedure in case of a cybersecurity incident,,,,,,
+Third Party Security_6.2,,,·       Ensuring that the outsourced service can be terminated in case of non-compliance with the contractual agreements,,,,,,
+Third Party Security_6.2,,,"·       Defining the exit procedures covering the secure deletion of data (e.g. media destruction, encryption).",,,,,,
+Third Party Security_6.2,6.2.5,CL 2,"Audit, review, and monitor the third party provider for compliance with contractual obligations.",Not Implemented,"1.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Audit & Review Reports conducted on third-party providers. ",,,,
+Third Party Security_6.2,6.2.6,CL 2,Ensure that third party personnel are screened when they are contracted to work on critical systems.,Not Implemented,"1.The Outsourcing Services Procedure is not approved by top management with the company stamp and their signature, name, and date of approval, Also it is not customized to Layer 3 template document.
+2. Personnel screening records.
+3. Background check reports.",,,,
+Third Party Security_6.2,6.2.7,CL 3,"Continuously measure, review and optimize the [Requirements for Outsourcing Services].",Not Implemented,"1. Evidence of scheduled reviews (quarterly/annual) and effectiveness evaluations is missing.
+2. KPIs or metrics used to measure efficiency are missing.
+3. Version history/updated documents (policies, procedures, or requirements) reflecting continuous improvement are missing.",,,,

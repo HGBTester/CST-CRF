@@ -5,6 +5,13 @@ let documentInstances = [];
 let documentIdCounter = 1;
 
 export const createDocumentInstance = (category, subcategory, item, createdBy) => {
+  // Calculate next version for this control
+  const existingDocs = documentInstances.filter(doc => doc.controlId === item.id);
+  const latestVersion = existingDocs.length > 0 
+    ? Math.max(...existingDocs.map(d => parseFloat(d.version))) 
+    : 0;
+  const nextVersion = (latestVersion + 1).toFixed(1);
+  
   const newDoc = {
     id: `DOC-${String(documentIdCounter).padStart(5, '0')}`,
     controlId: item.id,
@@ -21,7 +28,8 @@ export const createDocumentInstance = (category, subcategory, item, createdBy) =
       approved: null
     },
     stamped: false,
-    version: '1.0'
+    version: nextVersion,
+    revisionNote: existingDocs.length > 0 ? `Revision ${Math.floor(nextVersion)}` : 'Initial version'
   };
   
   documentInstances.push(newDoc);

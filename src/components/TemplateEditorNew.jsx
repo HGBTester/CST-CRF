@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Save, Sparkles, X, Plus, Trash2, Edit2 } from 'lucide-react';
+import { Save, Sparkles, X, Plus, Trash2, Edit2, FileText } from 'lucide-react';
+import { hasEvidenceCapability } from '../data/evidenceMapping';
 
-function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit, onNewRequest, darkMode }) {
+function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit, onNewRequest, darkMode, onViewEvidence, evidenceCount }) {
+  const showEvidenceTab = hasEvidenceCapability(control.item.id);
   // Parse the template into sections
   const [documentData, setDocumentData] = useState(() => parseTemplate(currentTemplate, control));
   const [hasChanges, setHasChanges] = useState(false);
@@ -47,6 +49,39 @@ function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit
           <p className="mt-1" style={{fontSize: '14px', color: darkMode ? '#9ca3af' : '#64748b'}}>
             {control.category}
           </p>
+          {onViewEvidence && showEvidenceTab && (
+            <div className="flex items-center gap-2 mt-3">
+              <button
+                className="px-4 py-1.5 rounded-lg border-2 text-sm font-medium transition-all"
+                style={{
+                  borderColor: '#3b82f6',
+                  backgroundColor: '#3b82f6',
+                  color: '#ffffff'
+                }}
+              >
+                📋 Template
+              </button>
+              <button
+                onClick={onViewEvidence}
+                className="px-4 py-1.5 rounded-lg border-2 text-sm font-medium transition-all hover:border-blue-400"
+                style={{
+                  borderColor: darkMode ? '#404040' : '#e2e8f0',
+                  backgroundColor: 'transparent',
+                  color: textColor
+                }}
+              >
+                <span className="flex items-center gap-2">
+                  <FileText size={16} />
+                  Evidence
+                  {evidenceCount > 0 && (
+                    <span className="px-2 py-0.5 rounded-full text-xs" style={{backgroundColor: '#10b981', color: '#ffffff'}}>
+                      {evidenceCount}
+                    </span>
+                  )}
+                </span>
+              </button>
+            </div>
+          )}
         </div>
         <div className="flex items-center gap-3">
           {onNewRequest && (
@@ -54,9 +89,10 @@ function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit
               onClick={onNewRequest}
               className="flex items-center gap-2 px-4 py-2 text-white rounded-lg transition-all shadow-sm hover:opacity-90"
               style={{background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', fontSize: '14px'}}
+              title="Create new revision of this policy document"
             >
               <Plus size={18} />
-              <span>New Request</span>
+              <span>New Revision</span>
             </button>
           )}
           <button
