@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import { Save, Sparkles, X, Plus, Trash2, Edit2, FileText } from 'lucide-react';
-import { hasEvidenceCapability } from '../data/evidenceMapping';
+import { useConfig } from '../hooks/useConfig';
+import { hasEvidenceCapability } from '../services/configAPI';
 
 function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit, onNewRequest, darkMode, onViewEvidence, evidenceCount }) {
-  const showEvidenceTab = hasEvidenceCapability(control.item.id);
-  // Parse the template into sections
+  const { config } = useConfig();
+  const showEvidenceTab = config ? hasEvidenceCapability(
+    config.templateOnlyControls,
+    config.evidenceMappings,
+    config.staticEvidenceControls,
+    control.item.id
+  ) : false;
+  // Store the full HTML content (including detailed section 11)
+  const [fullContent, setFullContent] = useState(currentTemplate);
   const [documentData, setDocumentData] = useState(() => parseTemplate(currentTemplate, control));
   const [hasChanges, setHasChanges] = useState(false);
+  const [viewMode, setViewMode] = useState('preview'); // 'preview' or 'form'
+
+  // Update content when currentTemplate changes (e.g., from AI editor)
+  React.useEffect(() => {
+    setFullContent(currentTemplate);
+  }, [currentTemplate]);
 
   const handleSave = () => {
-    const newTemplate = generateTemplateHTML(documentData);
+    // If in preview mode, save the full content as-is
+    // If in form mode, regenerate from structured data
+    const newTemplate = viewMode === 'preview' ? fullContent : generateTemplateHTML(documentData);
     onSave(newTemplate);
     setHasChanges(false);
   };
@@ -63,21 +79,23 @@ function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit
               </button>
               <button
                 onClick={onViewEvidence}
-                className="px-4 py-1.5 rounded-lg border-2 text-sm font-medium transition-all hover:border-blue-400"
+                className="px-4 py-1.5 rounded-lg border-2 text-sm font-medium transition-all hover:opacity-90"
                 style={{
-                  borderColor: darkMode ? '#404040' : '#e2e8f0',
-                  backgroundColor: 'transparent',
-                  color: textColor
+                  borderColor: evidenceCount > 0 ? '#10b981' : '#ef4444',
+                  backgroundColor: evidenceCount > 0 ? '#10b981' : '#ef4444',
+                  color: '#ffffff'
                 }}
+                title={evidenceCount > 0 ? `${evidenceCount} evidence form(s) submitted` : 'No evidence submitted - Click to add'}
               >
                 <span className="flex items-center gap-2">
                   <FileText size={16} />
                   Evidence
-                  {evidenceCount > 0 && (
-                    <span className="px-2 py-0.5 rounded-full text-xs" style={{backgroundColor: '#10b981', color: '#ffffff'}}>
-                      {evidenceCount}
-                    </span>
-                  )}
+                  <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{
+                    backgroundColor: evidenceCount > 0 ? '#059669' : '#dc2626',
+                    color: '#ffffff'
+                  }}>
+                    {evidenceCount > 0 ? `✓ ${evidenceCount}` : '!'}
+                  </span>
                 </span>
               </button>
             </div>
@@ -126,97 +144,19 @@ function TemplateEditorNew({ control, onSave, onClose, currentTemplate, onAIEdit
       <div className="border-b px-6 py-3" style={{backgroundColor: darkMode ? '#1e40af' : '#eff6ff', borderColor}}>
         <div className="flex items-center gap-2" style={{color: darkMode ? '#dbeafe' : '#1e40af'}}>
           <Edit2 size={16} />
-          <span style={{fontSize: '14px', fontWeight: '500'}}>Full Template Edit Mode - Click sections to edit</span>
+          <span style={{fontSize: '14px', fontWeight: '500'}}>
+            Full Template Preview - Use AI Editor button to modify content
+          </span>
         </div>
       </div>
 
-      {/* Document Content */}
+      {/* Document Content - Full HTML Preview */}
       <div className="flex-1 overflow-y-auto px-6 py-6">
-        <div className="mx-auto" style={{maxWidth: '900px'}}>
-          {/* Header Section */}
-          <DocumentHeader control={control} darkMode={darkMode} />
-          
-          {/* Editable Sections */}
-          <EditableTextSection
-            title="1. Purpose"
-            value={documentData.purpose}
-            onChange={(val) => updateSection('purpose', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableTextSection
-            title="2. Scope"
-            value={documentData.scope}
-            onChange={(val) => updateSection('scope', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableListSection
-            title="3. Regulatory Requirements"
-            items={documentData.regulations}
-            onChange={(val) => updateSection('regulations', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableTable
-            title="4. Responsibilities"
-            columns={['Role', 'Responsibility']}
-            rows={documentData.tables.responsibilities}
-            onChange={(rows) => updateTable('responsibilities', rows)}
-            darkMode={darkMode}
-          />
-
-          <EditableTextSection
-            title="5. Implementation Requirements - Core"
-            value={documentData.implementation}
-            onChange={(val) => updateSection('implementation', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableListSection
-            title="5.2 Documentation Requirements"
-            items={documentData.documentation}
-            onChange={(val) => updateSection('documentation', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableTable
-            title="6. Evidence Collection"
-            columns={['Evidence Type', 'Description', 'Frequency']}
-            rows={documentData.tables.evidence}
-            onChange={(rows) => updateTable('evidence', rows)}
-            darkMode={darkMode}
-          />
-
-          <EditableListSection
-            title="7. Monitoring and Review"
-            items={documentData.monitoring}
-            onChange={(val) => updateSection('monitoring', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableListSection
-            title="8. Continuous Improvement"
-            items={documentData.improvement}
-            onChange={(val) => updateSection('improvement', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableListSection
-            title="9. Related Documents"
-            items={documentData.relatedDocs}
-            onChange={(val) => updateSection('relatedDocs', val)}
-            darkMode={darkMode}
-          />
-
-          <EditableTable
-            title="10. Version History"
-            columns={['Version', 'Date', 'Changes', 'Author']}
-            rows={documentData.tables.versions}
-            onChange={(rows) => updateTable('versions', rows)}
-            darkMode={darkMode}
-          />
-        </div>
+        <div 
+          className="mx-auto document-preview" 
+          style={{maxWidth: '900px', color: textColor}}
+          dangerouslySetInnerHTML={{ __html: fullContent }}
+        />
       </div>
     </div>
   );

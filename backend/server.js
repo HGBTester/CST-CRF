@@ -9,6 +9,8 @@ import documentRoutes from './routes/documents.js';
 import templateRoutes from './routes/templates.js';
 import evidenceRoutes from './routes/evidence.js';
 import evidenceFormsRoutes from './routes/evidenceForms.js';
+import evidenceChecklistRoutes from './routes/evidenceChecklist.js';
+import configRoutes from './routes/config.js';
 
 dotenv.config();
 
@@ -51,6 +53,8 @@ app.use('/api/documents', documentRoutes);
 app.use('/api/templates', templateRoutes);
 app.use('/api/evidence', evidenceRoutes);
 app.use('/api/evidence-forms', evidenceFormsRoutes);
+app.use('/api/evidence-checklist', evidenceChecklistRoutes);
+app.use('/api/config', configRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

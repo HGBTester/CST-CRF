@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, CheckCircle, Clock, AlertCircle, Image, Eye, Plus, ArrowLeft, Upload } from 'lucide-react';
+import { FileText, CheckCircle, Clock, AlertCircle, Image, Eye, Plus, ArrowLeft, Upload, ListChecks } from 'lucide-react';
 import { evidenceFormsAPI } from '../services/evidenceFormsAPI';
 import FormBuilder from './forms/FormBuilder';
 import EvidenceFormViewer from './EvidenceFormViewer';
 import StaticEvidenceUploader from './StaticEvidenceUploader';
-import { getApplicableFormTypes, needsStaticEvidence, getEvidenceTypeDescription } from '../data/evidenceMapping';
+import EvidenceChecklist from './EvidenceChecklist';
+import { useApplicableFormTypes, useEvidenceRequirements, useFormTypes, useStaticEvidenceControls } from '../hooks/useConfig';
+import { needsStaticEvidence, hasEvidenceCapability } from '../services/configAPI';
 
 function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate }) {
   const [forms, setForms] = useState([]);
@@ -13,14 +15,35 @@ function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate 
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [showStaticUploader, setShowStaticUploader] = useState(false);
   const [selectedFormType, setSelectedFormType] = useState(null);
-
+  const [evidenceTab, setEvidenceTab] = useState('checklist'); // 'checklist', 'forms', 'files'
   const bgColor = darkMode ? '#1a1a1a' : '#ffffff';
   const textColor = darkMode ? '#e5e7eb' : '#1e293b';
   const borderColor = darkMode ? '#404040' : '#e2e8f0';
   
-  const evidenceType = getEvidenceTypeDescription(control.item.id);
-  const isStaticOnly = needsStaticEvidence(control.item.id) && evidenceType === 'static';
-  const applicableFormTypes = getApplicableFormTypes(control.item.id);
+  // Get configuration from database - hooks must be called unconditionally
+  const formTypesData = useApplicableFormTypes(control?.item?.id || '');
+  const requirementsData = useEvidenceRequirements(control?.item?.id || '');
+  const allFormTypesData = useFormTypes();
+  const staticControlsData = useStaticEvidenceControls();
+  
+  const applicableFormTypes = formTypesData?.applicableFormTypes || [];
+  const formTypesLoading = formTypesData?.loading || false;
+  const evidenceRequirements = requirementsData?.requirements || [];
+  const requirementsLoading = requirementsData?.loading || false;
+  const allFormTypes = allFormTypesData?.formTypes || [];
+  const allFormTypesLoading = allFormTypesData?.loading || false;
+  const staticEvidenceControls = staticControlsData?.staticEvidenceControls || [];
+  const staticControlsLoading = staticControlsData?.loading || false;
+  
+  const configLoading = formTypesLoading || requirementsLoading || allFormTypesLoading || staticControlsLoading;
+  
+  const isStaticOnly = staticEvidenceControls && needsStaticEvidence(staticEvidenceControls, control.item.id) && applicableFormTypes && applicableFormTypes.length === 0;
+  const hasRequirements = evidenceRequirements && evidenceRequirements.length > 0;
+  
+  // Helper functions with null checks
+  const getFormType = (value) => allFormTypes ? allFormTypes.find(ft => ft.value === value) : null;
+  const getFormIcon = (value) => getFormType(value)?.icon || '📝';
+  const getFormLabel = (value) => getFormType(value)?.label || value;
 
   useEffect(() => {
     loadForms();
@@ -60,18 +83,21 @@ function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate 
   };
 
   const getFormTypeLabel = (type) => {
-    const labels = {
-      change_request: { icon: '🔄', label: 'Change Request' },
-      meeting_minutes: { icon: '📅', label: 'Meeting Minutes' },
-      training_record: { icon: '🎓', label: 'Training Record' },
-      audit_report: { icon: '🔍', label: 'Audit Report' },
-      incident_report: { icon: '⚠️', label: 'Incident Report' },
-      risk_assessment: { icon: '🎯', label: 'Risk Assessment' },
-      access_review: { icon: '✅', label: 'Access Review' },
-      vendor_assessment: { icon: '🏢', label: 'Vendor Assessment' }
-    };
-    return labels[type] || { icon: '📝', label: 'Form' };
+    const formType = getFormType(type);
+    return formType ? { icon: formType.icon, label: formType.label } : { icon: '📝', label: 'Form' };
   };
+
+  // Show loading state while config is loading
+  if (configLoading) {
+    return (
+      <div className="flex-1 flex items-center justify-center" style={{backgroundColor: bgColor}}>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{borderColor: darkMode ? '#007acc' : '#2563eb'}}></div>
+          <p style={{color: textColor}}>Loading evidence configuration...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (showStaticUploader) {
     return (
@@ -90,7 +116,7 @@ function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate 
 
   if (showCreateForm) {
     // Use selected form type, or default to first applicable type
-    const formTypeToUse = selectedFormType || applicableFormTypes[0] || 'change_request';
+    const formTypeToUse = selectedFormType || (applicableFormTypes && applicableFormTypes[0]) || 'change_request';
     
     return (
       <FormBuilder
@@ -192,8 +218,46 @@ function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate 
         </div>
       </div>
 
-      {/* Evidence Forms List */}
-      <div className="flex-1 overflow-y-auto p-4">
+      {/* Evidence Tabs */}
+      <div className="border-b" style={{borderColor}}>
+        <div className="flex gap-2 px-4">
+          {hasRequirements && (
+            <button
+              onClick={() => setEvidenceTab('checklist')}
+              className="px-4 py-3 font-medium text-sm transition-all"
+              style={{
+                borderBottom: evidenceTab === 'checklist' ? '2px solid #3b82f6' : '2px solid transparent',
+                color: evidenceTab === 'checklist' ? '#3b82f6' : textColor
+              }}
+            >
+              <ListChecks size={16} className="inline mr-2" />
+              Checklist
+            </button>
+          )}
+          <button
+            onClick={() => setEvidenceTab('forms')}
+            className="px-4 py-3 font-medium text-sm transition-all"
+            style={{
+              borderBottom: evidenceTab === 'forms' ? '2px solid #3b82f6' : '2px solid transparent',
+              color: evidenceTab === 'forms' ? '#3b82f6' : textColor
+            }}
+          >
+            <FileText size={16} className="inline mr-2" />
+            Forms ({forms.length})
+          </button>
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      <div className="flex-1 overflow-y-auto">
+        {evidenceTab === 'checklist' && hasRequirements ? (
+          <EvidenceChecklist
+            control={control}
+            currentUser={currentUser}
+            darkMode={darkMode}
+          />
+        ) : evidenceTab === 'forms' ? (
+          <div className="p-4">
         {loading ? (
           <div className="text-center py-8" style={{color: textColor}}>Loading...</div>
         ) : forms.length === 0 ? (
@@ -261,6 +325,8 @@ function ControlEvidenceView({ control, currentUser, darkMode, onBackToTemplate 
             })}
           </div>
         )}
+          </div>
+        ) : null}
       </div>
     </div>
   );

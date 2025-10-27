@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { X, Upload, Trash2 } from 'lucide-react';
 import { evidenceFormsAPI } from '../../services/evidenceFormsAPI';
-import { auditStructure } from '../../data/auditStructure';
+import { useAuditStructure } from '../../hooks/useConfig';
 
 // Form templates for each evidence type
 const formTemplates = {
@@ -178,11 +178,339 @@ const formTemplates = {
       { name: 'contractTerms', label: 'Key Contract Terms', type: 'textarea', rows: 2 },
       { name: 'reviewDate', label: 'Next Review Date', type: 'date' }
     ]
+  },
+  
+  // NEW: Review Report
+  review_report: {
+    title: 'Review Report',
+    icon: '📊',
+    defaultControl: '1.1.4',
+    controlFilter: (id) => true, // Applies to many controls
+    fields: [
+      { name: 'title', label: 'Review Title', type: 'text', required: true },
+      { name: 'reviewDate', label: 'Review Date', type: 'date', required: true },
+      { name: 'reviewPeriod', label: 'Review Period', type: 'text', required: true, placeholder: 'e.g., Q1 2025, January 2025' },
+      { name: 'reviewer', label: 'Reviewer Name', type: 'text', required: true },
+      { name: 'reviewType', label: 'Review Type', type: 'select', required: true, options: [
+        'Quarterly Review', 'Annual Review', 'Monthly Review', 'Ad-hoc Review', 'Post-Incident Review'
+      ]},
+      { name: 'kpis', label: 'KPIs / Metrics Measured', type: 'textarea', required: true, rows: 3 },
+      { name: 'findings', label: 'Key Findings', type: 'textarea', required: true, rows: 3 },
+      { name: 'gaps', label: 'Gaps Identified', type: 'textarea', rows: 2 },
+      { name: 'improvements', label: 'Improvements Made', type: 'textarea', rows: 2 },
+      { name: 'versionChanges', label: 'Version Changes / Updates', type: 'textarea', rows: 2 },
+      { name: 'recommendations', label: 'Recommendations', type: 'textarea', rows: 2 },
+      { name: 'nextReviewDate', label: 'Next Review Date', type: 'date' }
+    ]
+  },
+  
+  // NEW: Implementation Evidence
+  implementation_evidence: {
+    title: 'Implementation Evidence',
+    icon: '📝',
+    defaultControl: '1.2.2',
+    controlFilter: (id) => true,
+    fields: [
+      { name: 'title', label: 'Implementation Title', type: 'text', required: true },
+      { name: 'implementationDate', label: 'Implementation Date', type: 'date', required: true },
+      { name: 'processOrPolicy', label: 'Process/Policy Implemented', type: 'text', required: true },
+      { name: 'implementedBy', label: 'Implemented By', type: 'text', required: true },
+      { name: 'description', label: 'Implementation Description', type: 'textarea', required: true, rows: 3 },
+      { name: 'scope', label: 'Scope / Coverage', type: 'textarea', rows: 2 },
+      { name: 'evidenceDescription', label: 'Evidence Description', type: 'textarea', required: true, rows: 3, placeholder: 'Describe the evidence files/screenshots attached' },
+      { name: 'status', label: 'Implementation Status', type: 'select', required: true, options: [
+        'Fully Implemented', 'Partially Implemented', 'In Progress', 'Pilot Phase', 'Completed'
+      ]},
+      { name: 'challenges', label: 'Challenges Faced', type: 'textarea', rows: 2 },
+      { name: 'lessonsLearned', label: 'Lessons Learned', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Technical Log/Screenshot
+  technical_log: {
+    title: 'Technical Log/Screenshot',
+    icon: '💻',
+    defaultControl: '4.6.2',
+    controlFilter: (id) => id.startsWith('4.'),
+    fields: [
+      { name: 'title', label: 'Log Title', type: 'text', required: true },
+      { name: 'logDate', label: 'Log Date/Time', type: 'datetime-local', required: true },
+      { name: 'logType', label: 'Log Type', type: 'select', required: true, options: [
+        'System Log', 'IAM Log', 'Access Log', 'Firewall Log', 'Security Log', 'Audit Log', 'Application Log', 'Screenshot'
+      ]},
+      { name: 'systemSource', label: 'System/Source', type: 'text', required: true },
+      { name: 'eventCount', label: 'Number of Events', type: 'number', placeholder: 'Total events in log' },
+      { name: 'logContent', label: 'Log Content / Summary', type: 'textarea', required: true, rows: 4, placeholder: 'Paste key log entries or describe what the log shows' },
+      { name: 'relevantEvents', label: 'Relevant Security Events', type: 'textarea', rows: 3 },
+      { name: 'screenshotDescription', label: 'Screenshot Description', type: 'textarea', rows: 2, placeholder: 'If attaching screenshots, describe what they show' },
+      { name: 'analysis', label: 'Analysis / Notes', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Inventory/Register
+  inventory_register: {
+    title: 'Inventory/Register',
+    icon: '📋',
+    defaultControl: '2.1.2',
+    controlFilter: (id) => id.startsWith('2.') || id.startsWith('3.'),
+    fields: [
+      { name: 'title', label: 'Inventory Title', type: 'text', required: true },
+      { name: 'inventoryDate', label: 'Inventory Date', type: 'date', required: true },
+      { name: 'inventoryType', label: 'Inventory Type', type: 'select', required: true, options: [
+        'Asset Inventory', 'Risk Register', 'Software Inventory', 'Hardware Inventory', 'Configuration Inventory'
+      ]},
+      { name: 'totalItems', label: 'Total Items', type: 'number', required: true },
+      { name: 'owner', label: 'Inventory Owner', type: 'text', required: true },
+      { name: 'scope', label: 'Scope / Coverage', type: 'textarea', required: true, rows: 2 },
+      { name: 'lastUpdated', label: 'Last Updated', type: 'date', required: true },
+      { name: 'reviewFrequency', label: 'Review Frequency', type: 'select', required: true, options: [
+        'Weekly', 'Monthly', 'Quarterly', 'Semi-Annual', 'Annual', 'As Needed'
+      ]},
+      { name: 'description', label: 'Inventory Description', type: 'textarea', required: true, rows: 3, placeholder: 'Describe what is included in this inventory' },
+      { name: 'updateProcess', label: 'Update Process', type: 'textarea', rows: 2 },
+      { name: 'nextReviewDate', label: 'Next Review Date', type: 'date' }
+    ]
+  },
+  
+  // NEW: Test Report
+  test_report: {
+    title: 'Test Report',
+    icon: '🧪',
+    defaultControl: '4.5.2',
+    controlFilter: (id) => id.startsWith('4.') || id.startsWith('5.'),
+    fields: [
+      { name: 'title', label: 'Test Title', type: 'text', required: true },
+      { name: 'testDate', label: 'Test Date', type: 'date', required: true },
+      { name: 'tester', label: 'Tester Name', type: 'text', required: true },
+      { name: 'testType', label: 'Test Type', type: 'select', required: true, options: [
+        'Vulnerability Scan', 'Penetration Test', 'Effectiveness Test', 'Security Test', 'Compliance Test', 'Recovery Test', 'Performance Test'
+      ]},
+      { name: 'scope', label: 'Test Scope', type: 'textarea', required: true, rows: 2 },
+      { name: 'toolsUsed', label: 'Tools Used', type: 'textarea', rows: 2 },
+      { name: 'methodology', label: 'Methodology', type: 'textarea', rows: 2 },
+      { name: 'findings', label: 'Findings / Results', type: 'textarea', required: true, rows: 4 },
+      { name: 'criticalCount', label: 'Critical Issues', type: 'number' },
+      { name: 'highCount', label: 'High Severity Issues', type: 'number' },
+      { name: 'mediumCount', label: 'Medium Severity Issues', type: 'number' },
+      { name: 'lowCount', label: 'Low Severity Issues', type: 'number' },
+      { name: 'remediation', label: 'Remediation Recommendations', type: 'textarea', rows: 3 },
+      { name: 'retestDate', label: 'Re-test Date', type: 'date' }
+    ]
+  },
+  
+  // NEW: Patch/Update Report
+  patch_report: {
+    title: 'Patch/Update Report',
+    icon: '🔧',
+    defaultControl: '4.6.2',
+    controlFilter: (id) => id.startsWith('4.'),
+    fields: [
+      { name: 'title', label: 'Patch Report Title', type: 'text', required: true },
+      { name: 'patchDate', label: 'Patch Date', type: 'date', required: true },
+      { name: 'patchType', label: 'Patch Type', type: 'select', required: true, options: [
+        'Security Patch', 'Critical Update', 'Feature Update', 'Bug Fix', 'Firmware Update', 'Hotfix'
+      ]},
+      { name: 'systemsUpdated', label: 'Systems Updated', type: 'textarea', required: true, rows: 3 },
+      { name: 'totalSystems', label: 'Total Systems Patched', type: 'number', required: true },
+      { name: 'patchList', label: 'Patch List / KB Numbers', type: 'textarea', required: true, rows: 3 },
+      { name: 'successRate', label: 'Success Rate (%)', type: 'number', required: true },
+      { name: 'failedSystems', label: 'Failed Systems', type: 'textarea', rows: 2 },
+      { name: 'rebootRequired', label: 'Reboot Required?', type: 'select', required: true, options: ['Yes', 'No'] },
+      { name: 'downtime', label: 'Downtime (minutes)', type: 'number' },
+      { name: 'issues', label: 'Issues Encountered', type: 'textarea', rows: 2 },
+      { name: 'verification', label: 'Verification Steps', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Configuration Document
+  configuration_document: {
+    title: 'Configuration Document',
+    icon: '⚙️',
+    defaultControl: '4.13.2',
+    controlFilter: (id) => id.startsWith('4.'),
+    fields: [
+      { name: 'title', label: 'Configuration Title', type: 'text', required: true },
+      { name: 'configDate', label: 'Configuration Date', type: 'date', required: true },
+      { name: 'systemDevice', label: 'System/Device', type: 'text', required: true },
+      { name: 'configurationType', label: 'Configuration Type', type: 'select', required: true, options: [
+        'Firewall Configuration', 'Network Configuration', 'Server Configuration', 'Security Hardening', 'Baseline Configuration', 'Application Configuration'
+      ]},
+      { name: 'configVersion', label: 'Configuration Version', type: 'text', required: true },
+      { name: 'baseline', label: 'Baseline Used', type: 'textarea', rows: 2, placeholder: 'e.g., CIS Benchmark, Vendor Baseline' },
+      { name: 'configChanges', label: 'Configuration Changes', type: 'textarea', required: true, rows: 4 },
+      { name: 'securitySettings', label: 'Security Settings', type: 'textarea', required: true, rows: 3 },
+      { name: 'approvedBy', label: 'Approved By', type: 'text', required: true },
+      { name: 'implementedBy', label: 'Implemented By', type: 'text', required: true },
+      { name: 'verification', label: 'Verification Steps', type: 'textarea', rows: 2 },
+      { name: 'reviewDate', label: 'Next Review Date', type: 'date' }
+    ]
+  },
+  
+  // NEW: Corrective Action Plan
+  corrective_action: {
+    title: 'Corrective Action Plan',
+    icon: '🔄',
+    defaultControl: '1.4.4',
+    controlFilter: (id) => true,
+    fields: [
+      { name: 'title', label: 'Issue Title', type: 'text', required: true },
+      { name: 'issueDate', label: 'Issue Date', type: 'date', required: true },
+      { name: 'severity', label: 'Severity', type: 'select', required: true, options: ['Critical', 'High', 'Medium', 'Low'] },
+      { name: 'issueDescription', label: 'Issue Description', type: 'textarea', required: true, rows: 3 },
+      { name: 'rootCause', label: 'Root Cause Analysis', type: 'textarea', required: true, rows: 3 },
+      { name: 'impact', label: 'Impact Assessment', type: 'textarea', required: true, rows: 2 },
+      { name: 'actionPlan', label: 'Corrective Action Plan', type: 'textarea', required: true, rows: 4 },
+      { name: 'responsiblePerson', label: 'Responsible Person', type: 'text', required: true },
+      { name: 'targetDate', label: 'Target Completion Date', type: 'date', required: true },
+      { name: 'timeline', label: 'Implementation Timeline', type: 'textarea', rows: 2 },
+      { name: 'resources', label: 'Resources Required', type: 'textarea', rows: 2 },
+      { name: 'status', label: 'Status', type: 'select', required: true, options: [
+        'Open', 'In Progress', 'Pending Review', 'Completed', 'Closed'
+      ]},
+      { name: 'verification', label: 'Verification Method', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Backup/Recovery Log
+  backup_log: {
+    title: 'Backup/Recovery Log',
+    icon: '💾',
+    defaultControl: '4.12.2',
+    controlFilter: (id) => id.startsWith('4.12'),
+    fields: [
+      { name: 'title', label: 'Backup Log Title', type: 'text', required: true },
+      { name: 'backupDate', label: 'Backup Date/Time', type: 'datetime-local', required: true },
+      { name: 'backupType', label: 'Backup Type', type: 'select', required: true, options: [
+        'Full Backup', 'Incremental Backup', 'Differential Backup', 'Recovery Test', 'Disaster Recovery Test'
+      ]},
+      { name: 'systems', label: 'Systems Backed Up', type: 'textarea', required: true, rows: 2 },
+      { name: 'dataSize', label: 'Data Size (GB)', type: 'number', required: true },
+      { name: 'duration', label: 'Duration (hours)', type: 'number', required: true },
+      { name: 'backupLocation', label: 'Backup Location', type: 'text', required: true },
+      { name: 'status', label: 'Backup Status', type: 'select', required: true, options: ['Success', 'Partial Success', 'Failed'] },
+      { name: 'successDetails', label: 'Success/Failure Details', type: 'textarea', rows: 3 },
+      { name: 'recoveryTestDate', label: 'Recovery Test Date', type: 'date' },
+      { name: 'recoveryTestResult', label: 'Recovery Test Result', type: 'textarea', rows: 2 },
+      { name: 'rto', label: 'RTO (Recovery Time Objective)', type: 'text', placeholder: 'e.g., 4 hours' },
+      { name: 'rpo', label: 'RPO (Recovery Point Objective)', type: 'text', placeholder: 'e.g., 24 hours' },
+      { name: 'verification', label: 'Verification Steps', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Exit/Termination Record
+  termination_record: {
+    title: 'Exit/Termination Record',
+    icon: '🚪',
+    defaultControl: '1.8.4',
+    controlFilter: (id) => id.startsWith('1.8'),
+    fields: [
+      { name: 'title', label: 'Exit Record Title', type: 'text', required: true },
+      { name: 'terminationDate', label: 'Termination Date', type: 'date', required: true },
+      { name: 'employeeName', label: 'Employee Name', type: 'text', required: true },
+      { name: 'employeeId', label: 'Employee ID', type: 'text', required: true },
+      { name: 'department', label: 'Department', type: 'text', required: true },
+      { name: 'terminationType', label: 'Termination Type', type: 'select', required: true, options: [
+        'Voluntary Resignation', 'Retirement', 'Contract End', 'Termination', 'Transfer'
+      ]},
+      { name: 'accountsDisabled', label: 'Accounts Disabled', type: 'textarea', required: true, rows: 3, placeholder: 'List all accounts disabled (AD, email, VPN, applications, etc.)' },
+      { name: 'disabledDate', label: 'Accounts Disabled Date/Time', type: 'datetime-local', required: true },
+      { name: 'assetsReturned', label: 'Assets Returned', type: 'textarea', required: true, rows: 3, placeholder: 'List all assets returned (laptop, phone, badge, keys, etc.)' },
+      { name: 'dataRetention', label: 'Data Retention', type: 'textarea', rows: 2, placeholder: 'Email archive, file retention, etc.' },
+      { name: 'accessRevoked', label: 'Physical Access Revoked', type: 'textarea', rows: 2 },
+      { name: 'exitInterview', label: 'Exit Interview Conducted', type: 'select', required: true, options: ['Yes', 'No', 'N/A'] },
+      { name: 'clearanceDate', label: 'Final Clearance Date', type: 'date', required: true },
+      { name: 'notes', label: 'Additional Notes', type: 'textarea', rows: 2 }
+    ]
+  },
+  
+  // NEW: Awareness Material
+  awareness_material: {
+    title: 'Awareness Material',
+    icon: '📢',
+    defaultControl: '1.6.2',
+    controlFilter: (id) => id.startsWith('1.5') || id.startsWith('1.6'),
+    fields: [
+      { name: 'title', label: 'Material Title', type: 'text', required: true },
+      { name: 'distributionDate', label: 'Distribution Date', type: 'date', required: true },
+      { name: 'materialType', label: 'Material Type', type: 'select', required: true, options: [
+        'Poster', 'Video', 'Infographic', 'Email Campaign', 'Newsletter', 'Training Slides', 'Interactive Module', 'Quiz'
+      ]},
+      { name: 'topic', label: 'Topic / Theme', type: 'text', required: true },
+      { name: 'targetAudience', label: 'Target Audience', type: 'select', required: true, options: [
+        'All Employees', 'IT Staff', 'Management', 'Customers', 'Partners', 'New Hires', 'Specific Department'
+      ]},
+      { name: 'description', label: 'Content Description', type: 'textarea', required: true, rows: 3 },
+      { name: 'channel', label: 'Distribution Channel', type: 'select', required: true, options: [
+        'Email', 'Intranet', 'Posters/Digital Screens', 'Social Media', 'LMS', 'Teams/Slack', 'SMS'
+      ]},
+      { name: 'reach', label: 'Reach / Recipients', type: 'number', placeholder: 'Number of people reached' },
+      { name: 'engagement', label: 'Engagement Metrics', type: 'textarea', rows: 2, placeholder: 'Views, clicks, completion rate, etc.' },
+      { name: 'feedback', label: 'Feedback / Results', type: 'textarea', rows: 2 },
+      { name: 'nextCampaign', label: 'Next Campaign Date', type: 'date' }
+    ]
+  },
+  
+  // NEW: Compliance Document
+  compliance_document: {
+    title: 'Compliance Document',
+    icon: '📜',
+    defaultControl: '1.3.2',
+    controlFilter: (id) => id.startsWith('1.3') || id.startsWith('1.4'),
+    fields: [
+      { name: 'title', label: 'Document Title', type: 'text', required: true },
+      { name: 'documentDate', label: 'Document Date', type: 'date', required: true },
+      { name: 'documentType', label: 'Document Type', type: 'select', required: true, options: [
+        'Compliance Report', 'Regulatory Submission', 'Certification', 'Attestation', 'Declaration of Conformity', 'Compliance Assessment'
+      ]},
+      { name: 'regulation', label: 'Regulation / Framework', type: 'select', required: true, options: [
+        'CST-CRF', 'NCA ECC-1:2018', 'PDPL', 'CITC', 'ISO 27001', 'NIST', 'PCI-DSS', 'GDPR', 'Other'
+      ]},
+      { name: 'regulationOther', label: 'Other Regulation (if selected)', type: 'text' },
+      { name: 'submittedTo', label: 'Submitted To', type: 'text', required: true },
+      { name: 'submissionDate', label: 'Submission Date', type: 'date', required: true },
+      { name: 'status', label: 'Status', type: 'select', required: true, options: [
+        'Draft', 'Submitted', 'Under Review', 'Approved', 'Certified', 'Rejected', 'Renewal Required'
+      ]},
+      { name: 'validUntil', label: 'Valid Until', type: 'date' },
+      { name: 'certificationBody', label: 'Certification Body', type: 'text' },
+      { name: 'scope', label: 'Scope / Coverage', type: 'textarea', required: true, rows: 2 },
+      { name: 'complianceLevel', label: 'Compliance Level Achieved', type: 'textarea', rows: 2 },
+      { name: 'gaps', label: 'Gaps / Non-Compliance', type: 'textarea', rows: 2 },
+      { name: 'remediation', label: 'Remediation Plan', type: 'textarea', rows: 2 },
+      { name: 'nextReview', label: 'Next Review Date', type: 'date' }
+    ]
   }
 };
 
 function FormBuilder({ formType, currentUser, darkMode, onClose, onSuccess, preSelectedControl }) {
   const template = formTemplates[formType];
+  const { auditStructure } = useAuditStructure();
+  
+  // Error handling: Prevent white page if template is missing
+  if (!template) {
+    return (
+      <div className="flex items-center justify-center h-screen" style={{backgroundColor: darkMode ? '#1a1a1a' : '#ffffff'}}>
+        <div className="text-center p-6">
+          <p className="text-xl font-bold mb-4" style={{color: darkMode ? '#e5e7eb' : '#1e293b'}}>
+            ⚠️ Form Template Not Found
+          </p>
+          <p className="mb-4" style={{color: darkMode ? '#9ca3af' : '#64748b'}}>
+            The form type "<strong>{formType}</strong>" is not yet implemented.
+          </p>
+          <p className="text-sm mb-6" style={{color: darkMode ? '#9ca3af' : '#64748b'}}>
+            Available form types: change_request, meeting_minutes, training_record, audit_report, incident_report, risk_assessment, access_review, vendor_assessment, review_report, implementation_evidence, technical_log, inventory_register, test_report, patch_report, configuration_document, corrective_action, backup_log, termination_record, awareness_material, compliance_document
+          </p>
+          <button
+            onClick={onClose}
+            className="px-6 py-2 rounded-lg text-white"
+            style={{backgroundColor: '#3b82f6'}}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
   
   const [formData, setFormData] = useState({
     controlId: preSelectedControl || template.defaultControl,
@@ -198,6 +526,7 @@ function FormBuilder({ formType, currentUser, darkMode, onClose, onSuccess, preS
 
   const getAllControls = () => {
     const controls = [];
+    if (!auditStructure) return controls;
     Object.entries(auditStructure).forEach(([category, subcategories]) => {
       Object.entries(subcategories).forEach(([subcategory, items]) => {
         items.forEach(item => {

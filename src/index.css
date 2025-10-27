@@ -2,28 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* L3 CST Professional Documentation Theme - Custom CSS */
+/* L3 CST Professional Documentation Theme - VSCode Dark Theme */
 :root {
-  /* Primary Colors */
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --primary-light: #3b82f6;
-  --primary-lightest: #dbeafe;
-  --primary-background: #eff6ff;
+  /* VSCode Dark Theme Colors */
+  --vscode-bg: #1e1e1e;
+  --vscode-sidebar: #252526;
+  --vscode-sidebar-hover: #2a2d2e;
+  --vscode-accent: #007acc;
+  --vscode-accent-hover: #0098ff;
+  --vscode-border: #3e3e42;
+  --vscode-text: #cccccc;
+  --vscode-text-secondary: #969696;
+  --vscode-text-muted: #6a6a6a;
+  --vscode-input-bg: #3c3c3c;
+  --vscode-input-border: #3e3e42;
+  --vscode-list-hover: #2a2d2e;
+  --vscode-list-active: #094771;
+  --vscode-button-bg: #0e639c;
+  --vscode-button-hover: #1177bb;
+  --vscode-success: #89d185;
+  --vscode-warning: #cca700;
+  --vscode-error: #f48771;
   
-  /* Secondary Colors */
-  --secondary-green: #10b981;
-  --secondary-green-light: #d1fae5;
-  
-  /* Neutral Colors */
-  --neutral-darkest: #1e293b;
-  --neutral-dark: #475569;
-  --neutral-medium: #64748b;
-  --neutral-light: #94a3b8;
-  --neutral-lighter: #cbd5e1;
-  --neutral-lightest: #e2e8f0;
-  --neutral-background: #f8fafc;
-  --neutral-background-alt: #f1f5f9;
+  /* Light mode fallback */
+  --light-bg: #ffffff;
+  --light-sidebar: #f3f3f3;
+  --light-text: #3c3c3c;
+  --light-border: #e5e5e5;
   
   --white: #ffffff;
   
@@ -73,51 +78,51 @@ body {
 }
 
 @layer components {
-  .document-content {
+  .document-content, .document-preview {
     @apply max-w-none text-gray-800 leading-relaxed;
   }
   
-  .document-content p {
+  .document-content p, .document-preview p {
     @apply mb-4 text-base;
   }
   
-  .document-content ul, .document-content ol {
+  .document-content ul, .document-content ol, .document-preview ul, .document-preview ol {
     @apply mb-4 ml-6 space-y-2;
   }
   
-  .document-content ul {
+  .document-content ul, .document-preview ul {
     @apply list-disc;
   }
   
-  .document-content ol {
+  .document-content ol, .document-preview ol {
     @apply list-decimal;
   }
   
-  .document-content li {
+  .document-content li, .document-preview li {
     @apply text-base;
   }
   
-  .document-content h1 {
+  .document-content h1, .document-preview h1 {
     @apply text-3xl font-bold text-blue-900 mb-6;
   }
   
-  .document-content h2 {
+  .document-content h2, .document-preview h2 {
     @apply text-2xl font-semibold text-blue-800 mt-8 mb-4;
   }
   
-  .document-content h3 {
+  .document-content h3, .document-preview h3 {
     @apply text-xl font-semibold text-blue-700 mt-6 mb-3;
   }
   
-  .document-content table {
+  .document-content table, .document-preview table {
     @apply w-full border-collapse border border-gray-300 my-4;
   }
   
-  .document-content th {
+  .document-content th, .document-preview th {
     @apply bg-blue-100 border border-gray-300 px-4 py-2 text-left font-semibold;
   }
   
-  .document-content td {
+  .document-content td, .document-preview td {
     @apply border border-gray-300 px-4 py-2;
   }
   
@@ -131,20 +136,21 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100;
+  background: #1e1e1e;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-400 rounded;
+  background: #424242;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500;
+  background: #4e4e4e;
 }
 
 @media print {
@@ -157,29 +163,28 @@ body {
   }
 }
 
-/* Custom Scrollbar Styling */
+/* Custom Scrollbar Styling - VSCode Style */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: #1e1e1e;
+  border-radius: 0;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #3b82f6, #2563eb);
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  background: #424242;
+  border-radius: 0;
+  transition: background 0.2s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #2563eb, #1e40af);
-  width: 8px;
+  background: #4e4e4e;
 }
 
 /* Firefox scrollbar styling */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #3b82f6 #f1f5f9;
+  scrollbar-color: #424242 #1e1e1e;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Plus, CheckCircle, Clock, AlertCircle, Image, File, X, ArrowLeft } from 'lucide-react';
 import { evidenceFormsAPI } from '../services/evidenceFormsAPI';
+import { useFormTypes } from '../hooks/useConfig';
 import FormBuilder from './forms/FormBuilder';
 import EvidenceFormViewer from './EvidenceFormViewer';
 
@@ -15,6 +16,9 @@ function EvidenceForms({ currentUser, darkMode, onClose }) {
   const bgColor = darkMode ? '#1a1a1a' : '#ffffff';
   const textColor = darkMode ? '#e5e7eb' : '#1e293b';
   const borderColor = darkMode ? '#404040' : '#e2e8f0';
+  
+  // Get form types from database
+  const { formTypes: FORM_TYPE_DEFINITIONS } = useFormTypes();
 
   useEffect(() => {
     loadForms();
@@ -41,16 +45,13 @@ function EvidenceForms({ currentUser, darkMode, onClose }) {
     }
   };
 
-  const formTypes = [
-    { value: 'change_request', label: '🔄 Change Request', icon: '🔄', description: 'System/network changes' },
-    { value: 'meeting_minutes', label: '📅 Meeting Minutes', icon: '📅', description: 'Committee meetings' },
-    { value: 'training_record', label: '🎓 Training Record', icon: '🎓', description: 'Training sessions' },
-    { value: 'audit_report', label: '🔍 Audit Report', icon: '🔍', description: 'Internal audits' },
-    { value: 'incident_report', label: '⚠️ Incident Report', icon: '⚠️', description: 'Security incidents' },
-    { value: 'risk_assessment', label: '🎯 Risk Assessment', icon: '🎯', description: 'Risk analysis' },
-    { value: 'access_review', label: '✅ Access Review', icon: '✅', description: 'User access reviews' },
-    { value: 'vendor_assessment', label: '🏢 Vendor Assessment', icon: '🏢', description: 'Third-party vendors' }
-  ];
+  // Use centralized form type definitions
+  const formTypes = FORM_TYPE_DEFINITIONS.map(ft => ({
+    value: ft.value,
+    label: `${ft.icon} ${ft.label}`,
+    icon: ft.icon,
+    description: ft.description
+  }));
 
   const getStatusBadge = (status) => {
     const badges = {

@@ -1,132 +1,237 @@
 // AI Service for document editing
-// This uses OpenAI API structure - you can replace with any AI service
+// Supports: OpenAI, Anthropic Claude, Google Gemini, and intelligent simulation
 
-const API_KEY = ''; // Add your OpenAI API key here or use environment variable
-const API_URL = 'https://api.openai.com/v1/chat/completions';
-
-// For demo purposes, we'll simulate AI responses
-// In production, replace simulateAI with actual callOpenAI
-const USE_SIMULATION = true; // Set to false when you add real API key
-
-export const editDocumentWithAI = async (documentContent, userInstructions, controlInfo) => {
-  if (USE_SIMULATION) {
-    return simulateAI(documentContent, userInstructions, controlInfo);
-  } else {
-    return callOpenAI(documentContent, userInstructions, controlInfo);
+// ===== CONFIGURATION =====
+// Set your API keys here or in environment variables
+const AI_CONFIG = {
+  // Preferred provider: 'openai', 'anthropic', 'google', 'simulation'
+  provider: 'simulation', // Change to 'openai' when you add API key
+  
+  openai: {
+    apiKey: '', // Add your OpenAI API key
+    model: 'gpt-4o', // or 'gpt-4-turbo', 'gpt-3.5-turbo'
+    apiUrl: 'https://api.openai.com/v1/chat/completions'
+  },
+  
+  anthropic: {
+    apiKey: '', // Add your Anthropic API key
+    model: 'claude-3-5-sonnet-20241022', // or 'claude-3-opus-20240229'
+    apiUrl: 'https://api.anthropic.com/v1/messages'
+  },
+  
+  google: {
+    apiKey: '', // Add your Google AI API key
+    model: 'gemini-pro',
+    apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models'
   }
 };
 
-// Simulation for demo/testing
-const simulateAI = async (documentContent, userInstructions, controlInfo) => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 2000));
+// Auto-detect available AI provider
+const detectProvider = () => {
+  if (AI_CONFIG.openai.apiKey) return 'openai';
+  if (AI_CONFIG.anthropic.apiKey) return 'anthropic';
+  if (AI_CONFIG.google.apiKey) return 'google';
+  return 'simulation';
+};
+
+export const editDocumentWithAI = async (documentContent, userInstructions, controlInfo) => {
+  const provider = AI_CONFIG.provider === 'simulation' ? detectProvider() : AI_CONFIG.provider;
   
-  // Simple text transformation based on common instructions
+  try {
+    switch (provider) {
+      case 'openai':
+        return await callOpenAI(documentContent, userInstructions, controlInfo);
+      case 'anthropic':
+        return await callAnthropic(documentContent, userInstructions, controlInfo);
+      case 'google':
+        return await callGoogle(documentContent, userInstructions, controlInfo);
+      default:
+        return await intelligentSimulation(documentContent, userInstructions, controlInfo);
+    }
+  } catch (error) {
+    console.error('AI Service Error:', error);
+    // Fallback to intelligent simulation if real AI fails
+    return await intelligentSimulation(documentContent, userInstructions, controlInfo);
+  }
+};
+
+// Intelligent simulation with pattern matching and content manipulation
+const intelligentSimulation = async (documentContent, userInstructions, controlInfo) => {
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  
   let modifiedContent = documentContent;
-  
   const lowerInstructions = userInstructions.toLowerCase();
+  const modifications = [];
   
-  // Date modifications
-  if (lowerInstructions.includes('date') || lowerInstructions.includes('2024') || lowerInstructions.includes('2025')) {
-    const dateRegex = /(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}/g;
-    const newDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    modifiedContent = modifiedContent.replace(dateRegex, newDate);
-    
-    // Also handle date spans in content
-    if (lowerInstructions.match(/\d{4}/)) {
-      const yearMatch = lowerInstructions.match(/\d{4}/);
-      if (yearMatch) {
-        modifiedContent = modifiedContent.replace(/\d{4}/g, yearMatch[0]);
-      }
-    }
+  // ========== REMOVAL OPERATIONS ==========
+  
+  // Remove budget/pricing/cost information
+  if (lowerInstructions.match(/remove|delete|don't.*mention|exclude|take out.*budget|price|pricing|cost|\$|money|financial/)) {
+    // Remove budget tables
+    modifiedContent = modifiedContent.replace(/<h[34][^>]*>.*?budget.*?<\/h[34]>[\s\S]*?<\/table>/gi, '');
+    // Remove budget sections
+    modifiedContent = modifiedContent.replace(/<h[234][^>]*>.*?(?:budget|cost|pricing|resource allocation).*?<\/h[234]>[\s\S]*?(?=<h[234]|<div class="mt-12">|$)/gi, '');
+    // Remove dollar amounts
+    modifiedContent = modifiedContent.replace(/\$[\d,]+(?:\.\d{2})?(?:\/year)?/g, '[Amount Removed]');
+    // Remove pricing-related list items
+    modifiedContent = modifiedContent.replace(/<li>.*?(?:budget|cost|\$|pricing).*?<\/li>/gi, '');
+    modifications.push('Removed all budget and pricing information');
   }
   
-  // Title/Header modifications
-  if (lowerInstructions.includes('title') || lowerInstructions.includes('heading') || lowerInstructions.includes('header')) {
-    const titleMatch = userInstructions.match(/["']([^"']+)["']/);
-    if (titleMatch) {
+  // Remove tables
+  if (lowerInstructions.match(/remove|delete.*table/)) {
+    modifiedContent = modifiedContent.replace(/<table[\s\S]*?<\/table>/g, '');
+    modifications.push('Removed tables');
+  }
+  
+  // Remove specific sections by number or name
+  const sectionMatch = lowerInstructions.match(/remove|delete.*section\s+(\d+|\w+)/i);
+  if (sectionMatch) {
+    const sectionId = sectionMatch[1];
+    modifiedContent = modifiedContent.replace(
+      new RegExp(`<h2>${sectionId}\..*?<\/h2>[\\s\\S]*?(?=<h2|<div class="mt-12">|$)`, 'i'),
+      ''
+    );
+    modifications.push(`Removed section ${sectionId}`);
+  }
+  
+  // ========== ADDITION OPERATIONS ==========
+  
+  // Add Saudi/regulatory context
+  if (lowerInstructions.match(/add|include.*saudi|nca|pdpl|citc|regulatory|compliance/)) {
+    const regulatorySection = `
+      <h3>Saudi Arabian Regulatory Context</h3>
+      <p>This control aligns with the following Saudi Arabian regulations:</p>
+      <ul>
+        <li><strong>CST-CRF:</strong> Communications and Information Technology Commission Cybersecurity Regulatory Framework</li>
+        <li><strong>NCA ECC-1:2018:</strong> National Cybersecurity Authority Essential Cybersecurity Controls</li>
+        <li><strong>PDPL:</strong> Personal Data Protection Law (effective March 2023)</li>
+        <li><strong>CITC:</strong> Telecommunications and IT sector requirements</li>
+      </ul>
+    `;
+    modifiedContent = modifiedContent.replace('</div>', regulatorySection + '</div>', 1);
+    modifications.push('Added Saudi regulatory context');
+  }
+  
+  // ========== MODIFICATION OPERATIONS ==========
+  
+  // Date changes
+  if (lowerInstructions.match(/change|update|set.*date|\d{4}/)) {
+    const yearMatch = userInstructions.match(/(20\d{2})/);
+    if (yearMatch) {
+      modifiedContent = modifiedContent.replace(/20\d{2}/g, yearMatch[1]);
+      modifications.push(`Updated years to ${yearMatch[1]}`);
+    }
+    const monthYear = userInstructions.match(/(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})/i);
+    if (monthYear) {
       modifiedContent = modifiedContent.replace(
-        /<h3 class="text-xl text-gray-700">(.*?)<\/h3>/,
-        `<h3 class="text-xl text-gray-700">${titleMatch[1]}</h3>`
+        /(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}/g,
+        `${monthYear[1]} 1, ${monthYear[2]}`
       );
+      modifications.push(`Updated dates to ${monthYear[1]} ${monthYear[2]}`);
     }
   }
   
-  // Content length modifications
-  if (lowerInstructions.includes('shorter') || lowerInstructions.includes('concise') || lowerInstructions.includes('brief')) {
-    modifiedContent = modifiedContent.replace(/<p>(.*?)<\/p>/g, (match, p1) => {
-      if (p1.length > 100) {
-        return `<p>${p1.substring(0, 100)}...</p>`;
-      }
-      return match;
-    });
-  }
-  
-  if (lowerInstructions.includes('detailed') || lowerInstructions.includes('expand') || lowerInstructions.includes('elaborate')) {
-    modifiedContent = modifiedContent.replace(
-      'This section outlines',
-      'This comprehensive section provides detailed information and outlines'
-    );
-    modifiedContent = modifiedContent.replace(
-      'This document',
-      'This comprehensive document'
-    );
-  }
-  
-  // Tone modifications
-  if (lowerInstructions.includes('formal') || lowerInstructions.includes('professional')) {
-    modifiedContent = modifiedContent.replace(/\bwe\b/gi, 'the organization')
-      .replace(/\bour\b/gi, 'the organization\'s');
-  }
-  
-  // Add specific content
-  if (lowerInstructions.includes('saudi') || lowerInstructions.includes('sama') || lowerInstructions.includes('nca')) {
-    modifiedContent = modifiedContent.replace(
-      '</div>',
-      '<div class="mt-4"><h4><strong>Saudi Arabian Regulatory Context:</strong></h4><p>This control aligns with SAMA Cybersecurity Framework and NCA-ECC requirements for organizations operating in the Kingdom of Saudi Arabia.</p></div></div>',
-      1
-    );
-  }
-  
-  // Version number changes
-  if (lowerInstructions.includes('version')) {
-    const versionMatch = userInstructions.match(/version\s+(\d+\.?\d*)/i);
+  // Version changes
+  if (lowerInstructions.match(/version|ver\./)) {
+    const versionMatch = userInstructions.match(/version\s+(\d+\.\d+)/i) || userInstructions.match(/(\d+\.\d+)/);
     if (versionMatch) {
-      modifiedContent = modifiedContent.replace(
-        /Version:\s*\d+\.?\d*/g,
-        `Version: ${versionMatch[1]}`
-      );
+      modifiedContent = modifiedContent.replace(/Version:\s*\d+\.\d+/gi, `Version: ${versionMatch[1]}`);
+      modifiedContent = modifiedContent.replace(/<td>\d+\.\d+<\/td>/, `<td>${versionMatch[1]}</td>`);
+      modifications.push(`Updated version to ${versionMatch[1]}`);
     }
   }
   
-  // Add a note that AI modified the content
-  modifiedContent = `<div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-    <p class="text-sm text-blue-800"><strong>✨ AI Modified:</strong> ${userInstructions}</p>
-    <p class="text-xs text-blue-600 mt-1">Modified on ${new Date().toLocaleString()}</p>
-  </div>\n\n` + modifiedContent;
+  // Make content shorter/concise
+  if (lowerInstructions.match(/shorter|concise|brief|reduce|trim/)) {
+    modifiedContent = modifiedContent.replace(/<p>([^<]{150,}?)<\/p>/g, (match, content) => {
+      const sentences = content.match(/[^.!?]+[.!?]+/g) || [content];
+      return `<p>${sentences.slice(0, 2).join(' ')}</p>`;
+    });
+    modifiedContent = modifiedContent.replace(/<li>([^<]{100,}?)<\/li>/g, (match, content) => {
+      const firstSentence = content.match(/^[^.!?]+[.!?]/);
+      return `<li>${firstSentence ? firstSentence[0] : content.substring(0, 80) + '...'}</li>`;
+    });
+    modifications.push('Made content more concise');
+  }
+  
+  // Make content more detailed
+  if (lowerInstructions.match(/detailed|elaborate|expand|comprehensive|more info/)) {
+    modifiedContent = modifiedContent.replace(
+      /This document outlines/g,
+      'This comprehensive document provides detailed information and outlines'
+    );
+    modifiedContent = modifiedContent.replace(
+      /requirements/g,
+      'specific detailed requirements'
+    );
+    modifications.push('Added more detail to content');
+  }
+  
+  // Formal tone
+  if (lowerInstructions.match(/formal|professional|business/)) {
+    modifiedContent = modifiedContent.replace(/\bwe\b/gi, 'the organization');
+    modifiedContent = modifiedContent.replace(/\bour\b/gi, "the organization's");
+    modifiedContent = modifiedContent.replace(/\byou\b/gi, 'personnel');
+    modifications.push('Changed tone to formal/professional');
+  }
+  
+  // Casual tone
+  if (lowerInstructions.match(/casual|simple|easy|plain/)) {
+    modifiedContent = modifiedContent.replace(/the organization/gi, 'we');
+    modifiedContent = modifiedContent.replace(/personnel/gi, 'you');
+    modifiedContent = modifiedContent.replace(/shall/gi, 'should');
+    modifications.push('Changed tone to casual/simple');
+  }
+  
+  // ========== TEXT REPLACEMENT ==========
+  
+  // Replace specific text
+  const replaceMatch = userInstructions.match(/replace\s+["']([^"']+)["']\s+with\s+["']([^"']+)["']/i);
+  if (replaceMatch) {
+    const [, oldText, newText] = replaceMatch;
+    modifiedContent = modifiedContent.replace(new RegExp(oldText, 'gi'), newText);
+    modifications.push(`Replaced "${oldText}" with "${newText}"`);
+  }
+  
+  // Add modification note
+  if (modifications.length > 0) {
+    const note = `<div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+      <p class="text-sm text-blue-800"><strong>✨ AI Modified (Simulation):</strong> ${userInstructions}</p>
+      <p class="text-xs text-blue-600 mt-1">Changes: ${modifications.join(', ')}</p>
+      <p class="text-xs text-blue-600">Modified on ${new Date().toLocaleString()}</p>
+      <p class="text-xs text-orange-600 mt-2">💡 For better AI editing, add OpenAI/Anthropic API key in src/utils/aiService.js</p>
+    </div>\n\n`;
+    modifiedContent = note + modifiedContent;
+  }
   
   return {
     success: true,
     content: modifiedContent,
-    message: 'Document modified successfully (Simulated AI)'
+    message: modifications.length > 0 
+      ? `Applied ${modifications.length} modification(s)` 
+      : 'No matching modifications found. Try: "remove budget sections" or "add more details"'
   };
 };
 
-// Real OpenAI API call
+// ========== REAL AI PROVIDERS ==========
+
+// OpenAI (GPT-4, GPT-3.5) Implementation
 const callOpenAI = async (documentContent, userInstructions, controlInfo) => {
-  if (!API_KEY) {
-    throw new Error('OpenAI API key not configured. Please add your API key in src/utils/aiService.js');
+  const config = AI_CONFIG.openai;
+  if (!config.apiKey) {
+    throw new Error('OpenAI API key not configured');
   }
   
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(config.apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`
+        'Authorization': `Bearer ${config.apiKey}`
       },
       body: JSON.stringify({
-        model: 'gpt-4', // or 'gpt-3.5-turbo' for faster/cheaper
+        model: config.model,
         messages: [
           {
             role: 'system',
@@ -198,12 +303,137 @@ Please modify the document content according to the user's instructions while ma
   }
 };
 
-// Alternative: Use local AI or other services
-export const configureAIService = (apiKey, apiUrl = API_URL) => {
-  // Allow runtime configuration
-  // This can be extended to support other AI services like:
-  // - Azure OpenAI
-  // - Anthropic Claude
-  // - Google PaLM
-  // - Local models (Ollama, etc.)
+// Anthropic Claude Implementation
+const callAnthropic = async (documentContent, userInstructions, controlInfo) => {
+  const config = AI_CONFIG.anthropic;
+  if (!config.apiKey) {
+    throw new Error('Anthropic API key not configured');
+  }
+  
+  try {
+    const response = await fetch(config.apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': config.apiKey,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: config.model,
+        max_tokens: 4096,
+        messages: [{
+          role: 'user',
+          content: `You are a professional cybersecurity documentation expert for CST-CRF compliance.
+
+Control: ${controlInfo.id} - ${controlInfo.name}
+Category: ${controlInfo.category}
+
+Current Document (HTML):
+${documentContent}
+
+User Instructions:
+${userInstructions}
+
+IMPORTANT RULES:
+- Modify ANY content the user requests (remove budget, change dates, add sections, etc.)
+- NEVER modify <div class="signature-box"> or approval sections
+- Keep all HTML formatting valid
+- Follow instructions EXACTLY
+- Return ONLY the modified HTML, no explanations
+
+Modified Document:`
+        }]
+      })
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(`Anthropic API error: ${error.error?.message || response.status}`);
+    }
+    
+    const data = await response.json();
+    const modifiedContent = data.content[0].text;
+    
+    return {
+      success: true,
+      content: modifiedContent,
+      message: 'Document modified with Claude AI'
+    };
+  } catch (error) {
+    console.error('Anthropic API Error:', error);
+    throw error;
+  }
+};
+
+// Google Gemini Implementation  
+const callGoogle = async (documentContent, userInstructions, controlInfo) => {
+  const config = AI_CONFIG.google;
+  if (!config.apiKey) {
+    throw new Error('Google AI API key not configured');
+  }
+  
+  try {
+    const response = await fetch(
+      `${config.apiUrl}/${config.model}:generateContent?key=${config.apiKey}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `You are a professional cybersecurity documentation expert for CST-CRF compliance.
+
+Control: ${controlInfo.id} - ${controlInfo.name}
+
+Document HTML:
+${documentContent}
+
+User Instructions:
+${userInstructions}
+
+Rules:
+- Modify ANY content requested (remove budgets, change dates, etc.)
+- NEVER modify signature sections
+- Keep HTML valid
+- Return ONLY modified HTML
+
+Modified Document:`
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 4096
+          }
+        })
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error(`Google API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    const modifiedContent = data.candidates[0].content.parts[0].text;
+    
+    return {
+      success: true,
+      content: modifiedContent,
+      message: 'Document modified with Gemini AI'
+    };
+  } catch (error) {
+    console.error('Google AI Error:', error);
+    throw error;
+  }
+};
+
+// Configure AI service at runtime
+export const configureAIService = (provider, apiKey) => {
+  if (provider && AI_CONFIG[provider]) {
+    AI_CONFIG.provider = provider;
+    if (apiKey) {
+      AI_CONFIG[provider].apiKey = apiKey;
+    }
+  }
 };

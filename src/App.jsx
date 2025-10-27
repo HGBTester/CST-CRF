@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileText, ChevronRight, ChevronDown, Menu, X, Printer, Download, Plus, LogOut, User, CheckCircle, Clock, AlertCircle, Trash2, Sparkles, Moon, Sun } from 'lucide-react';
-import { auditStructure } from './data/auditStructure';
+import { useAuditStructure, useConfig } from './hooks/useConfig';
 import { generateDocument } from './utils/documentTemplates';
 import { authenticateUser } from './data/users';
 import { createDocumentInstance, getDocumentInstances, signDocument, getAllDocumentInstances, revokeSignature, deleteDocumentInstance } from './data/documentStore';
@@ -12,7 +12,9 @@ import AIEditor from './components/AIEditor';
 import TemplateEditor from './components/TemplateEditorNew';
 import EvidenceForms from './components/EvidenceForms';
 import ControlEvidenceView from './components/ControlEvidenceView';
+import ErrorBoundary from './components/ErrorBoundary';
 import { useEvidenceCounts } from './hooks/useEvidenceCounts';
+import { hasEvidenceCapability } from './services/configAPI';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -32,6 +34,10 @@ function App() {
   const [showEvidenceForms, setShowEvidenceForms] = useState(false);
   const [viewMode, setViewMode] = useState('template'); // 'template' or 'evidence'
   const { evidenceCounts, refetch: refetchEvidenceCounts } = useEvidenceCounts();
+  
+  // Get audit structure from database
+  const { auditStructure, loading: structureLoading } = useAuditStructure();
+  const { config } = useConfig();
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -262,16 +268,21 @@ function App() {
   const getStatusIcon = (status) => {
     switch(status) {
       case 'completed':
-        return <CheckCircle size={14} className="text-green-600" />;
+        return <CheckCircle size={14} style={{color: darkMode ? '#89d185' : '#10b981'}} />;
       case 'in_progress':
-        return <Clock size={14} className="text-orange-600" />;
+        return <Clock size={14} style={{color: darkMode ? '#cca700' : '#f59e0b'}} />;
       default:
-        return <AlertCircle size={14} className="text-gray-600" />;
+        return <AlertCircle size={14} style={{color: darkMode ? '#969696' : '#6b7280'}} />;
     }
   };
 
   // Filter audit structure based on search term
   const getFilteredStructure = () => {
+    // Return empty object if audit structure is still loading
+    if (!auditStructure || structureLoading) {
+      return {};
+    }
+    
     if (!searchTerm.trim()) {
       return auditStructure;
     }
@@ -309,30 +320,50 @@ function App() {
     return <Login onLogin={handleLogin} />;
   }
 
+  // Show error if config fails to load
+  if (config && config.error) {
+    return (
+      <div className="flex items-center justify-center h-screen" style={{backgroundColor: darkMode ? '#1e1e1e' : '#f8fafc'}}>
+        <div className="text-center p-8 rounded-lg" style={{backgroundColor: darkMode ? '#252526' : '#ffffff', border: '1px solid ' + (darkMode ? '#3e3e42' : '#e2e8f0')}}>
+          <AlertCircle size={48} className="mx-auto mb-4" style={{color: '#ef4444'}} />
+          <h2 className="text-xl font-bold mb-2" style={{color: darkMode ? '#e5e7eb' : '#1e293b'}}>Configuration Error</h2>
+          <p className="text-sm mb-4" style={{color: darkMode ? '#9ca3af' : '#64748b'}}>Failed to load system configuration</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 rounded text-white"
+            style={{backgroundColor: '#2563eb'}}
+          >
+            Reload Page
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`flex h-screen ${darkMode ? 'dark' : ''}`} style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f8fafc'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+    <div className={`flex h-screen ${darkMode ? 'dark' : ''}`} style={{backgroundColor: (darkMode ? '#1e1e1e' : '#f8fafc'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-96' : 'w-0'} transition-all duration-300 overflow-hidden`} style={{backgroundColor: (darkMode ? '#262626' : '#ffffff'), borderRight: (darkMode ? '1px solid #404040' : '1px solid #e2e8f0'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
+      <div className={`${sidebarOpen ? 'w-96' : 'w-0'} transition-all duration-300 overflow-hidden`} style={{backgroundColor: (darkMode ? '#252526' : '#ffffff'), borderRight: (darkMode ? '1px solid #3e3e42' : '1px solid #e2e8f0'), fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="text-white p-5" style={{backgroundColor: '#2563eb'}}>
+          <div className="text-white p-5" style={{background: darkMode ? 'linear-gradient(135deg, #007acc 0%, #005a9e 100%)' : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'}}>
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center shadow-md" style={{
                 width: '40px',
                 height: '40px',
                 backgroundColor: '#ffffff',
-                borderRadius: '8px'
+                borderRadius: '6px'
               }}>
-                <span className="font-bold" style={{fontSize: '18px', color: '#2563eb'}}>L3</span>
+                <span className="font-bold" style={{fontSize: '18px', color: (darkMode ? '#007acc' : '#2563eb')}}>L3</span>
               </div>
               <div className="flex-1">
-                <h1 className="font-bold" style={{fontSize: '16px'}}>CST Audit System</h1>
-                <p style={{fontSize: '12px', color: '#dbeafe'}}>Documentation Manager</p>
+                <h1 className="font-bold" style={{fontSize: '17px', color: '#ffffff', letterSpacing: '0.3px'}}>CST Audit System</h1>
+                <p style={{fontSize: '11px', color: 'rgba(255,255,255,0.85)', fontWeight: '500'}}>Documentation & Compliance Manager</p>
               </div>
               <button 
                 onClick={() => setDarkMode(!darkMode)}
-                className="p-1.5 rounded transition-colors hover:bg-blue-600"
-                style={{color: '#ffffff'}}
+                className="p-1.5 rounded transition-colors"
+                style={{color: '#ffffff', backgroundColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.2)'}}
                 title="Toggle Dark Mode"
               >
                 {darkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -350,15 +381,17 @@ function App() {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search documents..."
+                placeholder="🔍 Search controls, categories..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg focus:outline-none"
+                className="w-full px-3 py-2 focus:outline-none transition-all"
                 style={{
                   fontSize: '13px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  border: '1px solid #3b82f6',
-                  color: '#ffffff'
+                  backgroundColor: darkMode ? 'rgba(60,60,60,0.8)' : 'rgba(255, 255, 255, 0.25)',
+                  border: darkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(255,255,255,0.3)',
+                  color: darkMode ? '#e5e7eb' : '#ffffff',
+                  borderRadius: '6px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
               />
             </div>
@@ -366,37 +399,45 @@ function App() {
 
           {/* Tree Navigation */}
           <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
-            <div className="space-y-2">
-              {Object.entries(filteredStructure).map(([category, subcategories]) => (
-                <div key={category} className="border rounded-lg overflow-hidden" style={{borderColor: (darkMode ? '#404040' : '#e5e7eb')}}>
+            {structureLoading ? (
+              <div className="flex items-center justify-center p-8" style={{color: darkMode ? '#9ca3af' : '#6b7280'}}>
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 mx-auto mb-2" style={{borderColor: darkMode ? '#007acc' : '#2563eb'}}></div>
+                  <p className="text-sm">Loading audit structure...</p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {Object.entries(filteredStructure).map(([category, subcategories]) => (
+                <div key={category} className="border overflow-hidden" style={{borderColor: (darkMode ? '#3e3e42' : '#e5e7eb'), borderRadius: '2px'}}>
                   <button
                     onClick={() => toggleCategory(category)}
-                    className="w-full flex items-center gap-2 p-3 transition-colors"
-                    style={{backgroundColor: (darkMode ? '#1e40af' : '#eff6ff'), color: (darkMode ? '#ffffff' : '#1e3a8a')}}
+                    className="w-full flex items-center gap-2 p-3 transition-colors hover:opacity-90"
+                    style={{backgroundColor: (darkMode ? '#094771' : '#eff6ff'), color: (darkMode ? '#cccccc' : '#1e3a8a')}}
                   >
-                    <span className="text-blue-600 font-bold" style={{fontSize: '16px'}}>
+                    <span className="font-bold" style={{fontSize: '14px', color: (darkMode ? '#cccccc' : '#2563eb')}}>
                       {expandedCategories[category] ? '−' : '+'}
                     </span>
-                    <span className="font-semibold text-sm flex-1 text-left" style={{color: (darkMode ? '#ffffff' : '#1e3a8a')}}>{category}</span>
+                    <span className="font-semibold text-sm flex-1 text-left">{category}</span>
                   </button>
 
                   {expandedCategories[category] && (
-                    <div style={{backgroundColor: (darkMode ? '#262626' : '#ffffff')}}>
+                    <div style={{backgroundColor: (darkMode ? '#252526' : '#ffffff')}}>
                       {Object.entries(subcategories).map(([subcategory, items]) => (
-                        <div key={subcategory} style={{borderTop: (darkMode ? '1px solid #404040' : '1px solid #e5e7eb')}}>
+                        <div key={subcategory} style={{borderTop: (darkMode ? '1px solid #3e3e42' : '1px solid #e5e7eb')}}>
                           <button
                             onClick={() => toggleSubcategory(`${category}-${subcategory}`)}
-                            className="w-full flex items-center gap-2 p-2.5 pl-8 transition-colors"
-                            style={{backgroundColor: (darkMode ? '#1f1f1f' : '#f9fafb'), color: (darkMode ? '#d1d5db' : '#374151')}}
+                            className="w-full flex items-center gap-2 p-2.5 pl-8 transition-colors hover:opacity-90"
+                            style={{backgroundColor: (darkMode ? '#2a2d2e' : '#f9fafb'), color: (darkMode ? '#cccccc' : '#374151')}}
                           >
-                            <span style={{color: (darkMode ? '#9ca3af' : '#4b5563'), fontSize: '14px', fontWeight: 'bold'}}>
+                            <span style={{color: (darkMode ? '#969696' : '#4b5563'), fontSize: '13px', fontWeight: 'bold'}}>
                               {expandedSubcategories[`${category}-${subcategory}`] ? '−' : '+'}
                             </span>
                             <span className="font-medium text-sm flex-1 text-left">{subcategory}</span>
                           </button>
 
                           {expandedSubcategories[`${category}-${subcategory}`] && (
-                            <div style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f9fafb')}}>
+                            <div style={{backgroundColor: (darkMode ? '#1e1e1e' : '#f9fafb')}}>
                               {items.map((item) => {
                                 const instances = getDocumentInstances(item.id);
                                 const isExpanded = expandedControls[item.id];
@@ -405,41 +446,50 @@ function App() {
                                 const hasPending = instances.some(doc => doc.status !== 'completed');
                                 const hasCompleted = instances.some(doc => doc.status === 'completed');
                                 const evidenceCount = evidenceCounts[item.id] || 0;
+                                const needsEvidence = config ? hasEvidenceCapability(
+                                  config.templateOnlyControls,
+                                  config.evidenceMappings,
+                                  config.staticEvidenceControls,
+                                  item.id
+                                ) : false;
                                 
-                                let titleColor = 'text-gray-700';
-                                if (hasCompleted) titleColor = 'text-green-700';
-                                else if (hasPending) titleColor = 'text-orange-600';
+                                let titleColor = darkMode ? '#cccccc' : '#374151';
+                                if (hasCompleted) titleColor = darkMode ? '#89d185' : '#10b981';
+                                else if (hasPending) titleColor = darkMode ? '#cca700' : '#f59e0b';
                                 
-                                const itemBorderColor = darkMode ? '#333333' : '#f3f4f6';
-                                const itemBgColor = darkMode ? '#1f1f1f' : '#ffffff';
+                                const itemBorderColor = darkMode ? '#3e3e42' : '#f3f4f6';
+                                const itemBgColor = darkMode ? '#252526' : '#ffffff';
+                                const itemHoverBg = darkMode ? '#2a2d2e' : '#f9fafb';
                                 
                                 return (
                                   <div key={item.id} style={{borderBottom: '1px solid ' + itemBorderColor}}>
                                     {/* Control Header */}
-                                    <div className="flex items-center pl-12 pr-3 py-2 transition-colors group hover:opacity-90" style={{backgroundColor: itemBgColor}}>
+                                    <div className="flex items-center pl-12 pr-3 py-2 transition-colors group" style={{backgroundColor: itemBgColor}}>
                                       <button
                                         onClick={() => toggleControl(item.id)}
-                                        className="flex items-center gap-1 min-w-0 mr-2"
+                                        className="flex items-center gap-1 min-w-0 mr-2 hover:opacity-70 transition-opacity"
                                       >
-                                        <span className="text-gray-500" style={{fontSize: '12px', fontWeight: 'bold'}}>
+                                        <span style={{fontSize: '12px', fontWeight: 'bold', color: (darkMode ? '#969696' : '#6b7280')}}>
                                           {isExpanded ? '−' : '+'}
                                         </span>
                                       </button>
                                       
                                       <button
                                         onClick={() => handleSelectControl(category, subcategory, item)}
-                                        className="flex-1 min-w-0 text-left flex items-center gap-2 p-1.5 rounded transition-colors"
+                                        className="flex-1 min-w-0 text-left flex items-center gap-2 p-1.5 transition-colors"
                                         style={{backgroundColor: 'transparent'}}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = itemHoverBg}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                                         title="Click to edit template"
                                       >
-                                        <FileText size={13} className={`flex-shrink-0 ${hasDocuments ? 'text-green-600' : 'text-blue-500'}`} />
+                                        <FileText size={13} className="flex-shrink-0" style={{color: hasDocuments ? (darkMode ? '#89d185' : '#10b981') : (darkMode ? '#007acc' : '#2563eb')}} />
                                         <div className="flex-1 min-w-0 flex items-center gap-1.5">
-                                          <span className="font-semibold" style={{fontSize: '11px', color: (darkMode ? '#e5e7eb' : '#111827')}}>{item.id}</span>
+                                          <span className="font-semibold" style={{fontSize: '11px', color: (darkMode ? '#cccccc' : '#111827')}}>{item.id}</span>
                                           {customTemplate && (
-                                            <Sparkles size={9} className="text-purple-600" title="Custom AI-modified template" />
+                                            <Sparkles size={9} style={{color: darkMode ? '#c586c0' : '#9333ea'}} title="Custom AI-modified template" />
                                           )}
-                                          <span style={{fontSize: '10px', color: (darkMode ? '#6b7280' : '#9ca3af')}}>•</span>
-                                          <span className={`font-normal break-words text-left ${titleColor}`} style={{fontSize: '11px'}}>{item.name}</span>
+                                          <span style={{fontSize: '10px', color: (darkMode ? '#6a6a6a' : '#9ca3af')}}>•</span>
+                                          <span className="font-normal break-words text-left" style={{fontSize: '11px', color: titleColor}}>{item.name}</span>
                                         </div>
                                         <div className="ml-auto flex items-center gap-2 flex-shrink-0">
                                           {instances.length > 0 && (
@@ -447,17 +497,19 @@ function App() {
                                               📄 {instances.length}
                                             </span>
                                           )}
-                                          {evidenceCount > 0 && (
+                                          {needsEvidence && (
                                             <span 
                                               className="font-medium px-2 py-0.5 rounded-full" 
                                               style={{
                                                 fontSize: '10px', 
-                                                backgroundColor: '#10b981',
-                                                color: '#ffffff'
+                                                backgroundColor: evidenceCount > 0 ? (darkMode ? '#89d185' : '#10b981') : (darkMode ? '#f48771' : '#ef4444'),
+                                                color: darkMode ? '#1e1e1e' : '#ffffff'
                                               }}
-                                              title={`${evidenceCount} evidence form${evidenceCount > 1 ? 's' : ''}`}
+                                              title={evidenceCount > 0 
+                                                ? `${evidenceCount} evidence form${evidenceCount > 1 ? 's' : ''} submitted` 
+                                                : 'No evidence submitted - Click to add'}
                                             >
-                                              📎 {evidenceCount}
+                                              {evidenceCount > 0 ? `✓ ${evidenceCount}` : '!'} 📎
                                             </span>
                                           )}
                                         </div>
@@ -466,50 +518,66 @@ function App() {
 
                                     {/* Document Instances */}
                                     {isExpanded && instances.length > 0 && (
-                                      <div className="pl-16 pr-2 py-1" style={{backgroundColor: (darkMode ? '#0f0f0f' : '#f3f4f6')}}>
-                                        {instances.map((docInstance) => (
+                                      <div className="pl-16 pr-2 py-1" style={{backgroundColor: (darkMode ? '#1e1e1e' : '#f3f4f6')}}>
+                                        {instances.map((docInstance) => {
+                                          const isSelected = selectedDocInstance?.id === docInstance.id;
+                                          return (
                                           <div
                                             key={docInstance.id}
                                             className="flex items-center gap-1 mb-1"
                                           >
                                             <button
                                               onClick={() => handleSelectDocInstance(category, subcategory, item, docInstance)}
-                                              className={`flex-1 flex items-center justify-between p-2 rounded text-left transition-colors ${
-                                                selectedDocInstance?.id === docInstance.id
-                                                  ? 'bg-blue-100 border border-blue-300'
-                                                  : 'bg-white border border-gray-200 hover:bg-blue-50'
-                                              } ${
-                                                docInstance.status === 'completed' ? 'border-l-4 border-l-green-500' :
-                                                docInstance.status === 'in_progress' ? 'border-l-4 border-l-orange-500' :
-                                                'border-l-4 border-l-gray-400'
-                                              }`}
+                                              className="flex-1 flex items-center justify-between p-2 text-left transition-colors"
+                                              style={{
+                                                backgroundColor: isSelected ? (darkMode ? '#094771' : '#dbeafe') : (darkMode ? '#252526' : '#ffffff'),
+                                                border: `1px solid ${isSelected ? (darkMode ? '#007acc' : '#3b82f6') : (darkMode ? '#3e3e42' : '#e5e7eb')}`,
+                                                borderLeft: `4px solid ${
+                                                  docInstance.status === 'completed' ? (darkMode ? '#89d185' : '#10b981') :
+                                                  docInstance.status === 'in_progress' ? (darkMode ? '#cca700' : '#f59e0b') :
+                                                  (darkMode ? '#6a6a6a' : '#9ca3af')
+                                                }`,
+                                                borderRadius: '2px'
+                                              }}
                                             >
                                               <div className="flex-1 min-w-0">
                                                 <div className="flex items-center gap-1.5">
                                                   {getStatusIcon(docInstance.status)}
-                                                  <span className="text-xs font-medium text-gray-900">{docInstance.id}</span>
-                                                  <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full font-medium">
+                                                  <span className="text-xs font-medium" style={{color: darkMode ? '#cccccc' : '#111827'}}>{docInstance.id}</span>
+                                                  <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{
+                                                    backgroundColor: darkMode ? '#094771' : '#dbeafe',
+                                                    color: darkMode ? '#cccccc' : '#1e40af'
+                                                  }}>
                                                     v{docInstance.version}
                                                   </span>
                                                 </div>
-                                                <div className="text-xs text-gray-500 mt-0.5">
+                                                <div className="text-xs mt-0.5" style={{color: darkMode ? '#969696' : '#6b7280'}}>
                                                   {new Date(docInstance.createdAt).toLocaleDateString()}
                                                   {docInstance.revisionNote && ` • ${docInstance.revisionNote}`}
                                                 </div>
                                               </div>
                                               <div className="text-xs">
                                                 {docInstance.status === 'completed' && (
-                                                  <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-medium">
+                                                  <span className="px-2 py-0.5 rounded-full font-medium" style={{
+                                                    backgroundColor: darkMode ? '#2d4a2d' : '#d1fae5',
+                                                    color: darkMode ? '#89d185' : '#065f46'
+                                                  }}>
                                                     ✓
                                                   </span>
                                                 )}
                                                 {docInstance.status === 'in_progress' && (
-                                                  <span className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full font-medium">
+                                                  <span className="px-2 py-0.5 rounded-full font-medium" style={{
+                                                    backgroundColor: darkMode ? '#4a3d2d' : '#fef3c7',
+                                                    color: darkMode ? '#cca700' : '#92400e'
+                                                  }}>
                                                     ●
                                                   </span>
                                                 )}
                                                 {docInstance.status === 'pending' && (
-                                                  <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full font-medium">
+                                                  <span className="px-2 py-0.5 rounded-full font-medium" style={{
+                                                    backgroundColor: darkMode ? '#3c3c3c' : '#f3f4f6',
+                                                    color: darkMode ? '#969696' : '#374151'
+                                                  }}>
                                                     ○
                                                   </span>
                                                 )}
@@ -522,14 +590,15 @@ function App() {
                                                 e.stopPropagation();
                                                 handleDeleteDocument(docInstance.id);
                                               }}
-                                              className="p-1.5 text-white rounded transition-colors flex-shrink-0"
-                                              style={{backgroundColor: '#dc2626'}}
+                                              className="p-1.5 rounded transition-colors flex-shrink-0"
+                                              style={{backgroundColor: darkMode ? '#f48771' : '#dc2626', color: darkMode ? '#1e1e1e' : '#ffffff'}}
                                               title="Delete Document"
                                             >
-                                              <Trash2 size={12} className="text-white" />
+                                              <Trash2 size={12} />
                                             </button>
                                           </div>
-                                        ))}
+                                        );
+                                        })}
                                       </div>
                                     )}
                                   </div>
@@ -543,7 +612,8 @@ function App() {
                   )}
                 </div>
               ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -552,12 +622,21 @@ function App() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar - Only show for document instances (view mode) */}
         {!editMode && (
-          <div className="bg-white shadow-sm p-4 flex items-center justify-between no-print border-b border-gray-200">
+          <div className="shadow-sm p-4 flex items-center justify-between no-print" style={{
+            backgroundColor: darkMode ? '#252526' : '#ffffff',
+            borderBottom: `1px solid ${darkMode ? '#3e3e42' : '#e5e7eb'}`
+          }}>
             <div className="flex items-center gap-4">
               {!sidebarOpen && (
                 <button
                   onClick={() => setSidebarOpen(true)}
-                  className="text-gray-600 hover:text-blue-600 p-2 hover:bg-blue-50 rounded-lg transition-colors"
+                  className="p-2 rounded transition-colors"
+                  style={{
+                    color: darkMode ? '#cccccc' : '#6b7280',
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#2a2d2e' : '#f3f4f6'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   <Menu size={24} />
                 </button>
@@ -565,42 +644,51 @@ function App() {
               {selectedControl && selectedDocInstance && (
                 <div>
                   <div className="flex items-center gap-2">
-                    <h2 className="text-xl font-bold text-gray-900">
+                    <h2 className="text-xl font-bold" style={{color: darkMode ? '#cccccc' : '#111827'}}>
                       {selectedControl.item.id} - {selectedControl.item.name}
                     </h2>
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm" style={{color: darkMode ? '#969696' : '#6b7280'}}>
                       {selectedControl.category}
                     </p>
-                    <span className="text-gray-300">•</span>
-                    <p className="text-sm font-medium text-blue-600 flex items-center gap-1">
+                    <span style={{color: darkMode ? '#6a6a6a' : '#d1d5db'}}>•</span>
+                    <p className="text-sm font-medium flex items-center gap-1" style={{color: darkMode ? '#007acc' : '#2563eb'}}>
                       Document No. {selectedDocInstance.id}
                     </p>
-                    <span className="text-gray-300">•</span>
-                    <p className="text-sm text-gray-600">
+                    <span style={{color: darkMode ? '#6a6a6a' : '#d1d5db'}}>•</span>
+                    <p className="text-sm" style={{color: darkMode ? '#969696' : '#6b7280'}}>
                       Version {selectedDocInstance.version}
                     </p>
                     {selectedDocInstance.status === 'completed' && (
                       <>
-                        <span className="text-gray-300">•</span>
-                        <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs font-medium">
+                        <span style={{color: darkMode ? '#6a6a6a' : '#d1d5db'}}>•</span>
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium" style={{
+                          backgroundColor: darkMode ? '#2d4a2d' : '#d1fae5',
+                          color: darkMode ? '#89d185' : '#065f46'
+                        }}>
                           ✓ Approved
                         </span>
                       </>
                     )}
                     {selectedDocInstance.status === 'in_progress' && (
                       <>
-                        <span className="text-gray-300">•</span>
-                        <span className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full text-xs font-medium">
+                        <span style={{color: darkMode ? '#6a6a6a' : '#d1d5db'}}>•</span>
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium" style={{
+                          backgroundColor: darkMode ? '#4a3d2d' : '#fef3c7',
+                          color: darkMode ? '#cca700' : '#92400e'
+                        }}>
                           ● In Progress
                         </span>
                       </>
                     )}
                     {selectedDocInstance.status === 'pending' && (
                       <>
-                        <span className="text-gray-300">•</span>
-                        <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+                        <span style={{color: darkMode ? '#6a6a6a' : '#d1d5db'}}>•</span>
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium" style={{
+                          backgroundColor: darkMode ? '#3c3c3c' : '#f3f4f6',
+                          color: darkMode ? '#969696' : '#374151'
+                        }}>
                           ○ Pending
                         </span>
                       </>
@@ -615,14 +703,26 @@ function App() {
                 <>
                   <button
                     onClick={handlePrint}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 rounded transition-all"
+                    style={{
+                      backgroundColor: darkMode ? '#0e639c' : '#2563eb',
+                      color: '#ffffff'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#1177bb' : '#1e40af'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#0e639c' : '#2563eb'}
                   >
                     <Printer size={18} />
                     <span className="hidden sm:inline">Print</span>
                   </button>
                   <button
                     onClick={handleDownload}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 rounded transition-all"
+                    style={{
+                      backgroundColor: darkMode ? '#0e639c' : '#2563eb',
+                      color: '#ffffff'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#1177bb' : '#1e40af'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#0e639c' : '#2563eb'}
                   >
                     <Download size={18} />
                     <span className="hidden sm:inline">Export PDF</span>
@@ -636,10 +736,10 @@ function App() {
                   setSelectedDocInstance(null);
                   setEditMode(false);
                 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded transition-all"
                 style={{
-                  backgroundColor: showEvidenceForms ? '#3b82f6' : '#f3f4f6',
-                  color: showEvidenceForms ? '#ffffff' : '#374151'
+                  backgroundColor: showEvidenceForms ? (darkMode ? '#0e639c' : '#2563eb') : (darkMode ? '#3c3c3c' : '#f3f4f6'),
+                  color: showEvidenceForms ? '#ffffff' : (darkMode ? '#cccccc' : '#374151')
                 }}
               >
                 <FileText size={18} />
@@ -647,7 +747,13 @@ function App() {
               </button>
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 py-2 rounded transition-colors"
+                style={{
+                  color: darkMode ? '#cccccc' : '#374151',
+                  backgroundColor: 'transparent'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = darkMode ? '#2a2d2e' : '#f3f4f6'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
                 <LogOut size={18} />
                 <span className="hidden sm:inline">Logout</span>
@@ -657,7 +763,7 @@ function App() {
         )}
 
         {/* Main Content Area */}
-        <div className="flex-1 overflow-hidden" style={{backgroundColor: (darkMode ? '#1a1a1a' : '#f9fafb')}}>
+        <div className="flex-1 overflow-hidden" style={{backgroundColor: (darkMode ? '#1e1e1e' : '#f9fafb')}}>
           {showEvidenceForms ? (
             <EvidenceForms 
               currentUser={currentUser} 
@@ -665,12 +771,14 @@ function App() {
               onClose={() => setShowEvidenceForms(false)}
             />
           ) : selectedControl && viewMode === 'evidence' ? (
-            <ControlEvidenceView 
-              control={selectedControl} 
-              currentUser={currentUser} 
-              darkMode={darkMode}
-              onBackToTemplate={() => setViewMode('template')}
-            />
+            <ErrorBoundary darkMode={darkMode}>
+              <ControlEvidenceView 
+                control={selectedControl} 
+                currentUser={currentUser} 
+                darkMode={darkMode}
+                onBackToTemplate={() => setViewMode('template')}
+              />
+            </ErrorBoundary>
           ) : selectedControl && editMode ? (
             <TemplateEditor
               control={selectedControl}
