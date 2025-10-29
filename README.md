@@ -1,165 +1,35 @@
 # CST Audit System
 
-Enterprise-level documentation and compliance management system for CST L3 Certification with database-driven configuration and evidence management.
+Enterprise documentation and compliance management for CST L3 Certification.
 
 ## Quick Start
 
-### Prerequisites
-- Node.js 16+
-- MongoDB Atlas account
+### Run Locally
+```bash
+# Install dependencies
+npm install
+cd backend && npm install && cd ..
 
-### Setup
+# Start (opens 2 CMD windows)
+start-all.bat
+```
 
-1. **Configure MongoDB**
-   - Create MongoDB Atlas cluster
-   - Whitelist IP: 0.0.0.0/0 (or your IP)
-   - Update `backend/.env` with connection string
+**Access:**
+- Frontend: http://localhost:3000
+- Backend: http://localhost:5000
+- Login: `admin` / `admin123`
 
-2. **Install & Run**
-   ```bash
-   # Install dependencies
-   cd backend && npm install
-   cd .. && npm install
-   
-   # Migrate data to database
-   cd backend && node scripts/migrate-to-database.js
-   
-   # Start backend
-   npm run dev
-   
-   # Start frontend (new terminal)
-   cd .. && npm run dev
-   ```
+### Deploy to Cloud
+See **DEPLOY.md** for 15-minute deployment guide.
 
-3. **Access**
-   - Frontend: http://localhost:3000
-   - Backend: http://localhost:5000
-   - Login: admin/admin123 or auditor/auditor123
-
-## Architecture
-
-### Database-Driven System
-All configuration stored in MongoDB:
-- Audit structure (6 categories, 200+ controls)
-- Evidence requirements (72 controls)
-- Form types (20 definitions)
-- Evidence mappings
-- Template contents
-
-### Tech Stack
-- **Frontend**: React, Vite, TailwindCSS
-- **Backend**: Node.js, Express
+## Tech Stack
+- **Frontend**: React + Vite + TailwindCSS
+- **Backend**: Node.js + Express
 - **Database**: MongoDB Atlas
-- **Storage**: Local (documents, evidence, custom templates)
 
 ## Features
-
-### Document Management
-- Template-based document generation
-- AI-powered editing
-- Version control & signatures
-- Custom template support
-
-### Evidence Management
-- Dynamic evidence checklists
-- 20 form types
-- File upload support
-- Workflow management (draft → review → approval)
-
-### User Roles
-- **Admin**: Full access
-- **Auditor**: Create/review documents and evidence
-- **Viewer**: Read-only access
-
-## Project Structure
-
-```
-CST Audit/
-├── backend/
-│   ├── models/          # MongoDB models
-│   ├── routes/          # API routes
-│   ├── scripts/         # Migration scripts
-│   └── server.js
-├── src/
-│   ├── components/      # React components
-│   ├── hooks/           # Custom hooks
-│   ├── services/        # API clients
-│   ├── data/            # Local storage (users, documents, templates)
-│   └── App.jsx
-└── README.md
-```
-
-## API Endpoints
-
-### Configuration
-- `GET /api/config/complete` - All config
-- `GET /api/config/audit-structure` - Audit structure
-- `GET /api/config/form-types` - Form types
-- `GET /api/config/evidence-requirements/:id` - Control requirements
-
-### Evidence
-- `GET /api/evidence-forms` - All forms
-- `POST /api/evidence-forms` - Create form
-- `PUT /api/evidence-forms/:id` - Update form
-- `PUT /api/evidence-forms/:id/status` - Change status
-
-### Checklists
-- `POST /api/evidence-checklist/initialize` - Create checklist
-- `GET /api/evidence-checklist/:controlId` - Get checklist
-- `PUT /api/evidence-checklist/:controlId/item/:itemId` - Update item
-
-## Key Controls
-
-### Template-Only (No Evidence)
-- Strategy & Action Plans (1.1.x)
-- Policies (x.x.1 pattern)
-- Requirements documents
-
-### Evidence Required
-- Implementation (x.x.2, x.x.3)
-- Review/Optimization (x.x.4+)
-- Audit controls
-- Monitoring controls
-
-## Development
-
-### Database Schema
-- `AuditStructure` - Categories & controls
-- `EvidenceRequirement` - Control requirements
-- `FormTypeDefinition` - Form templates
-- `EvidenceMapping` - Form to category mapping
-- `TemplateContent` - Document templates
-
-### Local Storage
-- `data/users.js` - User authentication
-- `data/documentStore.js` - Document instances
-- `data/customTemplates.js` - Custom templates
-
-## Troubleshooting
-
-### MongoDB Connection
-- Ensure IP is whitelisted in Atlas
-- Check connection string in `.env`
-- Verify cluster is running
-
-### Frontend Issues
-- Clear browser cache
-- Check console for errors
-- Verify backend is running
-
-### Evidence Not Loading
-- Run migration script
-- Check MongoDB has data
-- Verify API endpoints respond
-
-## Support
-
-For issues or questions, check console logs and verify:
-1. MongoDB connection active
-2. Migration completed successfully
-3. All services running on correct ports
-
----
-
-**Version**: 2.0 (Database-Driven)  
-**Last Updated**: October 2025
+- Document management with templates
+- Evidence tracking (20 form types)
+- Audit structure (6 categories, 200+ controls)
+- User roles: Admin, Auditor, Viewer
+- File uploads & workflow management

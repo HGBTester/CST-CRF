@@ -36,8 +36,18 @@ function App() {
   const { evidenceCounts, refetch: refetchEvidenceCounts } = useEvidenceCounts();
   
   // Get audit structure from database
-  const { auditStructure, loading: structureLoading } = useAuditStructure();
-  const { config } = useConfig();
+  const { auditStructure, loading: structureLoading, error: structureError } = useAuditStructure();
+  const { config, loading: configLoading, error: configError } = useConfig();
+  
+  // Debug logging
+  console.log('App Debug:', {
+    auditStructure: auditStructure ? Object.keys(auditStructure).length + ' categories' : 'null',
+    structureLoading,
+    structureError,
+    config: config ? 'loaded' : 'null',
+    configLoading,
+    configError
+  });
 
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
@@ -404,6 +414,34 @@ function App() {
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 mx-auto mb-2" style={{borderColor: darkMode ? '#007acc' : '#2563eb'}}></div>
                   <p className="text-sm">Loading audit structure...</p>
+                </div>
+              </div>
+            ) : structureError ? (
+              <div className="flex items-center justify-center p-8" style={{color: darkMode ? '#ef4444' : '#dc2626'}}>
+                <div className="text-center">
+                  <p className="text-sm font-medium">Error loading data</p>
+                  <p className="text-xs mt-1">{structureError}</p>
+                  <button 
+                    onClick={() => window.location.reload()} 
+                    className="mt-2 px-3 py-1 text-xs rounded"
+                    style={{backgroundColor: darkMode ? '#374151' : '#f3f4f6', color: darkMode ? '#f3f4f6' : '#374151'}}
+                  >
+                    Reload
+                  </button>
+                </div>
+              </div>
+            ) : (!auditStructure || Object.keys(auditStructure).length === 0) ? (
+              <div className="flex items-center justify-center p-8" style={{color: darkMode ? '#9ca3af' : '#6b7280'}}>
+                <div className="text-center">
+                  <p className="text-sm font-medium">No data available</p>
+                  <p className="text-xs mt-1">Database may need migration</p>
+                  <button 
+                    onClick={() => window.location.reload()} 
+                    className="mt-2 px-3 py-1 text-xs rounded"
+                    style={{backgroundColor: darkMode ? '#374151' : '#f3f4f6', color: darkMode ? '#f3f4f6' : '#374151'}}
+                  >
+                    Reload
+                  </button>
                 </div>
               </div>
             ) : (
