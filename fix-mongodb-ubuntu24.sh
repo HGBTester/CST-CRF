@@ -2,7 +2,7 @@
  
 # Quick fix for MongoDB installation on Ubuntu 24.04 (noble)
 # This script fixes the MongoDB repository issue for Ubuntu 24.04
-
+ 
 set -e
 
 # Color codes
