@@ -142,8 +142,19 @@ install_mongodb() {
             curl -fsSL https://pgp.mongodb.com/server-${MONGODB_VERSION}.asc | \
                 gpg -o /usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg --dearmor
 
+            # Detect Ubuntu version and use appropriate repository
+            UBUNTU_VERSION=$(lsb_release -cs)
+
+            # MongoDB 7.0 doesn't support Ubuntu 24.04 (noble) yet, use 22.04 (jammy) repository
+            if [ "$UBUNTU_VERSION" = "noble" ]; then
+                print_message "$YELLOW" "Ubuntu 24.04 detected. Using Ubuntu 22.04 repository for MongoDB compatibility."
+                REPO_VERSION="jammy"
+            else
+                REPO_VERSION="$UBUNTU_VERSION"
+            fi
+
             echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-${MONGODB_VERSION}.gpg ] \
-                https://repo.mongodb.org/apt/$OS $(lsb_release -cs)/mongodb-org/${MONGODB_VERSION} multiverse" | \
+                https://repo.mongodb.org/apt/$OS $REPO_VERSION/mongodb-org/${MONGODB_VERSION} multiverse" | \
                 tee /etc/apt/sources.list.d/mongodb-org-${MONGODB_VERSION}.list
 
             apt-get update
