@@ -4,7 +4,7 @@
 # This script fixes the MongoDB repository issue for Ubuntu 24.04
  
 set -e
-
+ 
 # Color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
