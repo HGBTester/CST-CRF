@@ -2,7 +2,7 @@
 
 # CST Audit - Complete Setup and Run Script
 # This single script handles everything: setup, installation, and running the application
-
+ 
 set -e
 
 # Color codes
