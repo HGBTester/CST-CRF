@@ -39,6 +39,30 @@ router.get('/control/:controlId', async (req, res) => {
   }
 });
 
+// Get progress for a control
+router.get('/progress/:controlId', async (req, res) => {
+  try {
+    const { controlId } = req.params;
+    const items = await EvidenceChecklistItem.find({ controlId });
+    
+    const total = items.length;
+    const completed = items.filter(item => item.isComplete).length;
+    const pending = total - completed;
+    
+    const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+    
+    res.json({
+      total,
+      completed,
+      pending,
+      progress
+    });
+  } catch (error) {
+    console.error('Error fetching progress:', error);
+    res.status(500).json({ error: 'Failed to fetch progress' });
+  }
+});
+
 // Initialize checklist items for a control (if not exist)
 router.post('/initialize', async (req, res) => {
   try {

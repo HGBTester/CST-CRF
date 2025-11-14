@@ -4,6 +4,8 @@ import { X, Upload, Trash2 } from 'lucide-react';
 import { evidenceFormsAPI } from '../../services/evidenceFormsAPI';
 import { useAuditStructure } from '../../hooks/useConfig';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 // Form templates for each evidence type
 const formTemplates = {
   change_request: {
@@ -550,7 +552,7 @@ function FormBuilder({ formType, currentUser, darkMode, onClose, onSuccess, preS
 
     try {
       // Check if backend is reachable
-      const healthCheck = await fetch('http://localhost:5000/api/health').catch(() => null);
+      const healthCheck = await fetch(`${API_BASE_URL}/health`).catch(() => null);
       if (!healthCheck) {
         alert('❌ Backend server is not running!\n\nPlease start the backend:\n1. Open terminal\n2. cd backend\n3. npm run dev\n\nSee START_SYSTEM.md for details.');
         setUploading(false);

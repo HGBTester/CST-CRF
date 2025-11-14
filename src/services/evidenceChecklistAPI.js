@@ -1,10 +1,25 @@
-const API_URL = 'http://localhost:5000/api/evidence-checklist';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = `${API_BASE_URL}/evidence-checklist`;
 
 export const evidenceChecklistAPI = {
   // Get checklist items for a control
   async getByControl(controlId) {
     const response = await fetch(`${API_URL}/control/${controlId}`);
     if (!response.ok) throw new Error('Failed to fetch checklist');
+    return response.json();
+  },
+
+  // Get progress for a control
+  async getProgress(controlId) {
+    const response = await fetch(`${API_URL}/progress/${controlId}`);
+    if (!response.ok) throw new Error('Failed to fetch progress');
+    return response.json();
+  },
+
+  // Get available forms for a control
+  async getAvailableForms(controlId) {
+    const response = await fetch(`${API_URL}/available-forms/${controlId}`);
+    if (!response.ok) throw new Error('Failed to fetch available forms');
     return response.json();
   },
 

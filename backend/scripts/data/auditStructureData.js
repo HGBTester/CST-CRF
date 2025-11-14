@@ -2,6 +2,7 @@
 export const auditStructureData = [
   {
     category: "Governance",
+    order: 1,
     subcategories: [
       {
         name: "1.1 Cybersecurity Strategy",
@@ -86,6 +87,7 @@ export const auditStructureData = [
   },
   {
     category: "Asset Management",
+    order: 2,
     subcategories: [
       {
         name: "2.1 Asset Discovery",
@@ -145,6 +147,7 @@ export const auditStructureData = [
   },
   {
     category: "Cybersecurity Risk Management",
+    order: 3,
     subcategories: [
       {
         name: "3.1 Cybersecurity Risk Assessment",
@@ -168,6 +171,7 @@ export const auditStructureData = [
   },
   {
     category: "Logical Security",
+    order: 4,
     subcategories: [
       {
         name: "4.1 Cryptography",
@@ -351,6 +355,7 @@ export const auditStructureData = [
   },
   {
     category: "Physical Security",
+    order: 5,
     subcategories: [
       {
         name: "5.1 Protection of Physical Information Assets",
@@ -380,6 +385,7 @@ export const auditStructureData = [
   },
   {
     category: "Third Party Security",
+    order: 6,
     subcategories: [
       {
         name: "6.1 Cloud Services",

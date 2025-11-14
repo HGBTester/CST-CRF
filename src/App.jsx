@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, ChevronRight, ChevronDown, Menu, X, Printer, Download, Plus, LogOut, User, CheckCircle, Clock, AlertCircle, Trash2, Sparkles, Moon, Sun } from 'lucide-react';
+import { FileText, ChevronRight, ChevronDown, Menu, X, Printer, Download, Plus, LogOut, User, CheckCircle, Clock, AlertCircle, Trash2, Sparkles, Moon, Sun, Activity } from 'lucide-react';
 import { useAuditStructure, useConfig } from './hooks/useConfig';
 import { generateDocument } from './utils/documentTemplates';
 import { authenticateUser } from './data/users';
@@ -13,7 +13,9 @@ import TemplateEditor from './components/TemplateEditorNew';
 import EvidenceForms from './components/EvidenceForms';
 import ControlEvidenceView from './components/ControlEvidenceView';
 import ErrorBoundary from './components/ErrorBoundary';
+import ActivityLogViewer from './components/ActivityLogViewer';
 import { useEvidenceCounts } from './hooks/useEvidenceCounts';
+import { useActivityLog } from './hooks/useActivityLog';
 import { hasEvidenceCapability } from './services/configAPI';
 
 function App() {
@@ -33,7 +35,9 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showEvidenceForms, setShowEvidenceForms] = useState(false);
   const [viewMode, setViewMode] = useState('template'); // 'template' or 'evidence'
+  const [showActivityLog, setShowActivityLog] = useState(false);
   const { evidenceCounts, refetch: refetchEvidenceCounts } = useEvidenceCounts();
+  const activityLog = useActivityLog(currentUser);
   
   // Get audit structure from database
   const { auditStructure, loading: structureLoading, error: structureError } = useAuditStructure();
@@ -96,6 +100,14 @@ function App() {
     setSelectedControl({ category, subcategory, item });
     setSelectedDocInstance(newDoc);
     setRefreshKey(prev => prev + 1);
+    
+    // Log activity
+    activityLog.logCreate('document', newDoc.id, `${item.id} - ${item.name}`, {
+      category,
+      subcategory,
+      controlId: item.id,
+      version: newDoc.version
+    });
     
     // Auto-expand the control to show the new document
     toggleControl(item.id);
@@ -213,6 +225,12 @@ function App() {
       setSelectedDocInstance(updatedDoc);
       setDocumentInstances(getAllDocumentInstances());
       setRefreshKey(prev => prev + 1);
+      
+      // Log activity
+      activityLog.logSign('document', selectedDocInstance.id, selectedDocInstance.title, role, {
+        controlId: selectedDocInstance.controlId,
+        version: selectedDocInstance.version
+      });
     }
   };
 
@@ -228,6 +246,12 @@ function App() {
       setSelectedDocInstance(updatedDoc);
       setDocumentInstances(getAllDocumentInstances());
       setRefreshKey(prev => prev + 1);
+      
+      // Log activity
+      activityLog.logRevokeSignature('document', selectedDocInstance.id, selectedDocInstance.title, role, {
+        controlId: selectedDocInstance.controlId,
+        version: selectedDocInstance.version
+      });
     }
   };
 
@@ -770,9 +794,11 @@ function App() {
               <button
                 onClick={() => {
                   setShowEvidenceForms(!showEvidenceForms);
-                  setSelectedControl(null);
-                  setSelectedDocInstance(null);
-                  setEditMode(false);
+                  setShowActivityLog(false);
+                  if (!showEvidenceForms) {
+                    setSelectedControl(null);
+                    setSelectedDocInstance(null);
+                  }
                 }}
                 className="flex items-center gap-2 px-4 py-2 rounded transition-all"
                 style={{
@@ -782,6 +808,24 @@ function App() {
               >
                 <FileText size={18} />
                 <span className="hidden sm:inline">Evidence Forms</span>
+              </button>
+              <button
+                onClick={() => {
+                  setShowActivityLog(!showActivityLog);
+                  setShowEvidenceForms(false);
+                  if (!showActivityLog) {
+                    setSelectedControl(null);
+                    setSelectedDocInstance(null);
+                  }
+                }}
+                className="flex items-center gap-2 px-4 py-2 rounded transition-all"
+                style={{
+                  backgroundColor: showActivityLog ? (darkMode ? '#0e639c' : '#2563eb') : (darkMode ? '#3c3c3c' : '#f3f4f6'),
+                  color: showActivityLog ? '#ffffff' : (darkMode ? '#cccccc' : '#374151')
+                }}
+              >
+                <Activity size={18} />
+                <span className="hidden sm:inline">Activity Log</span>
               </button>
               <button
                 onClick={handleLogout}
@@ -802,7 +846,12 @@ function App() {
 
         {/* Main Content Area */}
         <div className="flex-1 overflow-hidden" style={{backgroundColor: (darkMode ? '#1e1e1e' : '#f9fafb')}}>
-          {showEvidenceForms ? (
+          {showActivityLog ? (
+            <ActivityLogViewer 
+              darkMode={darkMode}
+              userId={currentUser?.id}
+            />
+          ) : showEvidenceForms ? (
             <EvidenceForms 
               currentUser={currentUser} 
               darkMode={darkMode}

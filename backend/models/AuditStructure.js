@@ -21,6 +21,11 @@ const auditStructureSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  order: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   subcategories: [{
     name: {
       type: String,

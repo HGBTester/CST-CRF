@@ -31,6 +31,13 @@ function EvidenceChecklist({ control, currentUser, darkMode }) {
   const formTypes = allFormTypes.filter(ft => applicableFormTypes.includes(ft.value));
 
   useEffect(() => {
+    console.log('EvidenceChecklist useEffect triggered:', {
+      controlId: control.item.id,
+      configLoading,
+      hasRequirements: evidenceRequirements && evidenceRequirements.length > 0,
+      requirementsCount: evidenceRequirements?.length || 0
+    });
+    
     if (!configLoading) {
       loadChecklist();
       loadProgress();
@@ -44,22 +51,28 @@ function EvidenceChecklist({ control, currentUser, darkMode }) {
       
       // Wait for config to load
       if (configLoading) {
+        console.log('Config still loading...');
         return;
       }
       
       // Get requirements from database via hook
       if (!evidenceRequirements || evidenceRequirements.length === 0) {
+        console.log('No evidence requirements for control:', control.item.id);
         setChecklistItems([]);
         setLoading(false);
         return;
       }
 
+      console.log('Loading checklist for control:', control.item.id, 'with requirements:', evidenceRequirements.length);
+      
       // Initialize checklist in backend
       const items = await evidenceChecklistAPI.initialize(control.item.id, evidenceRequirements);
+      console.log('Checklist loaded:', items.length, 'items');
       setChecklistItems(items);
     } catch (error) {
       console.error('Error loading checklist:', error);
-      alert('Failed to load checklist: ' + error.message);
+      // Don't show alert for every error, just log it
+      setChecklistItems([]);
     } finally {
       setLoading(false);
     }
@@ -67,19 +80,25 @@ function EvidenceChecklist({ control, currentUser, darkMode }) {
 
   const loadProgress = async () => {
     try {
+      console.log('Loading progress for control:', control.item.id);
       const prog = await evidenceChecklistAPI.getProgress(control.item.id);
+      console.log('Progress loaded:', prog);
       setProgress(prog);
     } catch (error) {
       console.error('Error loading progress:', error);
+      setProgress({ total: 0, completed: 0, pending: 0, progress: 0 });
     }
   };
 
   const loadAvailableForms = async () => {
     try {
+      console.log('Loading available forms for control:', control.item.id);
       const forms = await evidenceChecklistAPI.getAvailableForms(control.item.id);
+      console.log('Available forms loaded:', forms.length);
       setAvailableForms(forms);
     } catch (error) {
       console.error('Error loading available forms:', error);
+      setAvailableForms([]);
     }
   };
 

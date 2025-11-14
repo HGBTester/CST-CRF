@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api/config';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = `${API_BASE_URL}/config`;
 
 // Helper function for API calls
 const apiCall = async (endpoint) => {

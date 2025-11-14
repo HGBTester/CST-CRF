@@ -10,7 +10,7 @@ const router = express.Router();
 // Get complete audit structure
 router.get('/audit-structure', async (req, res) => {
   try {
-    const structure = await AuditStructure.find().sort({ category: 1 });
+    const structure = await AuditStructure.find().sort({ order: 1 });
     res.json(structure);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -20,7 +20,7 @@ router.get('/audit-structure', async (req, res) => {
 // Get audit structure formatted for frontend (original format)
 router.get('/audit-structure/formatted', async (req, res) => {
   try {
-    const structure = await AuditStructure.find().sort({ category: 1 });
+    const structure = await AuditStructure.find().sort({ order: 1 });
     
     // Convert to original frontend format
     const formatted = {};
@@ -191,7 +191,7 @@ router.get('/complete', async (req, res) => {
       templateOnlyControls,
       templateContents
     ] = await Promise.all([
-      AuditStructure.find().sort({ category: 1 }),
+      AuditStructure.find().sort({ order: 1 }),
       EvidenceRequirement.find(),
       FormTypeDefinition.find().sort({ order: 1 }),
       EvidenceMapping.find(),

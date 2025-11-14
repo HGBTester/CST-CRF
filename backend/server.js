@@ -11,6 +11,7 @@ import evidenceRoutes from './routes/evidence.js';
 import evidenceFormsRoutes from './routes/evidenceForms.js';
 import evidenceChecklistRoutes from './routes/evidenceChecklist.js';
 import configRoutes from './routes/config.js';
+import activityLogRoutes from './routes/activityLog.js';
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ const corsOptions = {
         'https://cst-audit-frontend.onrender.com',
         'https://cst-audit-frontend.up.railway.app'
       ].filter(Boolean)
-    : ['http://localhost:3000', 'http://localhost:5173'],
+    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:5173'],
   credentials: true,
   optionsSuccessStatus: 200
 };
@@ -38,15 +39,32 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // MongoDB Connection
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cst-audit';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => {
+const connectDB = async () => {
+  try {
+    console.log('Attempting to connect to MongoDB...');
+    // Avoid logging the full URI if it contains credentials
+    const safeURI = MONGODB_URI.includes('@') ? `mongodb+srv://${MONGODB_URI.split('@')[1]}` : MONGODB_URI;
+    console.log(`Connecting to: ${safeURI}`);
+
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 5000 // Timeout after 5 seconds
+    });
+
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
+    if (error.reason) {
+      console.error('Reason:', error.reason.toString());
+    }
+    process.exit(1);
+  }
+};
+
+connectDB();
+
+mongoose.connection.on('connected', () => {
     console.log('✅ Connected to MongoDB successfully');
     console.log(`📊 Database: ${mongoose.connection.name}`);
-  })
-  .catch((error) => {
-    console.error('❌ MongoDB connection error:', error);
-    process.exit(1);
-  });
+});
 
 // Handle MongoDB connection events
 mongoose.connection.on('disconnected', () => {
@@ -68,6 +86,7 @@ app.use('/api/evidence', evidenceRoutes);
 app.use('/api/evidence-forms', evidenceFormsRoutes);
 app.use('/api/evidence-checklist', evidenceChecklistRoutes);
 app.use('/api/config', configRoutes);
+app.use('/api/activity-logs', activityLogRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

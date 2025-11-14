@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, CheckCircle, Clock, AlertCircle, FileText, Image, Download, User } from 'lucide-react';
 import { evidenceFormsAPI } from '../services/evidenceFormsAPI';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
+
 function EvidenceFormViewer({ form, currentUser, darkMode, onClose, onUpdate }) {
   const [signing, setSigning] = useState(false);
 
@@ -223,7 +225,7 @@ function EvidenceFormViewer({ form, currentUser, darkMode, onClose, onUpdate }) 
                         </div>
                       </div>
                       <a
-                        href={`http://localhost:5000${att.filePath}`}
+                        href={`${API_BASE_URL}${att.filePath}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-2 rounded hover:bg-blue-100 transition-colors"
