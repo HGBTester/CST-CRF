@@ -1,0 +1,34 @@
+[Unit]
+Description=CST Audit Backend Service
+Documentation=https://github.com/HGBTester/CST-CRF
+After=network.target mongodb.service
+Wants=mongodb.service
+
+[Service]
+Type=simple
+User=cst-audit
+Group=cst-audit
+WorkingDirectory=/opt/cst-audit/backend
+Environment="NODE_ENV=production"
+Environment="PORT=5000"
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=10
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/cst-audit/uploads /opt/cst-audit/logs
+
+# Resource limits
+LimitNOFILE=65536
+MemoryLimit=1G
+
+# Logging
+StandardOutput=append:/opt/cst-audit/logs/backend.log
+StandardError=append:/opt/cst-audit/logs/backend-error.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+[Unit]
+Description=CST Audit Frontend Service
+Documentation=https://github.com/HGBTester/CST-CRF
+After=network.target cst-audit-backend.service
+Wants=cst-audit-backend.service
+
+[Service]
+Type=simple
+User=cst-audit
+Group=cst-audit
+WorkingDirectory=/opt/cst-audit
+Environment="NODE_ENV=production"
+ExecStart=/usr/bin/npx serve -s dist -l 3000
+Restart=always
+RestartSec=10
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+# Resource limits
+LimitNOFILE=65536
+MemoryLimit=512M
+
+# Logging
+StandardOutput=append:/opt/cst-audit/logs/frontend.log
+StandardError=append:/opt/cst-audit/logs/frontend-error.log
+
+[Install]
+WantedBy=multi-user.target
