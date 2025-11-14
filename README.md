@@ -4,7 +4,26 @@ Enterprise documentation and compliance management for CST L3 Certification.
 
 ## Quick Start
 
-### Run Locally
+### Run on Linux
+```bash
+# One command does everything: setup, install, and run
+chmod +x setup-and-run.sh
+./setup-and-run.sh
+```
+
+This script will:
+- ✅ Install Node.js and MongoDB (if needed)
+- ✅ Fix port conflicts automatically
+- ✅ Install all dependencies
+- ✅ Initialize database
+- ✅ Start both frontend and backend servers
+
+**Access:**
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
+- Login: `admin` / `admin123`
+
+### Run on Windows
 ```bash
 # Install dependencies
 npm install
@@ -14,13 +33,13 @@ cd backend && npm install && cd ..
 start-all.bat
 ```
 
-**Access:**
-- Frontend: http://localhost:3000
-- Backend: http://localhost:5000
-- Login: `admin` / `admin123`
+### Production Deployment
+```bash
+# Full automated deployment on Linux servers
+sudo ./deploy.sh
+```
 
-### Deploy to Cloud
-See **DEPLOY.md** for 15-minute deployment guide.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed production deployment guide.
 
 ## Tech Stack
 - **Frontend**: React + Vite + TailwindCSS
